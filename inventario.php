@@ -201,7 +201,7 @@
 							      		<form class="needs-validation" novalidate>
 											  <div class="form-row">
 											    <div class="col-md-6 mb-3">
-											      <label >First name</label>
+											      <label >Nombre del Producto</label>
 											      <input type="text" class="form-control" id="" placeholder="Nombre producto" value="" required size="40">
 											    </div>
 
