@@ -11,8 +11,9 @@
 		<link rel="stylesheet" href="Estilos/css/bootstrap.min.css">
 		<link rel="stylesheet" href="Estilos/css/bootstrap.css">
 		<link rel="stylesheet" href="Estilos/css/style.css">
-    	<link rel="stylesheet" href="Estilos/css/carousel.css">
-		
+		<link rel="stylesheet" href="Estilos/css/floating-labels-2.css">
+
+    <link rel="stylesheet" href="Estilos/css/form-validation.css">
 		<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
 		<script>paypal.Buttons().render('#paypal-button');</script>
 
@@ -86,37 +87,37 @@
 
 		<!--Inicio del cuerpo principal de la pagina-->
 		<main role="main">
-			<div class="container">
-  <div class="py-5 text-center">
-    <h2>Carrito</h2>
-    <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+      <div class="container">
+  <div class="pt text-center">
+    <h2>Carro de Compras</h2>
+    <p class="lead"></p>
   </div>
 
   <div class="row">
-    <div class="col-md-4 order-md-2 mb-4">
+    <div class="col-md-4 order-md-2">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-muted">Your cart</span>
+        <span class="text-muted">Tu carro</span>
         <span class="badge badge-secondary badge-pill">3</span>
       </h4>
       <ul class="list-group mb-3">
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0">Product name</h6>
-            <small class="text-muted">Brief description</small>
+            <h6 class="my-0">Producto 1</h6>
+            <small class="text-muted">Descripcion</small>
           </div>
           <span class="text-muted">$12</span>
         </li>
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0">Second product</h6>
-            <small class="text-muted">Brief description</small>
+            <h6 class="my-0">Producto 2</h6>
+            <small class="text-muted">Descripcion</small>
           </div>
           <span class="text-muted">$8</span>
         </li>
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0">Third item</h6>
-            <small class="text-muted">Brief description</small>
+            <h6 class="my-0">Producto 3</h6>
+            <small class="text-muted">Descrpcion</small>
           </div>
           <span class="text-muted">$5</span>
         </li>
@@ -127,108 +128,85 @@
       </ul>
     </div>
     <div class="col-md-8 order-md-1">
-      <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation" novalidate>
+      <form class="form-signin" novalidate>
+
+      <h4 class="mb-3">Direccion de envio</h4>
         <div class="row">
+      
           <div class="col-md-6 mb-3">
-            <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
+              <div class="form-label-group">
+                <input type="text" id="firstName" class="form-control" placeholder="Nombre" required autofocus>
+                <label for="firstName">Nombre</label>
+              </div>
           </div>
           <div class="col-md-6 mb-3">
-            <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
+              <div class="form-label-group">
+                <input type="text" id="secondName" class="form-control" placeholder="Apellido" required autofocus>
+                <label for="secondName">Apellido</label>
+              </div>            
           </div>
+        </div>
+        <div class="mb-3">
+              <div class="form-label-group">
+                <input type="email" id="email" class="form-control" placeholder="Correo ELectronico" required autofocus>
+                <label for="email">Correo Electronico</label>
+              </div>
         </div>
 
         <div class="mb-3">
-          <label for="username">Username</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">@</span>
-            </div>
-            <input type="text" class="form-control" id="username" placeholder="Username" required>
-            <div class="invalid-feedback" style="width: 100%;">
-              Your username is required.
-            </div>
-          </div>
+              <div class="form-label-group">
+                <input type="text" id="address" class="form-control" placeholder="Direccion de envio" required autofocus>
+                <label for="address">Direccion de envio</label>
+              </div>        
         </div>
 
         <div class="mb-3">
-          <label for="email">Email <span class="text-muted">(Optional)</span></label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com">
-          <div class="invalid-feedback">
-            Please enter a valid email address for shipping updates.
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-          <div class="invalid-feedback">
-            Please enter your shipping address.
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-          <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              <div class="form-label-group">
+                <input type="text" id="address2" class="form-control" placeholder="Direccion de envio opcional" required autofocus>
+                <label for="address2">Direccion de envio opcional</label>
+              </div>      
         </div>
 
         <div class="row">
-          <div class="col-md-5 mb-3">
-            <label for="country">Country</label>
+          <div class="col-md-6 mb-3">
+            <label for="country">Pais</label>
             <select class="custom-select d-block w-100" id="country" required>
-              <option value="">Choose...</option>
+              <option value="">Seleccionar...</option>
               <option>United States</option>
+              <option>Honduras</option>
+              <option>Canada</option>
+              <option>El Salvador</option>
+              <option>Otro</option>
             </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
-            </div>
           </div>
-          <div class="col-md-4 mb-3">
-            <label for="state">State</label>
+          <div class="col-md-6 mb-3">
+            <label for="state">Estado</label>
             <select class="custom-select d-block w-100" id="state" required>
-              <option value="">Choose...</option>
-              <option>California</option>
+              <option value="">Seleccionar...</option>
+              <option>Estado 1</option>
+              <option>Estado 2</option>
+              <option>Estado 3</option>
             </select>
-            <div class="invalid-feedback">
-              Please provide a valid state.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="zip">Zip</label>
-            <input type="text" class="form-control" id="zip" placeholder="" required>
-            <div class="invalid-feedback">
-              Zip code required.
-            </div>
           </div>
         </div>
-        <hr class="mb-4">
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="same-address">
-          <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-        </div>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="save-info">
-          <label class="custom-control-label" for="save-info">Save this information for next time</label>
-        </div>
-        <hr class="mb-4">
+        <div class="row">
+            <div class="col-md-12 mb-3">
 
-        <h4 class="mb-3">Payment</h4>
+              <div class="form-label-group">
+                <input type="text" id="zip" class="form-control" placeholder="Zip" required autofocus>
+                <label for="zip">Zip</label>
+              </div>      
+              
+            </div>          
+        </div>
+        <h4 class="mb-3">Metodo de Pago</h4>
 
-        <div class="d-block my-3" id="paypal-button">
+        <div id="paypal-button">
         </div>
       </form>
     </div>
   </div>
 </div>
-
 
 		</main>
 		<footer>
