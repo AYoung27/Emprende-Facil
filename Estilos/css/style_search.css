@@ -1,0 +1,58 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#input-search{
+    width: 500px;
+    height: 40px;
+    text-indent: 10px;
+}
+
+.content-search{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    display: none;
+}
+
+
+
+.content-table table{
+    width: 100%;
+}
+
+tbody tr td a{
+    display: block;
+    padding: 10px;
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+tbody tr td a:hover{
+    background: rgba(0,0,0,0.3);
+}
+
+#table_length, #table_filter, #table_info, #table_paginate{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
