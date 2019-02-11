@@ -90,8 +90,8 @@
                         	<ul class="list-group">
                         		<a href="perfil.php" class="list-group-item "	>Perfil</a>
                         		<a href="#" class="list-group-item list-group-item-info"	>Inventario</a>
-                        		<a href="#" class="list-group-item "	>Pedidos</a>
-                        		<a href="#" class="list-group-item"	>Estadistica</a>
+                        		<a href="pedidos.php" class="list-group-item "	>Pedidos</a>
+                        		<a href="estadisticas.php" class="list-group-item"	>Estadistica</a>
                         		<a href="historial_compra.php" class="list-group-item"	>Historial de Compra</a>
                         	</ul>
                         </div>

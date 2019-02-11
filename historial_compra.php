@@ -89,9 +89,9 @@
                         <div class="col-md-12">
                         	<ul class="list-group">
                         		<a href="perfil.php" class="list-group-item ">Perfil</a>
-                        		<a href="#" class="list-group-item"	>Inventario</a>
+                        		<a href="inventario.php" class="list-group-item"	>Inventario</a>
                         		<a href="pedidos.php" class="list-group-item"	>Pedidos</a>
-                        		<a href="#" class="list-group-item"	>Estadistica</a>
+                        		<a href="estadisticas.php" class="list-group-item"	>Estadistica</a>
                         		<a href="#" class="list-group-item list-group-item-info">Historial de Compra</a>
                         	</ul>
                         </div>
