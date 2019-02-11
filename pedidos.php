@@ -88,9 +88,9 @@
                         </div>
                         <div class="col-md-12">
                         	<ul class="list-group">
-                        		<a href="perfil.php" class="list-group-item list-group-item-info"	>Perfil</a>
+                        		<a href="perfil.php" class="list-group-item "	>Perfil</a>
                         		<a href="#" class="list-group-item"	>Inventario</a>
-                        		<a href="Pedidos.php" class="list-group-item"	>Pedidos</a>
+                        		<a href="#" class="list-group-item list-group-item-info"	>Pedidos</a>
                         		<a href="#" class="list-group-item"	>Estadistica</a>
                         		<a href="historial_compra.php" class="list-group-item"	>Historial de Compra</a>
                         	</ul>
@@ -102,22 +102,38 @@
 						<div class="col-md-12" style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: lightgray;">
 							<br>
 							<h4 style="text-align: center;">
-								Informacion de Contacto
+								Detalles del pedido
 							</h4>
-							<p class="text-center text-muted">Correo Electronico:</p>
-							<p class="text-center text-muted">Telefono:</p>
-							<p class="text-center text-muted">Direccion:</p>
+							<p style="font-size:12px">Numero de pedido</p>
+							<p style="font-size:12px">Fecha</p>
+							<br>
+							<p>Informacion de facturacion</p>
 
-							<p class="text-center">Redes Sociales:</p>
-							<div class="col-md-12 text-center">
-								<ul class="list-unstyled list-inline list-social-icons">
-									<a href="#">Facebook</a>
-									<a href="#">Twitter</a>
-									<a href="#">Google+</a>
-								</ul>
+							<hr>
+							<div class="row">
+								<div class="col-md-12">
+								 	<table class="table">
+ 								     <thead>
+
+ 								     </thead>
+ 								     <tbody>
+ 								     	<tr>
+ 								     		<td><img src="img/png/006-shopping" width="40" height="40"> Producto X</td>
+ 								     		<td>Entregado</td>
+ 								     		<td></td>
+ 								     		<td>HNL 0.00 </td>
+ 								     	</tr>
+ 								     	<tr>
+ 								     		<td><img src="img/png/006-shopping" width="40" height="40"> Producto X</td>
+ 								     		<td>Entregado</td>
+ 								     		<td></td>
+ 								     		<td>HNL 0.00 </td>
+ 								     	</tr>
+
+ 								     </tbody>
+ 								   </table>
+								</div>
 							</div>
-						</div>
-					</div>
 
 					<!--Zona #3 Reservada para publicidad-->
 					<div class="col-md-2">
