@@ -12,7 +12,7 @@
 
   <title>Registrate ya</title>
 </head>
-<form class="form-signin">
+<form class="form-signin" method="post" action="Acciones/Registrar.php">
  <div class="text-center mb-4">
    <img class="mb-4" src="img/png/041-online-shop.png" alt="" width="72" height="72">
    <h1 class="h3 mb-3 font-weight-normal">Registrate ya</h1>
@@ -21,28 +21,28 @@
 
  
  <div class="form-label-group">
-  <input type="text" id="firstName" class="form-control" placeholder="Email address" required autofocus>
+  <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Email address" required autofocus>
   <label for="inputEmail">Nombre</label>
 </div>
 
 <div class="form-label-group">
-  <input type="text" id="seconName" class="form-control" placeholder="Email address" required autofocus>
+  <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Email address" required autofocus>
   <label for="inputEmail">Apellido</label>
 </div>
 
 <div class="form-label-group">
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+  <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" placeholder="Email address" required autofocus>
   <label for="inputEmail">Correo electrónico</label>
 </div>
 
 <div class="form-label-group">
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Password" required>
   <label for="inputPassword">Contraseña</label>
 </div>
 
 
 <div class="form-label-group">
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  <input type="password" id="txtPassword" name="txtPasswordRep" class="form-control" placeholder="Password" required>
   <label for="inputPassword">Repetir contraseña</label>
 </div>
 
