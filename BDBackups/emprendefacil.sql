@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-03-2019 a las 20:33:21
+-- Tiempo de generación: 22-03-2019 a las 21:29:01
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.2.14
 
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `emprendefacil`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_sesion`
+--
+
+DROP TABLE IF EXISTS `tbl_sesion`;
+CREATE TABLE IF NOT EXISTS `tbl_sesion` (
+  `IDUsuario` int(5) NOT NULL,
+  `Estado` int(1) NOT NULL DEFAULT '0',
+  KEY `IDUsuario` (`IDUsuario`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbl_sesion`
+--
+
+INSERT INTO `tbl_sesion` (`IDUsuario`, `Estado`) VALUES
+(5, 0);
 
 -- --------------------------------------------------------
 
@@ -60,14 +80,14 @@ CREATE TABLE IF NOT EXISTS `tbl_usuario` (
   `TipoUsuario` int(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (`IDUsuario`),
   KEY `TipoFK` (`TipoUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbl_usuario`
 --
 
 INSERT INTO `tbl_usuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password`, `TipoUsuario`) VALUES
-(1, 'Abner', 'Reyes', 'abner@correo.com', 'f8935b5c0b8e6b3ddd8a9e881c11142bad8ca336', 1);
+(5, 'Abner', 'Reyes', 'correo@correo.com', 'f8935b5c0b8e6b3ddd8a9e881c11142bad8ca336', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

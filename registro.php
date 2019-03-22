@@ -12,7 +12,7 @@
 
   <title>Registrate ya</title>
 </head>
-<form class="form-signin" method="post" action="Acciones/Registrar.php">
+<form class="form-signin" id="f1" method="post" name="f1" action="Acciones/Registrar.php">
  <div class="text-center mb-4">
    <img class="mb-4" src="img/png/041-online-shop.png" alt="" width="72" height="72">
    <h1 class="h3 mb-3 font-weight-normal">Registrate ya</h1>
@@ -21,12 +21,12 @@
 
  
  <div class="form-label-group">
-  <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Email address" required autofocus>
+  <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Email address" pattern="[A-Za-z]+" title="El campo solo debe contener letras" required autofocus >
   <label for="inputEmail">Nombre</label>
 </div>
 
 <div class="form-label-group">
-  <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Email address" required autofocus>
+  <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Email address" pattern="[A-Za-z]+" title="El campo solo debe contener letras" required autofocus>
   <label for="inputEmail">Apellido</label>
 </div>
 
@@ -36,22 +36,18 @@
 </div>
 
 <div class="form-label-group">
-  <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Password" required>
+  <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Password"  minlength="6" required>
   <label for="inputPassword">Contraseña</label>
-</div>
-
-
-<div class="form-label-group">
-  <input type="password" id="txtPassword" name="txtPasswordRep" class="form-control" placeholder="Password" required>
-  <label for="inputPassword">Repetir contraseña</label>
 </div>
 
 <div class="checkbox mb-3">
   <label>
-    <input type="checkbox" value="remember-me"> He leído los términos y condiciones
+    <input type="checkbox" value="remember-me" required> He leído los términos y condiciones
   </label>
 </div>
-<button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
+
+<button type="submit" class="btn btn-lg btn-primary btn-block">Registrarse</button>
+<a href="index.php" class="btn btn-lg btn-danger btn-block">Cancelar</a>
 <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
 </form>
 

@@ -34,6 +34,7 @@
     <a href="contraseña.php" style="margin-left:70px">¿Has olvidado tu contraseña?</a>
   </div>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
+  <a href="index.php" class="btn btn-lg btn-danger btn-block">Cancelar</a>
   <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
 </form>
 
