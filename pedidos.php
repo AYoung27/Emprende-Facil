@@ -1,4 +1,12 @@
-<!--Pagina de inicio-->
+<?php 
+	session_start();
+	if (empty($_SESSION)) {
+		header('Location: index.php');
+	}
+ ?>
+
+<!--Pagina de perfil-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +19,11 @@
 	<link rel="stylesheet" href="Estilos/css/bootstrap.min.css">
 	<link rel="stylesheet" href="Estilos/css/bootstrap.css">
 	<link rel="stylesheet" href="Estilos/css/perfil.css">
+
+	<!--archivos para la busqueda con jquery-->
+	<link rel="stylesheet" href="Estilos/css/style_search.css">
+	<script src="Estilos/js/jq_search/jquery.js"></script>
+	<script src="Estilos/js/jq_search/jquery.dataTables.min.js"></script>
 
 	<title>Emprende Fácil</title>	
 </head>
@@ -35,16 +48,46 @@
 				<!--Formulario de busqueda que incluye dos menus desplegables-->
 				<form class="form-inline mt-2 mt-md-0">
 					<div class="input-group">
-						<input class="form-control" type="search" placeholder="Buscar un producto" size="60" /> 
+						<input type="search" class="form-control" id="input-search" placeholder="Buscar un producto" size="60" /> 
 						<span class="input-group-addon">
 							<button class="btn btn-primary" type="submit">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
 						</span>
+
+						<div class="content-search">
+							<div class="content-table">
+								<table id="table">
+									<thead>
+										<tr>
+											<td></td>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr> <td> <a href="busqueda.php">Cajas</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Envases</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Etiquetas para productos</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Madera</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Impresiones</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Diseño de logos</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Metales</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Plasticos</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Equipo de oficina</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Locales</a> </td> </tr>  
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-					<button class="btn" type="button" id="btnCarrito">
+
+					<!--scrip para jquery en el buscador-->
+					<script src="Estilos/js/jq_search/search.js"></script>
+
+
+					<a href="pago.php"><button class="btn" type="button" id="btnCarrito">
 						<span class="glyphicon glyphicon-shopping-cart"></span>
-					</button>
+					</button></a>
 
 					<!--Menu desplegable #1-->
 					<div class="dropdown" style="margin-left:auto; margin-right:0;">
@@ -84,14 +127,18 @@
 						<img src="img/png/014-support.png" width="200px" height="200px" class="img-thumbnail rounded img-responsive img-hover">
 					</div>
 					<div class="col-md-12">
-						<p class="text-center"><strong>Usuario</strong></p>
+						<p class="text-center"><strong><?php echo $_SESSION['Usuario']; ?></strong></p>
 					</div>
 					<div class="col-md-12">
 						<ul class="list-group">
-							<a href="perfil.php" class="list-group-item "	>Perfil</a>
-							<a href="Inventario.php" class="list-group-item"	>Inventario</a>
-							<a href="#" class="list-group-item list-group-item-info"	>Pedidos</a>
-							<a href="estadisticas.php" class="list-group-item"	>Estadística</a>
+							<a href="perfil.php" class="list-group-item"	>Perfil</a>
+							<?php 
+								if ($_SESSION['TipoUsuario'] == '2') {
+									echo "<a href=\"inventario.php\" class=\"list-group-item\"	>Inventario</a>
+										<a href=\"estadisticas.php\" class=\"list-group-item\"	>Estadística</a>";		
+								}
+							 ?>
+							<a href="Pedidos.php" class="list-group-item list-group-item-info"	>Pedidos</a>
 							<a href="historial_compra.php" class="list-group-item"	>Historial de Compra</a>
 						</ul>
 					</div>
@@ -134,12 +181,36 @@
 								</table>
 							</div>
 						</div>
-
-						<!--Zona #3 Reservada para publicidad-->
-						<div class="col-md-2">
-						</div>
 					</div>
 				</div>
+					<!--Zona #3 Reservada para publicidad-->
+					<div class="col-md-2">
+											<a href="index.php" class="btn btn-md btn-success btn-block">Sube tus productos ya</a>
+					<div class="card bg-default mt-2">
+						<h5 class="card-header">
+							Publicidad 1
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>
+					<div class="card bg-default mt-2">
+						<h5 class="card-header">
+							Publicidad 2
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>
+					</div>
 			</main>
 			<footer>
 				<p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>	

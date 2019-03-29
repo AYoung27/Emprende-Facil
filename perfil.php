@@ -1,4 +1,12 @@
-﻿<!--Pagina de inicio-->
+﻿<?php 
+	session_start();
+	if (empty($_SESSION)) {
+		header('Location: index.php');
+	}
+ ?>
+
+<!--Pagina de perfil-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,14 +127,18 @@
 						<img src="img/png/014-support.png" width="200px" height="200px" class="img-thumbnail rounded img-responsive img-hover">
 					</div>
 					<div class="col-md-12">
-						<p class="text-center"><strong>Usuario</strong></p>
+						<p class="text-center"><strong><?php echo $_SESSION['Usuario']; ?></strong></p>
 					</div>
 					<div class="col-md-12">
 						<ul class="list-group">
 							<a href="perfil.php" class="list-group-item list-group-item-info"	>Perfil</a>
-							<a href="inventario.php" class="list-group-item"	>Inventario</a>
+							<?php 
+								if ($_SESSION['TipoUsuario'] == '2') {
+									echo "<a href=\"inventario.php\" class=\"list-group-item\"	>Inventario</a>
+										<a href=\"estadisticas.php\" class=\"list-group-item\"	>Estadística</a>";		
+								}
+							 ?>
 							<a href="Pedidos.php" class="list-group-item"	>Pedidos</a>
-							<a href="estadisticas.php" class="list-group-item"	>Estadística</a>
 							<a href="historial_compra.php" class="list-group-item"	>Historial de Compra</a>
 						</ul>
 					</div>
@@ -156,6 +168,31 @@
 
 				<!--Zona #3 Reservada para publicidad-->
 				<div class="col-md-2">
+					<a href="index.php" class="btn btn-md btn-success btn-block">Sube tus productos ya</a>
+					<div class="card bg-default mt-2">
+						<h5 class="card-header">
+							Publicidad 1
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>
+					<div class="card bg-default mt-2">
+						<h5 class="card-header">
+							Publicidad 2
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

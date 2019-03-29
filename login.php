@@ -12,19 +12,19 @@
 
   <title>Iniciar Sesion</title>
 </head>
-<form class="form-signin">
+<form class="form-signin" method="post" action="Acciones/IniciarSesion.php">
  <div class="text-center mb-4">
    <img class="mb-4" src="img/png/041-online-shop.png" alt="" width="72" height="72">
    <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
  </div>  
 
  <div class="form-label-group">
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+  <input type="email" id="inputEmail" name="txtCorreo" class="form-control" placeholder="Email address" required autofocus>
   <label for="inputEmail">Correo electrónico</label>
 </div>
 
 <div class="form-label-group">
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  <input type="password" id="inputPassword" name="txtPassword" class="form-control" placeholder="Password" required>
   <label for="inputPassword">Contraseña</label>
 </div>
 
