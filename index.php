@@ -155,60 +155,64 @@
 	<!--Inicio del cuerpo principal de la pagina-->
 	<main role="main">
 		<!--Carrusel informativo presentado en la pagina principal-->
-		<div id="divCarrusel" class="carousel slide" data-ride="carousel">
+		<div id="divCarrusel" class="carousel slide" data-ride="carousel" style="padding-top: 1em;">
 			<ol class="carousel-indicators">
 				<li data-slide-to="0" data-target="#divCarrusel" class="active"></li>
 				<li data-slide-to="1" data-target="#divCarrusel"></li>
 				<li data-slide-to="2" data-target="#divCarrusel"></li>
 			</ol>
+			
+
 			<!--Contenido del carrusel, ampliable-->
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" class="bd-placeholder-img" focusable="false" role="img">
-						<img src="img/1.jpeg" >
+						<img src="img/Carrusel/CARRUSEL1.png" >
 					</svg>
 					<div class="container">
-						<div class="carousel-caption">
+							<div class="carousel-caption">
 							<h4>
-								<h3><span style="font-weight: bold;"> !Emprender </span> ahora es <span style="font-weight: bold;">Fácil!</span></h3>
+								<h3></h3>
 							</h4>
 							<p>
-								<br>Párrafo publicitario
+								
 							</p>
 						</div>
 					</div>
 				</div>
 				<div class="carousel-item" >
 					<svg width="100%" height="100%" class="bd-placeholder-img" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-						<img src="img/2.png">
+						<img src="img/Carrusel/CARRUSEL2.png">
 					</svg>
 					<div class="container">
 						<div class="carousel-caption">
 							<h4>
-								Espacio #2
+								
 							</h4>
 							<p>
-								Párrafo publicitario
+								
 							</p>
 						</div>
 					</div>
 				</div>
 				<div class="carousel-item">
 					<svg width="100%" height="100%" class="bd-placeholder-img" focusable="false" role="img" preserveAspectRatio="xMidYMid slice">
-						<img src="img/3.jpg">
+						<img src="img/Carrusel/CARRUSEL3.png">
 					</svg>
 					<div class="container">
 						<div class="carousel-caption">
 							<h4>
-								Espacio #3
+								
 							</h4>
 							<p>
-								Párrafo publicitario
+								
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
+
+
 			<!--Botones de control para el carrusel-->
 			<a class="carousel-control-prev" href="#divCarrusel" data-slide="prev">
 				<span class="carousel-control-prev-icon"></span> 
@@ -312,6 +316,12 @@
 				</div>
 			</div>
 			<hr class="featurette-divider">
+
+
+			<!--Publicidad en centro de la página-->
+			<div style="text-align: center; position: absolute; padding-left: 10em; animation-iteration-count: infinite; ">
+    			<iframe src="img/Banners/BANNER_PROTOTIPO_0.png" scrolling="no" height="90" width="728"   style=" border:none; animation-iteration-count: infinite;"></iframe>
+			</div>
 
 			<!--Información Extra, no indispensable-->
 			<div class="row featurette">
