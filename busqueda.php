@@ -10,27 +10,44 @@
 
 	<link rel="stylesheet" href="Estilos/css/bootstrap.min.css">
 	<link rel="stylesheet" href="Estilos/css/bootstrap.css">
-	<link rel="stylesheet" href="Estilos/css/perfil.css">
+	<link rel="stylesheet" href="Estilos/css/style.css">
+	<link rel="stylesheet" href="Estilos/css/carousel.css">
 
-	<!--archivos para la busqueda con jquery-->
+
+	<!--archivos para la búsqueda con jquery-->
 	<link rel="stylesheet" href="Estilos/css/style_search.css">
 	<script src="Estilos/js/jq_search/jquery.js"></script>
 	<script src="Estilos/js/jq_search/jquery.dataTables.min.js"></script>
 
-	<title>Emprende Fácil</title>	
+	<title>Emprende Fácil</title>
+	
+	<!--Estilo exclusivo del carrusel-->
+	<style> 
+	.bd-placeholder-img {
+		font-size: 1.125rem;
+		text-anchor: middle;
+	}
+
+	@media (min-width: 768px) {
+		.bd-placeholder-img-lg {
+			font-size: 3.5rem;
+		}
+	}
+</style>
 </head>
 
 <body>
-	<!--Incluido en todas las paginas, incluye la barra de navegacion y sus botones-->
+	<!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
 	<header> 
 		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-custom">	 
-			<!--El siguiente boton permanecera oculto hasta que sea necesario, usado por responsividad-->
+			<!--El siguiente botón permanecerá oculto hasta que sea necesario, usado por responsividad-->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#divCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<a class="navbar-brand" href="index.php">
-				Emprende Fácil
+				<!--Emprende Fácil-->
+				<img src="img/logo/PROTOTIPO6_LOGO.png" height="35px;" style="padding-left: 1em; padding-right: 1em;">
 			</a>
 
 			<!--Todo lo incluido en este div sera ocultado en pantallas angostas-->
@@ -43,7 +60,7 @@
 						<a class="nav-link" href="login.php">Iniciar Sesión</a>
 					</li>
 				</ul>
-				<!--Formulario de busqueda que incluye dos menus desplegables y jquery para busqueda-->
+				<!--Formulario de búsqueda que incluye dos menús desplegables-->
 				<form class="form-inline mt-2 mt-md-0">
 					<div class="input-group">
 						<input type="search" class="form-control" id="input-search" placeholder="Buscar un producto" size="60" /> 
@@ -70,8 +87,7 @@
 										<tr> <td> <a href="busqueda.php">Impresiones</a> </td> </tr>
 										<tr> <td> <a href="busqueda.php">Diseño de logos</a> </td> </tr>
 										<tr> <td> <a href="busqueda.php">Metales</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Plasticos</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Electronica</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Plásticos</a> </td> </tr>
 										<tr> <td> <a href="busqueda.php">Equipo de oficina</a> </td> </tr>
 										<tr> <td> <a href="busqueda.php">Locales</a> </td> </tr>  
 									</tbody>
@@ -80,12 +96,14 @@
 						</div>
 					</div>
 
+					<!--script para jquery en el buscador-->
 					<script src="Estilos/js/jq_search/search.js"></script>
 
-					<a href="pago.php"><button class="btn" type="button" id="btnCarrito">
+
+					<a href="pago.php"> <button class="btn" type="button" id="btnCarrito">
 						<span class="glyphicon glyphicon-shopping-cart"></span>
 					</button></a>
-					<!--Menu desplegable #1-->
+					<!--Menú desplegable #1-->
 					<div class="dropdown" style="margin-left:auto; margin-right:0;">
 						<button id="btnDespegable_1" class="btn" type="button" data-toggle="dropdown" data-target = "#divDesplegable_1" >
 							<span id="spnMenu" class="glyphicon glyphicon-bell" style="color: black"></span>
@@ -97,7 +115,7 @@
 						</div>
 					</div>
 
-					<!--Menu desplegable #2-->
+					<!--Menú desplegable #2-->
 					<div class="dropdown" style="margin-left:auto; margin-right:0;">
 						<button id="btnDesplegable_2" class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-target = "#divDesplegable_2">
 						</button>
@@ -112,136 +130,215 @@
 		</nav>
 	</header>
 
-
-
 	<!--Inicio del cuerpo principal de la pagina-->
-	<main role="main">
-		<!--La pagina de perfil estara divida en dos zonas-->
-		<div class="container-fluid mt-4">
-			<div class="row">
-				<!--Zona #1 Reservada para publicidad-->
-				<div class="col-md-3" style="padding-top: 40px;">
-					<div class="col-md-12" align="center">
-						<img src="img/png/banner.png" width="200px" height="200px" class="img-thumbnail rounded img-responsive img-hover">
-					</div>
-					<br> <br> <br>
-					<div class="col-md-12" align="center">
-						<img src="img/png/banner.png" width="200px" height="200px" class="img-thumbnail rounded img-responsive img-hover">
-					</div>
-				</div>
+<main role="main">
 
-				<!--Zona #2 Reservada para resultados de productos buscados-->
-				<div class="col-md-7" style="padding-top: 40px;">
-					<table border="0px" cellpadding="15%">
-						<tr>
-							<td><figure >
-								<img src="img/Productos/Categorias/prueba/Producto1.jpg">
-								<figcaption title="presione para mas detalles"><div style="text-align: center;"> Producto 1 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto2.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 2 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure> </td>
-
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto3.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 3 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-						</tr>
-						
-						<tr>
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto4.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 4 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a>
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a>  
-								</div> </figcaption>
-							</figure></td>
-
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto5.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 5 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto6.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 6 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-						</tr>
-
-						<tr>
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto7.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 7 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto8.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 8 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto9.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 9 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a>
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-						</tr>
-
-						<tr>	
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto10.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 10 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto11.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 11 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-
-							<td><figure>
-								<img src="img/Productos/Categorias/prueba/Producto12.jpg">
-								<figcaption title="presione para mas detalles"> <div style="text-align: center;"> Producto 12 <br> 
-									<a href="#"> <input type="button" value="Ver Detalles"> </a> 
-									<a href="#"> <input type="button" value="Agregar"> <input type="number" name="cantidad-pro" min="1" max="10" step="1" placeholder="0"></a> 
-								</div> </figcaption>
-							</figure></td>
-						</tr>
-					</table>
-				</div>
-
-
+	<!--publicidad centro de pagina-->
+			<div style="text-align: center; position: absolute; padding-left: 15em; padding-top: 2em; animation-iteration-count: infinite; ">
+    			<iframe src="img/Banners/banner_prot_3/banner_prot_3.html" scrolling="no" height="90" width="728"   style=" border:none; animation-iteration-count: infinite;"></iframe>
 			</div>
-		</div>
+
+
+	<!--aside , contendrá el espacio para publicidad lateral-->
+	<aside style="float: right; padding: 2em 1em;">
+    <iframe src="img/Banners/banner_prot_1/banner_prototipo1.html" scrolling="no" height="600" width="160"  style=" border:none"></iframe>
+	</aside>
+
+
+	<!--fila contenedora de el panel de resultados de búsqueda-->
+	<div class="row" style="padding-left: 4em; padding-right: 1em; padding-top: 10em;">
+
+		
+	<!--resultados de búsqueda-->
+		<div class="container marketing">
+		 	
+			<div class="row" style="padding-bottom: 3em;">
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 1
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 2
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 3
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 4
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+			</div>
+
+
+			<div class="row" style="padding-bottom: 3em;">
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 5
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 6
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 7
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 8
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+			</div>
+
+			<div class="row" style="padding-bottom: 3em;">
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 9
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 10
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 11
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+
+				<div class="col-lg-3">
+					<div class="card bg-default">
+						<h5 class="card-header">
+							Producto 12
+						</h5>
+						<div class="card-body">
+							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
+						</div>
+						<div class="card-footer">
+							<p>Detalles de producto</p>
+							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+						</div>
+					</div>      			
+				</div>
+			</div>	
+ 		 </div>
+	</div>
+
+
+	<hr class="featurette-divider">
+
+			
 	</main>
 	<footer>
 		<p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>	
