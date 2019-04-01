@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="Estilos/css/bootstrap.css">
 	<link rel="stylesheet" href="Estilos/css/perfil.css">
 
-	<!--archivos para la busqueda con jquery-->
+	<!--archivos para la búsqueda con jquery-->
 	<link rel="stylesheet" href="Estilos/css/style_search.css">
 	<script src="Estilos/js/jq_search/jquery.js"></script>
 	<script src="Estilos/js/jq_search/jquery.dataTables.min.js"></script>
@@ -29,23 +29,24 @@
 </head>
 
 <body>
-	<!--Incluido en todas las paginas, incluye la barra de navegacion y sus botones-->
+	<!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
 	<header> 
 		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-custom">	 
-			<!--El siguiente boton permanecera oculto hasta que sea necesario, usado por responsividad-->
+			<!--El siguiente botón permanecerá oculto hasta que sea necesario, usado por responsividad-->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#divCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<a class="navbar-brand" href="index.php">
-				Emprende Fácil
+				<!--Emprende Fácil-->
+				<img src="img/logo/PROTOTIPO6_LOGO.png" height="35px;" style="padding-left: 1em; padding-right: 1em;">
 			</a>
 
 			<!--Todo lo incluido en este div sera ocultado en pantallas angostas-->
 			<div class="collapse navbar-collapse" id="divCollapse">
 				<ul class="navbar-nav mr-auto">
 				</ul>
-				<!--Formulario de busqueda que incluye dos menus desplegables-->
+				<!--Formulario de búsqueda que incluye dos menús desplegables-->
 				<form class="form-inline mt-2 mt-md-0">
 					<div class="input-group">
 						<input type="search" class="form-control" id="input-search" placeholder="Buscar un producto" size="60" /> 
@@ -72,7 +73,7 @@
 										<tr> <td> <a href="busqueda.php">Impresiones</a> </td> </tr>
 										<tr> <td> <a href="busqueda.php">Diseño de logos</a> </td> </tr>
 										<tr> <td> <a href="busqueda.php">Metales</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Plasticos</a> </td> </tr>
+										<tr> <td> <a href="busqueda.php">Plásticos</a> </td> </tr>
 										<tr> <td> <a href="busqueda.php">Equipo de oficina</a> </td> </tr>
 										<tr> <td> <a href="busqueda.php">Locales</a> </td> </tr>  
 									</tbody>
@@ -81,7 +82,7 @@
 						</div>
 					</div>
 
-					<!--scrip para jquery en el buscador-->
+					<!--script para jquery en el buscador-->
 					<script src="Estilos/js/jq_search/search.js"></script>
 
 
@@ -89,7 +90,7 @@
 						<span class="glyphicon glyphicon-shopping-cart"></span>
 					</button></a>
 
-					<!--Menu desplegable #1-->
+					<!--Menú desplegable #1-->
 					<div class="dropdown" style="margin-left:auto; margin-right:0;">
 						<button id="btnDespegable_1" class="btn" type="button" data-toggle="dropdown" data-target = "#divDesplegable_1" >
 							<span id="spnMenu" class="glyphicon glyphicon-bell" style="color: black"></span>
@@ -101,7 +102,7 @@
 						</div>
 					</div>
 
-					<!--Menu desplegable #2-->
+					<!--Menú desplegable #2-->
 					<div class="dropdown" style="margin-left:auto; margin-right:0;">
 						<button id="btnDesplegable_2" class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-target = "#divDesplegable_2">
 						</button>
@@ -118,10 +119,10 @@
 
 	<!--Inicio del cuerpo principal de la pagina-->
 	<main role="main">
-		<!--La pagina de perfil estara divida en tres zonas-->
+		<!--La pagina de perfil estará divida en tres zonas-->
 		<div class="container-fluid mt-4">
 			<div class="row">
-				<!--Zona #1 Reservada para navegacion del usuario-->
+				<!--Zona #1 Reservada para navegación del usuario-->
 				<div class="col-md-3">
 					<div class="col-md-12" align="center">
 						<img src="img/png/014-support.png" width="200px" height="200px" class="img-thumbnail rounded img-responsive img-hover">
@@ -144,12 +145,12 @@
 					</div>
 				</div>
 
-				<!--Zona #2 Reservada para informacion del contacto y productos del usuario-->
+				<!--Zona #2 Reservada para información del contacto y productos del usuario-->
 				<div class="col-md-7">
 					<div class="col-md-12" style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: lightgray;">
 						<br>
 						<h4 style="text-align: center;">
-							Estadisticas
+							Estadísticas
 						</h4>
 						<div class="row">
 							<div class="col-md-6">
@@ -177,13 +178,13 @@
 									</div>
 								</div><br><br><br>
 								<div class="btn-group">
-									<p style="margin-right:10px">Seleccionar tipo de grafico</p>
+									<p style="margin-right:10px">Seleccionar tipo de gráfico</p>
 									<div class="dropdown">
 										<button class="btn btn-sm  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#Divdesplegable_5"><span>Grafico de Barras</span></button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="Divdesplegable_5">
-											<a class="dropdown-item" href="#">Grafico de barras</a>
-											<a class="dropdown-item" href="#">Grafico de pastel</a>
-											<a class="dropdown-item" href="#">Graficolineas</a>
+											<a class="dropdown-item" href="#">Gráfico de barras</a>
+											<a class="dropdown-item" href="#">Gráfico de pastel</a>
+											<a class="dropdown-item" href="#">Gráfico de lineas</a>
 										</div>
 									</div>
 								</div>

@@ -7,7 +7,7 @@
 		<link rel="icon" type="png" href="img/png/041-online-shop.png">
 		<link rel="stylesheet" type="text/css" href="Estilos/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="Estilos/css/bootstrap.css">
-	<title>Emprende Facil</title>
+	<title>Emprende Fácil</title>
 		<style>
   /* Make the image fully responsive */
   .carousel-inner img {
@@ -23,7 +23,8 @@
 					<span class="navbar-toggler-icon"></span>
 				</button> 
 				<a class="navbar-brand" href="#">
-					Emprende Facil
+					<!--Emprende Fácil-->
+        <img src="img/logo/PROTOTIPO6_LOGO.png" height="35px;" style="padding-left: 1em; padding-right: 1em;">
 				</a>
 				
 
@@ -36,7 +37,7 @@
   		  <a class="nav-link active" data-toggle="tab" href="#Inicio">Inicio</a>
   		</li>
   		<li class="nav-item">
-  		  <a class="nav-link" data-toggle="tab" href="#Busqueda">Busqueda de productos</a>
+  		  <a class="nav-link" data-toggle="tab" href="#Busqueda">Búsqueda de productos</a>
   		</li>
   		<li class="nav-item">
   		  <a class="nav-link" data-toggle="tab" href="#Inventario">Inventario</a>
@@ -69,7 +70,7 @@
   							  <a class="nav-link" data-toggle="tab" href="#Pedidos">Pedidos</a>
   							</li>
  							<li class="nav-item">
-    							<a class="nav-link" data-toggle="tab" href="#Estadisticas">Estadisticas</a>
+    							<a class="nav-link" data-toggle="tab" href="#Estadisticas">Estadísticas</a>
  							</li>
    							<li class="nav-item">
    								 <a class="nav-link" data-toggle="tab" href="#Reportes">Reportes</a>
@@ -102,7 +103,7 @@
   	<div>
   		<h1 class="text-center">Acerca de nosotros</h1><br>
   		<div class="text-center">
-  			<h3>Nuestra mision</h1>
+  			<h3>Nuestra misión</h1>
   			<article>
 				Poder ser el enlace entre proveedores y emprendedores para impulsar la economía y el 
 				crecimiento de pequeñas empresas ganando la confianza de cada ciudadano que utilice 
@@ -122,14 +123,14 @@
 			    <div class="carousel-item active">
 			      <img src="img/1.jpeg" alt="Los Angeles" width="1100" height="500">
 			      <div class="carousel-caption">
-			        <h3>¡Emprender ahora es facil!</h3>
+			        <h3>¡Emprender ahora es fácil!</h3>
 			        <p></p>
 			      </div>   
 			    </div>
 			    <div class="carousel-item">
 			      <img src="img/2.png" alt="Chicago" width="1100" height="500">
 			      <div class="carousel-caption">
-			        <h3>¡El exito al alcance de tus manos!</h3>
+			        <h3>¡El éxito al alcance de tus manos!</h3>
 			        <p>Thank you, Chicago!</p>
 			      </div>   
 			    </div>

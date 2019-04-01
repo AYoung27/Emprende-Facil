@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="Estilos/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="Estilos/css/floating-labels.css">
 
-  <title>Iniciar Sesion</title>
+  <title>Iniciar Sesión</title>
 </head>
 <form class="form-signin" method="post" action="Acciones/IniciarSesion.php">
  <div class="text-center mb-4">

@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="Estilos/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="Estilos/css/floating-labels.css">
 
-    <title>Reestablece tu contraseña</title>
+    <title>Restablecer tu contraseña</title>
   </head>
   <body>
     <header>
@@ -19,7 +19,8 @@
           <span class="navbar-toggler-icon"></span>
         </button> 
         <a class="navbar-brand" href="index.php">
-          Emprende Facil
+        <!--Emprende Fácil-->
+        <img src="img/logo/PROTOTIPO6_LOGO.png" height="35px;" style="padding-left: 1em; padding-right: 1em;">
         </a>
       </nav>
     </header>
@@ -27,14 +28,14 @@
         <form class="form-group" >
           <div class="text-center mb-4" style="margin-top:100px">
             <h1 class="h3 mb-3 font-weight-normal">Busca tu cuenta</h1>
-            <p>¿Cual es tu direccion de correo electronico?</p>
+            <p>¿Cual es tu dirección de correo electrónico?</p>
           </div>  
 
 
           <div class="form-label-group">
 
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputEmail">Correo electronico</label>
+            <label for="inputEmail">Correo electrónico</label>
           </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Buscar</button>
           <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>

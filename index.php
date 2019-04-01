@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="Estilos/css/style.css">
 	<link rel="stylesheet" href="Estilos/css/carousel.css">
 
-	<!--archivos para la busqueda con jquery-->
+	<!--archivos para la búsqueda con jquery-->
 	<link rel="stylesheet" href="Estilos/css/style_search.css">
 	<script src="Estilos/js/jq_search/jquery.js"></script>
 	<script src="Estilos/js/jq_search/jquery.dataTables.min.js"></script>
@@ -41,16 +41,17 @@
 </head>
 
 <body>
-	<!--Incluido en todas las paginas, incluye la barra de navegacion y sus botones-->
+	<!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
 	<header> 
 		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-custom">	 
-			<!--El siguiente boton permanecera oculto hasta que sea necesario, usado por responsividad-->
+			<!--El siguiente botón permanecerá oculto hasta que sea necesario, usado por responsividad-->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#divCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<a class="navbar-brand" href="index.php">
-				Emprende Fácil
+				<!--Emprende Fácil-->
+				<img src="img/logo/PROTOTIPO6_LOGO.png" height="35px;" style="padding-left: 1em; padding-right: 1em;">
 			</a>
 
 			<!--Todo lo incluido en este div sera ocultado en pantallas angostas-->
@@ -76,7 +77,8 @@
 							</ul>";
 					}
 				 ?>
-				<!--Formulario de busqueda que incluye dos menus desplegables-->
+
+				<!--Formulario de búsqueda que incluye dos menús desplegables-->
 				<form class="form-inline mt-2 mt-md-0">
 					<div class="input-group">
 						<input type="search" class="form-control" id="input-search" placeholder="Buscar un producto" size="60" /> 
@@ -112,7 +114,7 @@
 						</div>
 					</div>
 
-					<!--scrip para jquery en el buscador-->
+					<!--script para jquery en el buscador-->
 					<script src="Estilos/js/jq_search/search.js"></script>
 
 
@@ -210,15 +212,15 @@
 			<!--Botones de control para el carrusel-->
 			<a class="carousel-control-prev" href="#divCarrusel" data-slide="prev">
 				<span class="carousel-control-prev-icon"></span> 
-				<span class="sr-only">Previous</span>
+				<span class="sr-only">Anterior</span>
 			</a> 
 			<a class="carousel-control-next" href="#divCarrusel" data-slide="next">
 				<span class="carousel-control-next-icon"></span> 
-				<span class="sr-only">Next</span>
+				<span class="sr-only">Siguiente</span>
 			</a>
 		</div>
 
-		<!--Contenido extra: Publicidad y otra informacion-->
+		<!--Contenido extra: Publicidad y otra información-->
 		<div class="container marketing">
 			<!--div que contiene tres tarjetas de publicidad, se puede utilizar para ampliar-->
 			<div class="row">
@@ -311,7 +313,7 @@
 			</div>
 			<hr class="featurette-divider">
 
-			<!--Informacion Extra, no indispensable-->
+			<!--Información Extra, no indispensable-->
 			<div class="row featurette">
 				<div class="col-md-7">
 					<h2 class="featurette-heading">Beneficios de nuestro sitio web. <span class="text-muted">Te sorprenderán.</span></h2>

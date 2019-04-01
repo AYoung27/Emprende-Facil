@@ -16,23 +16,24 @@
 	</head>
 
 	<body>
-		<!--Incluido en todas las paginas, incluye la barra de navegacion y sus botones-->
+		<!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
 		<header> 
 			<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-custom">	 
-				<!--El siguiente boton permanecera oculto hasta que sea necesario, usado por responsividad-->
+				<!--El siguiente botón permanecerá oculto hasta que sea necesario, usado por responsividad-->
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#divCollapse">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
 				<a class="navbar-brand" href="index.php">
-					Emprende Fácil
+					<!--Emprende Fácil-->
+				<img src="img/logo/PROTOTIPO6_LOGO.png" height="35px;" style="padding-left: 1em; padding-right: 1em;">
 				</a>
 
 				<!--Todo lo incluido en este div sera ocultado en pantallas angostas-->
 				<div class="collapse navbar-collapse" id="divCollapse">
 					<ul class="navbar-nav mr-auto">
 					</ul>
-					<!--Formulario de busqueda que incluye dos menus desplegables-->
+					<!--Formulario de búsqueda que incluye dos menús desplegables-->
 					<form class="form-inline mt-2 mt-md-0">
 						<div class="input-group">
 							<input class="form-control" type="search" placeholder="Buscar un producto" size="60" /> 
@@ -46,7 +47,7 @@
 							<span class="glyphicon glyphicon-shopping-cart"></span>
 						</button>
 						
-						<!--Menu desplegable #1-->
+						<!--Menú desplegable #1-->
 						<div class="dropdown" style="margin-left:auto; margin-right:0;">
 							<button id="btnDespegable_1" class="btn" type="button" data-toggle="dropdown" data-target = "#divDesplegable_1" >
 								<span id="spnMenu" class="glyphicon glyphicon-bell" style="color: black"></span>
@@ -58,7 +59,7 @@
 							</div>
 						</div>
 
-						<!--Menu desplegable #2-->
+						<!--Menú desplegable #2-->
 						<div class="dropdown" style="margin-left:auto; margin-right:0;">
 							<button id="btnDesplegable_2" class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-target = "#divDesplegable_2">
 							</button>
@@ -75,10 +76,10 @@
 
 		<!--Inicio del cuerpo principal de la pagina-->
 		<main role="main">
-			<!--La pagina de perfil estara divida en tres zonas-->
+			<!--La pagina de perfil estará divida en tres zonas-->
 			<div class="container-fluid mt-4">
 				<div class="row">
-					<!--Zona #1 Reservada para navegacion del usuario-->
+					<!--Zona #1 Reservada para navegación del usuario-->
 					<div class="col-md-3">
 						<div class="col-md-12" align="center">
                            	<img src="img/png/014-support.png" width="200px" height="200px" class="img-thumbnail rounded img-responsive img-hover">
@@ -91,18 +92,18 @@
                         		<a href="perfil.php" class="list-group-item ">Perfil</a>
                         		<a href="#" class="list-group-item list-group-item-info"	>Inventario</a>
                         		<a href="pedidos.php" class="list-group-item "	>Pedidos</a>
-                        		<a href="estadisticas.php" class="list-group-item"	>Estadistica</a>
+                        		<a href="estadisticas.php" class="list-group-item"	>Estadística</a>
                         		<a href="historial_compra.php" class="list-group-item"	>Historial de Compra</a>
                         	</ul>
                         </div>
                     </div>
 
-					<!--Zona #2 Reservada para informacion del contacto y productos del usuario-->
+					<!--Zona #2 Reservada para información del contacto y productos del usuario-->
 					<div class="col-md-7">
 						<div class="col-md-12" style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: lightgray;">
 							<br>
 							<h4 style="text-align: center;">
-								Inventario De Mercaderia
+								Inventario De Mercadería
 							</h4>
 
 							<hr>
@@ -119,10 +120,10 @@
 							      <a class="nav-link" data-toggle="tab" href="#gestion_productos">Gestionar productos</a>
 							    </li>
 							    <li class="nav-item">
-							      <a class="nav-link" data-toggle="tab" href="#xdd">Categorias</a>
+							      <a class="nav-link" data-toggle="tab" href="#xdd">Categorías</a>
 							    </li>
 							    <li class="nav-item">
-							      <a class="nav-link" data-toggle="tab" href="#xddd">vacio</a>
+							      <a class="nav-link" data-toggle="tab" href="#xddd">Vacío</a>
 							    </li>
  							 </ul>
 							
@@ -217,12 +218,12 @@
  											 </div>
  											 <div class="form-row">
  											 	<div class="col-md-6 mb-3">
- 											 		<label class="" for="slc_categoria">Seleccione la categoria del producto</label>
+ 											 		<label class="" for="slc_categoria">Seleccione la categoría del producto</label>
  													 <select class="custom-select " id="slc_categoria">
- 													   <option selected>Categorias...</option>
- 													   <option value="1">Categoria X</option>
- 													   <option value="2">Categoria Y</option>
- 													   <option value="3">Categoria Z</option>
+ 													   <option selected>Categorías...</option>
+ 													   <option value="1">Categoría X</option>
+ 													   <option value="2">Categoría Y</option>
+ 													   <option value="3">Categoría Z</option>
  													 </select>													
  											 	</div>
  											 </div>

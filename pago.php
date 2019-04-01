@@ -22,16 +22,17 @@
 </head>
 
 <body>
-  <!--Incluido en todas las paginas, incluye la barra de navegacion y sus botones-->
+  <!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
   <header> 
    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-custom">	 
-    <!--El siguiente boton permanecera oculto hasta que sea necesario, usado por responsividad-->
+    <!--El siguiente botón permanecerá oculto hasta que sea necesario, usado por responsividad-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#divCollapse">
      <span class="navbar-toggler-icon"></span>
    </button>
 
    <a class="navbar-brand" href="index.php">
-     Emprende Fácil
+    <!--Emprende Fácil-->
+        <img src="img/logo/PROTOTIPO6_LOGO.png" height="35px;" style="padding-left: 1em; padding-right: 1em;">
    </a>
 
    <!--Todo lo incluido en este div sera ocultado en pantallas angostas-->
@@ -44,7 +45,7 @@
        <a class="nav-link" href="login.php">Iniciar Sesión</a>
      </li>
    </ul>
-   <!--Formulario de busqueda que incluye dos menus desplegables-->
+   <!--Formulario de búsqueda que incluye dos menús desplegables-->
    <form class="form-inline mt-2 mt-md-0">
     <div class="input-group">
      <input class="form-control" type="search" placeholder="Buscar un producto" size="60" /> 
@@ -58,7 +59,7 @@
  <button class="btn" type="button" id="btnCarrito">
    <span class="glyphicon glyphicon-shopping-cart"></span>
  </button>
- <!--Menu desplegable #1-->
+ <!--Menú desplegable #1-->
  <div class="dropdown" style="margin-left:auto; margin-right:0;">
    <button id="btnDespegable_1" class="btn" type="button" data-toggle="dropdown" data-target = "#divDesplegable_1" >
     <span id="spnMenu" class="glyphicon glyphicon-bell" style="color: black"></span>
@@ -70,7 +71,7 @@
   </div>
 </div>
 
-<!--Menu desplegable #2-->
+<!--Menú desplegable #2-->
 <div class="dropdown" style="margin-left:auto; margin-right:0;">
  <button id="btnDesplegable_2" class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-target = "#divDesplegable_2">
  </button>
@@ -117,7 +118,7 @@
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <h6 class="my-0">Producto 3</h6>
-              <small class="text-muted">Descrpción</small>
+              <small class="text-muted">Descripción</small>
             </div>
             <span class="text-muted">$5</span>
           </li>
@@ -130,7 +131,7 @@
       <div class="col-md-8 order-md-1">
         <form class="form-signin" novalidate>
 
-          <h4 class="mb-3">Dirección de envio</h4>
+          <h4 class="mb-3">Dirección de envío</h4>
           <div class="row">
             
             <div class="col-md-6 mb-3">
@@ -156,14 +157,14 @@
           <div class="mb-3">
             <div class="form-label-group">
               <input type="text" id="address" class="form-control" placeholder="Direccion de envio" required autofocus>
-              <label for="address">Dirección de envio</label>
+              <label for="address">Dirección de envío</label>
             </div>        
           </div>
 
           <div class="mb-3">
             <div class="form-label-group">
               <input type="text" id="address2" class="form-control" placeholder="Direccion de envio secundario" required autofocus>
-              <label for="address2">Dirección de envio secundario</label>
+              <label for="address2">Dirección de envío secundario</label>
             </div>      
           </div>
 
@@ -174,7 +175,7 @@
                 <option value="">Seleccionar...</option>
                 <option>Estados Unidos</option>
                 <option>Honduras</option>
-                <option>Canada</option>
+                <option>Canadá</option>
                 <option>El Salvador</option>
                 <option>Otro</option>
               </select>

@@ -10,12 +10,12 @@
   <link rel="stylesheet" type="text/css" href="Estilos/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="Estilos/css/floating-labels.css">
 
-  <title>Registrate ya</title>
+  <title>Regístrate ya</title>
 </head>
 <form class="form-signin" id="f1" method="post" name="f1" action="Acciones/Registrar.php">
  <div class="text-center mb-4">
    <img class="mb-4" src="img/png/041-online-shop.png" alt="" width="72" height="72">
-   <h1 class="h3 mb-3 font-weight-normal">Registrate ya</h1>
+   <h1 class="h3 mb-3 font-weight-normal">Regístrate ya</h1>
    <p>El registro es gratis, no necesitas tarjeta de crédito para utilizar esta plataforma</p>
  </div>
 
