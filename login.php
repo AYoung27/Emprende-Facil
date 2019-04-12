@@ -12,7 +12,7 @@
 
   <title>Iniciar Sesión</title>
 </head>
-<form class="form-signin" method="post" action="Acciones/IniciarSesion.php">
+<form class="form-signin" method="post" action="controlador/Clogin.php">
  <div class="text-center mb-4">
    <img class="mb-4" src="img/png/041-online-shop.png" alt="" width="72" height="72">
    <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>

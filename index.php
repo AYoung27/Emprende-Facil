@@ -142,7 +142,7 @@
 										<div id=\"divDesplegable_2\" class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenuButton\">
 											<a class=\"dropdown-item\" href=\"perfil.php\">Perfil</a> 
 											<a class=\"dropdown-item\" href=\"#\">Otro</a> 
-											<a class=\"dropdown-item\" href=\"Acciones\\CerrarSesion.php\">Salir</a>
+											<a class=\"dropdown-item\" href=\"controlador/Ccerrar_sesion.php\">Salir</a>
 										</div>
 									</div>";
 						}

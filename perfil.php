@@ -91,27 +91,32 @@
 					</button></a>
 
 					<!--Menú desplegable #1-->
-					<div class="dropdown" style="margin-left:auto; margin-right:0;">
-						<button id="btnDespegable_1" class="btn" type="button" data-toggle="dropdown" data-target = "#divDesplegable_1" >
-							<span id="spnMenu" class="glyphicon glyphicon-bell" style="color: black"></span>
-						</button>
-						<div id="divDesplegable_1" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-							<a class="dropdown-item" href="#">Notificación 1</a> 
-							<a class="dropdown-item" href="#">Notificación 2</a> 
-							<a class="dropdown-item" href="#">Notificación 3</a>
-						</div>
-					</div>
+					<?php
+						if (!empty($_SESSION)) {
+							echo "<!--Menu desplegable #1-->
+								<div class=\"dropdown\" style=\"margin-left:auto; margin-right:0;\">
+									<button id=\"btnDespegable_1\" class=\"btn\" type=\"button\" data-toggle=\"dropdown\" data-target = \"#divDesplegable_1\" >
+										<span id=\"spnMenu\" class=\"glyphicon glyphicon-bell\" style=\"color: black\"></span>
+									</button>
+									<div id=\"divDesplegable_1\" class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenuButton\">
+										<a class=\"dropdown-item\" href=\"#\">Notificación 1</a> 
+										<a class=\"dropdown-item\" href=\"#\">Notificación 2</a> 
+										<a class=\"dropdown-item\" href=\"#\">Notificación 3</a>
+									</div>
+								</div>
 
-					<!--Menú desplegable #2-->
-					<div class="dropdown" style="margin-left:auto; margin-right:0;">
-						<button id="btnDesplegable_2" class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-target = "#divDesplegable_2">
-						</button>
-						<div id="divDesplegable_2" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-							<a class="dropdown-item" href="#">Perfil</a> 
-							<a class="dropdown-item" href="#">Otro</a> 
-							<a class="dropdown-item" href="#">Salir</a>
-						</div>
-					</div>
+								<!--Menu desplegable #2-->
+									<div class=\"dropdown\" style=\"margin-left:auto; margin-right:0;\">
+										<button id=\"btnDesplegable_2\" class=\"btn dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" data-target = \"#divDesplegable_2\">
+										</button>
+										<div id=\"divDesplegable_2\" class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenuButton\">
+											<a class=\"dropdown-item\" href=\"perfil.php\">Perfil</a> 
+											<a class=\"dropdown-item\" href=\"#\">Otro</a> 
+											<a class=\"dropdown-item\" href=\"controlador/Ccerrar_sesion.php\">Salir</a>
+										</div>
+									</div>";
+						}
+					?>
 				</form>
 			</div>
 		</nav>

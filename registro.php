@@ -12,7 +12,7 @@
 
   <title>Regístrate ya</title>
 </head>
-<form class="form-signin" id="f1" method="post" name="f1" action="Acciones/Registrar.php">
+<form class="form-signin" id="f1" method="post" name="f1" action="controlador/Cregistro.php">
  <div class="text-center mb-4">
    <img class="mb-4" src="img/png/041-online-shop.png" alt="" width="72" height="72">
    <h1 class="h3 mb-3 font-weight-normal">Regístrate ya</h1>
