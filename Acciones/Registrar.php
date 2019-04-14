@@ -1,4 +1,5 @@
 <?php 
+	date_default_timezone_set('America/Tegucigalpa');
 	include("../Clases/Conexion.php");
 	$conexion = new Conexion();
 	$conexion->mysql_set_charset("utf8");
@@ -32,15 +33,20 @@
 			$_SESSION['ID'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['IDUsuario'];
 			$_SESSION['TipoUsuario'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['TipoUsuario'];
 			$_SESSION['Usuario'] = $nombre." ".$apellido;
-			mysqli_close($conexion);
 			
 			// Redirigir
 			header('Location: ../index.php');
 
-			$consulta =sprintf("INSERT INTO tbl_sesion(idusuario, estado) values('%s','%s')", $conexion->antiInyeccion($_SESSION['ID']), $conexion->antiInyeccion("0"));
+			//
+			$consulta =sprintf("INSERT INTO tbl_sesion(idusuario, estado) values('%s','%s')", $conexion->antiInyeccion($_SESSION['ID']), $conexion->antiInyeccion("1"));
 			$conexion->ejecutarconsulta($consulta);
+
+			$fecha=date("Y-m-d");
+			$hora=date("G:i:s");
+			$consultaB = sprintf("INSERT INTO tbl_log(evento, descripcion, fecha, hora,direccion_ip_usuario,usuarioid) values('%s','%s','%s','%s','%s','%s')",$conexion->antiInyeccion("Nuevo registro"),$conexion->antiInyeccion("Se ha registrado un nuevo usuario con la direccion de correo:"." ".$correo),$conexion->antiInyeccion($fecha),$conexion->antiInyeccion($hora),$conexion->antiInyeccion($conexion->ip()) ,$conexion->antiInyeccion($_SESSION['ID']));
+			$conexion->ejecutarconsulta($consultaB);
 			
-			
+			mysqli_close($conexion);
 		//	En caso de encontrarse un error, se retornara a la pagina de registro
 		} else {
 			mysqli_close($conexion);

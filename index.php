@@ -238,7 +238,7 @@
 						</div>
 						<div class="card-footer">
 							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
 						</div>
 					</div>      			
 				</div>
@@ -252,7 +252,7 @@
 						</div>
 						<div class="card-footer">
 							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
 						</div>
 					</div>      			
 				</div>
@@ -266,7 +266,7 @@
 						</div>
 						<div class="card-footer">
 							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
 						</div>
 					</div>      			
 				</div>
@@ -282,7 +282,7 @@
 						</div>
 						<div class="card-footer">
 							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
 						</div>
 					</div>      			
 				</div>
@@ -296,7 +296,7 @@
 						</div>
 						<div class="card-footer">
 							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
 						</div>
 					</div>      			
 				</div>
@@ -310,7 +310,7 @@
 						</div>
 						<div class="card-footer">
 							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
+							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
 						</div>
 					</div>      			
 				</div>
