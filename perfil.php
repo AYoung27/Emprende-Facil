@@ -55,11 +55,17 @@
 								</li>
 							</ul>";	
 					} else {
+
+									if ($_SESSION['Imagen'] == "NULL") {
+										$img = 'img/png/014-support.png';
+									} else{
+										$img = 'data:image/png;base64,'.base64_encode($_SESSION['Imagen']);
+									}
 						echo "<ul class=\"navbar-nav mr-auto\">
 								<li class=\"nav-item\">
 									<a class=\"nav-link\" href=\"perfil.php\">
 										Perfil
-										<img class=\"img-circle img-thumbnail img-responsive\" height=\"20\" width=\"20\" src=\"img\\png\\014-support.png\"/>
+										<img class=\"img-circle img-thumbnail img-responsive\" height=\"20\" width=\"20\" src=\"".$img."\"/>
 									</a>
 								</li>
 							</ul>";
@@ -147,10 +153,17 @@
 				<!--Zona #1 Reservada para navegación del usuario-->
 				<div class="col-md-3">
 					<div class="col-md-12" align="center">
-						<img src="img/png/014-support.png" width="200px" height="200px" class="img-thumbnail rounded img-responsive img-hover">
+						<img src="<?php 
+									if ($_SESSION['Imagen'] == "NULL") {
+										echo 'img/png/014-support.png';
+									} else{
+										echo 'data:image/png;base64,'.base64_encode($_SESSION['Imagen']);
+									}
+							 ?> "
+						 width="200px" height="200px" class="img-thumbnail rounded img-responsive img-hover">
 					</div>
 					<div class="col-md-12">
-						<p class="text-center"><strong><?php echo $_SESSION['Usuario']; ?></strong></p>
+						<p class="text-center"><strong><?php echo $_SESSION['Usuario']." "; ?></strong><a href="modificarPerfil.php" title="Modifica tu perfil"><span class="glyphicon glyphicon-pencil"></span></a></p>
 					</div>
 					<div class="col-md-12">
 						<ul class="list-group">

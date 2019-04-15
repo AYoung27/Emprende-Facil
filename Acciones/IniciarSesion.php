@@ -1,6 +1,6 @@
 <?php  
 	date_default_timezone_set('America/Tegucigalpa');
- include("../Clases/Conexion.php");
+ 	include("../Clases/Conexion.php");
  	$conexion = new Conexion();
  	$conexion->mysql_set_charset("utf8");
 
@@ -16,12 +16,14 @@
  			$cons= sprintf("SELECT password FROM tbl_usuario where correo='%s'", $conexion->antiInyeccion($correo));
 	 		if ($password==$conexion->ejecutarconsulta($cons)->fetch_assoc()['password']) {
 					session_start();
-					$consulta=sprintf("SELECT idusuario, correo, tipousuario, nombre, apellido FROM tbl_usuario WHERE correo = '%s'",$conexion->antiInyeccion($correo));
+					$consulta=sprintf("SELECT idusuario, correo, tipousuario, nombre, apellido, imagen FROM tbl_usuario WHERE correo = '%s'",$conexion->antiInyeccion($correo));
 					$_SESSION['ID'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['idusuario'];
 					$_SESSION['TipoUsuario']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['tipousuario'];
 					$_SESSION['Usuario']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['nombre']." ".$conexion->ejecutarconsulta($consulta)->fetch_assoc()['apellido'];
 					$_SESSION['Correo']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['correo'];
-
+					$_SESSION['Nombre']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['nombre'];
+					$_SESSION['Apellido']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['apellido'];
+					$_SESSION['Imagen']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['imagen'];
 					$sql = sprintf("UPDATE tbl_sesion SET Estado = '1' WHERE idusuario = '%s'",$conexion->antiInyeccion($_SESSION['ID']));
 					$conexion->ejecutarconsulta($sql);
 					header('Location: ../index.php');
