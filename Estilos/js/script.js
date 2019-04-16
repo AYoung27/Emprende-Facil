@@ -1,5 +1,6 @@
 $(function(){
-	
+	cargarDiv('zonaUsuario', 'Contenido/columnaPerfil.php');
+	cargarDiv('barra', 'Contenido/header.php');
 	var dropbox = $('#dropbox'),
 		message = $('.message', dropbox);
 	
@@ -13,9 +14,11 @@ $(function(){
 		
 		uploadFinished:function(i,file,response){
 			$.data(file).addClass('done');
+			cargarDiv('zonaUsuario', 'Contenido/columnaPerfil.php');
+			cargarDiv('barra', 'Contenido/header.php');
 			// response is the JSON object that post_file.php returns
 		},
-		
+
     	error: function(err, file) {
 			switch(err) {
 				case 'BrowserNotSupported':
@@ -99,5 +102,4 @@ $(function(){
 	function showMessage(msg){
 		message.html(msg);
 	}
-
 });

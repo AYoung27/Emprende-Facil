@@ -1,14 +1,9 @@
 <?php
-
-// If you want to ignore the uploaded files, 
-// set $demo_mode to true;
 session_start();
 date_default_timezone_set('America/Tegucigalpa');
 include("../Clases/Conexion.php");
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
-
-$upload_dir = '../temp/';
 $allowed_ext = array('jpg','jpeg','png','gif');
 
 if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 ){
@@ -30,9 +25,6 @@ if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 ){
 }
 
 exit_status('Something went wrong with your upload!');
-
-
-// Helper functions
 
 function exit_status($str){
 	echo json_encode(array('status'=>$str));
