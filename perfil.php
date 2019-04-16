@@ -56,7 +56,7 @@
 							</ul>";	
 					} else {
 
-									if ($_SESSION['Imagen'] == "NULL") {
+									if ($_SESSION['Imagen'] == NULL || $_SESSION['Imagen'] == "") {
 										$img = 'img/png/014-support.png';
 									} else{
 										$img = 'data:image/png;base64,'.base64_encode($_SESSION['Imagen']);
@@ -154,7 +154,7 @@
 				<div class="col-md-3">
 					<div class="col-md-12" align="center">
 						<img src="<?php 
-									if ($_SESSION['Imagen'] == "NULL") {
+									if ($_SESSION['Imagen'] == NULL || $_SESSION['Imagen'] == "") {
 										echo 'img/png/014-support.png';
 									} else{
 										echo 'data:image/png;base64,'.base64_encode($_SESSION['Imagen']);

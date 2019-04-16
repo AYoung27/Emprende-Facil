@@ -5,8 +5,8 @@
 	$conexion->mysql_set_charset("utf8");
 	include("../Clases/Usuario.php");
 
-	$nombre= $_POST["txtNombre"];
-	$apellido=$_POST["txtApellido"];
+	$nombre= ucwords(strtolower($_POST["txtNombre"]));
+	$apellido=ucwords(strtolower($_POST["txtApellido"]));
 	$correo=$_POST["txtCorreo"];
 	$password=sha1($_POST["txtPassword"]);
 	
@@ -33,6 +33,7 @@
 			$_SESSION['ID'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['IDUsuario'];
 			$_SESSION['TipoUsuario'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['TipoUsuario'];
 			$_SESSION['Usuario'] = $nombre." ".$apellido;
+			$_SESSION['Imagen'] = NULL;
 			
 			// Redirigir
 			header('Location: ../index.php');
