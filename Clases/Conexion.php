@@ -23,6 +23,7 @@
 		}
 
 		public function mysql_set_charset($charset){
+			return mysqli_set_charset($this->link, $charset); 
 		}
 
 		public function ip(){
