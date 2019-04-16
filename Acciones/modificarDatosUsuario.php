@@ -9,6 +9,13 @@
  	$apellido = ucwords(strtolower($_POST['txtApellido']));
  	$email = $_POST['txtEmail'];
 
+ 	$consulta = sprintf("SELECT count(*) FROM tbl_usuario WHERE Correo = '%s'",$conexion->antiInyeccion($email));
+		$resultado = $conexion->ejecutarconsulta($consulta);
+
+		//	Verificar que no se haya registrado el correo, insertar si no hay coincidencias
+		if ($resultado->fetch_assoc()['count(*)'] == '0') {		
+	
+
  	$sql = sprintf("UPDATE tbl_usuario SET Nombre ='%s' , Apellido='%s', Correo='%s' WHERE idusuario = '%s'",$conexion->antiInyeccion($nombre), $conexion->antiInyeccion($apellido), $conexion->antiInyeccion($email), $conexion->antiInyeccion($_SESSION['ID']));
 
  	$conexion->ejecutarconsulta($sql);
@@ -29,4 +36,12 @@
 							alert('".$var."'); 
   							window.location='../perfil.php';
 				  		</script>";
+	} else {
+		mysqli_close($conexion);
+			$var = "Este correo ya fue registrado previamente";		
+			echo "<script>
+					alert('".$var."'); 
+  					window.location='../registro.php';
+				  </script>";
+	}
 ?>
