@@ -33,18 +33,18 @@
 					$consultaB = sprintf("INSERT INTO tbl_log(evento, descripcion, fecha, hora,direccion_ip_usuario ,usuarioid) values('%s','%s','%s','%s','%s','%s')",$conexion->antiInyeccion("Inicio de sesion"),$conexion->antiInyeccion("El usuario con correo:"." ".$correo." "."ha iniciado sesion"),$conexion->antiInyeccion($fecha),$conexion->antiInyeccion($hora), $conexion->antiInyeccion($conexion->ip()),$conexion->antiInyeccion($_SESSION['ID']));
 					$conexion->ejecutarconsulta($consultaB);
 
-					mysqli_close($conexion);
+					mysqli_close($conexion->getLink());
 					
 				} else {
-					mysqli_close($conexion);
-					$var = "password erroneo: ".$password;		
+					mysqli_close($conexion->getLink());
+					$var = "password erroneo";		
 					echo "<script>
 							alert('".$var."'); 
   							window.location='../login.php';
 				  		</script>";
 				}	
  		}else {
-			mysqli_close($conexion);
+			mysqli_close($conexion->getLink());
 			$var = "error al conectar";		
 			echo "<script>
 					alert('".$var."'); 

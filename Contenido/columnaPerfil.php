@@ -12,7 +12,7 @@
 			?>">
 	<p class="text-center">
 		<strong><?php echo $_SESSION['Usuario']." "; ?></strong>
-		<a href="#modificarPerfil" onclick="cargarDiv('zonaContenido', 'Contenido/modificarPerfil.php'), $.getScript('Estilos/js/script.js')" title="Modifica tu perfil">
+		<a href="#modificarPerfil" onclick="cargarDiv('zonaContenido', 'Contenido/modificarPerfil.php')" title="Modifica tu perfil">
 			<span class="glyphicon glyphicon-pencil"></span>
 		</a>
 	</p>
@@ -23,7 +23,7 @@
 		<?php 
 			if ($_SESSION['TipoUsuario'] == '2') {
 				echo   "<a href=\"#Inventario\" class=\"list-group-item\" onclick=\"cargarDiv('zonaContenido','Contenido/inventario.php')\"	>Inventario</a>
-						<a href=\"estadisticas.php\" class=\"list-group-item\"	>Estadística</a>";		
+						<a href=\"#Estadisticas\" class=\"list-group-item\"	onclick=\"cargarDiv('zonaContenido','Contenido/estadistica.php'), $.getScript('Estilos/js/script.js')\"	>Estadística</a>";		
 			}?>
 		<a id="enlace2" href="#Pedidos" onclick="cargarDiv('zonaContenido', 'Contenido/pedidos.php')" class="list-group-item">
 			Pedidos

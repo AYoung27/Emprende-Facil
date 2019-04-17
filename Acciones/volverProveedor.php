@@ -1,9 +1,16 @@
-<?php  
+<?php
+	#	Inicio de sesion
 	session_start();
+
+	#	Función para la fecha local, se usa en LOGS
 	date_default_timezone_set('America/Tegucigalpa');
+
+	#	Conexión a la Base de Datos
  	include("../Clases/Conexion.php");
  	$conexion = new Conexion();
  	$conexion->mysql_set_charset("utf8");
+
+ 	#	Carga de los datos recibidos por el método POST de HTML
  	$nombreEmp = $_POST["txtNombreEmp"];
  	$depto = $_POST["optDepto"];
  	$municipio = $_POST["optMun"];
@@ -11,17 +18,23 @@
  	$telefono = $_POST["txtTelefono"];
  	$rtn = $_POST["txtRTN"];
 
+ 	#	Actualizar la tabla usuario
 	$sql = sprintf("UPDATE tbl_usuario SET TipoUsuario = '2' WHERE idusuario = '%s'", $conexion->antiInyeccion($_SESSION['ID']));
 
  	$conexion->ejecutarconsulta($sql);
+ 	#	Fin de actualizacion
 
+ 	#	Insercion en tabla proveedor
+ 	#	1. Obtencion de IDMunicipio
 	$consulta = sprintf("SELECT IDMunicipio FROM tbl_municipio WHERE NombreMunicipio = '%s' ORDER BY IDDepartamento ASC", $municipio);
 	$resultado = $conexion->ejecutarconsulta($consulta);
 
-	$consultaA = sprintf("INSERT INTO tbl_proveedor(nombreproveedor, direccion, idmunicipio, telefono, rtn, idusuario) values('%s','%s','%s','%s','%s','%s')", $conexion->antiInyeccion($nombreEmp), $conexion->antiInyeccion($direccion), $conexion->antiInyeccion($conexion->obtenerFila($resultado)[0]), $conexion->antiInyeccion($telefono), $conexion->antiInyeccion($rtn), $conexion->antiInyeccion($_SESSION['ID']));
+	#	2. Realizar el insert
+	$consultaA = sprintf("INSERT INTO tbl_proveedor(NombreProveedor, Direccion, IDMunicipio, Telefono, RTN, IDUsuario) values('%s','%s','%s','%s','%s','%s')", $conexion->antiInyeccion($nombreEmp), $conexion->antiInyeccion($direccion), $conexion->obtenerFila($resultado)[0], $conexion->antiInyeccion($telefono), $conexion->antiInyeccion($rtn), $conexion->antiInyeccion($_SESSION['ID']));
 
 	$conexion->ejecutarconsulta($consultaA);
 
+	#	Insercion en tabla de LOGS
  	$fecha=date("Y-m-d");
 	$hora=date("G:i:s");
 	
@@ -29,10 +42,14 @@
 
 	$conexion->ejecutarconsulta($consultaB);
 
+	# Actualizacion de la sesion y alerta 
 	$_SESSION['TipoUsuario']='2';
 	$var = "Te has vuelto proveedor";		
 					echo "<script>
 							alert('".$var."'); 
   							window.location='../perfil.php';
+  							$(function(){
+  								cargarDiv('zonaContenido','Contenido/agregar')
+  								});
 				  		</script>";
 ?>

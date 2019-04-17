@@ -23,7 +23,7 @@
 								    <a class="nav-link disabled" href="#" aria-disabled="true">Agregar Producto</a>
 								  </li>
 								  <li class="nav-item">
-								    <a class="nav-link" href="#modificarProducto" onclick="cargarDiv('zonaContenido','Contenido/modificarProducto.php'),listar('')">Modificar Producto</a>
+								    <a class="nav-link" href="#modificarProducto" onclick="cargarDiv('zonaContenido','Contenido/modificarProducto.php')">Modificar Producto</a>
 								  </li>
 								</ul>
 							</div>

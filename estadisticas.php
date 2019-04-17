@@ -249,7 +249,7 @@ if (empty($_SESSION)) {
 
 
 
-		$(document).ready(mostrarResultados)	;
+		$(document).ready(mostrarResultados);
 		function mostrarResultados(year){
 			$('.resultados').html('<canvas id="grafico"></canvas>');
 			$.ajax({

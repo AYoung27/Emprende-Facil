@@ -45,12 +45,10 @@
 				<form class="form-inline mt-2 mt-md-0">
 					<div class="input-group">
 						<input type="search" class="form-control" id="input-search" placeholder="Buscar un producto" size="60" /> 
-						<span class="input-group-addon">
-							<button class="btn btn-primary" type="submit">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</span>
-
+						<button class="btn btn-primary" type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+						
 						<div class="content-search">
 							<div class="content-table">
 								<table id="table">
