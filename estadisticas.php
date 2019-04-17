@@ -1,9 +1,9 @@
 <?php 
-	session_start();
-	if (empty($_SESSION)) {
-		header('Location: index.php');
-	}
- ?>
+session_start();
+if (empty($_SESSION)) {
+	header('Location: index.php');
+}
+?>
 
 <!--Pagina de perfil-->
 
@@ -20,12 +20,22 @@
 	<link rel="stylesheet" href="Estilos/css/bootstrap.css">
 	<link rel="stylesheet" href="Estilos/css/perfil.css">
 
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/chartJS/Chart.min.js"></script>
+
+
+
 	<!--archivos para la búsqueda con jquery-->
 	<link rel="stylesheet" href="Estilos/css/style_search.css">
 	<script src="Estilos/js/jq_search/jquery.js"></script>
 	<script src="Estilos/js/jq_search/jquery.dataTables.min.js"></script>
 
 	<title>Emprende Fácil</title>	
+	<?php
+	$numbers[0] = "grafico";
+	$numbers[1] = "Pastel";
+	$numbers[2] = "Linea";
+	?>
 </head>
 
 <body>
@@ -134,11 +144,11 @@
 						<ul class="list-group">
 							<a href="perfil.php" class="list-group-item list-group-item-info"	>Perfil</a>
 							<?php 
-								if ($_SESSION['TipoUsuario'] == '2') {
-									echo "<a href=\"inventario.php\" class=\"list-group-item\"	>Inventario</a>
-										<a href=\"estadisticas.php\" class=\"list-group-item\"	>Estadística</a>";		
-								}
-							 ?>
+							if ($_SESSION['TipoUsuario'] == '2') {
+								echo "<a href=\"inventario.php\" class=\"list-group-item\"	>Inventario</a>
+								<a href=\"estadisticas.php\" class=\"list-group-item\"	>Estadística</a>";		
+							}
+							?>
 							<a href="Pedidos.php" class="list-group-item"	>Pedidos</a>
 							<a href="historial_compra.php" class="list-group-item"	>Historial de Compra</a>
 						</ul>
@@ -153,51 +163,61 @@
 							Estadísticas
 						</h4>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-12">
 
-								<div class="btn-group">
-									<p style="margin-right:10px">Periodo del reporte</p>
-									<div class="dropdown">
-										<button class="btn btn-sm  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#Divdesplegable_3"><span>Mensual</span></button>
-										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="Divdesplegable_3">
-											<a class="dropdown-item" href="#">Mensual</a>
-											<a class="dropdown-item" href="#">Trimestral</a>
-											<a class="dropdown-item" href="#">Semestral</a>
-										</div>
-									</div>
-								</div><br><br><br>
-								<div class="btn-group">	
-									<p style="margin-right:10px">Seleccione Producto</p>
-									<div class="dropdown">
-										<button class="btn btn-sm  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#Divdesplegable_4"><span>Nombre de Producto</span></button>
-										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="Divdesplegable_4">
-											<a class="dropdown-item" href="#">Producto X</a>
-											<a class="dropdown-item" href="#">Producto Y</a>
-											<a class="dropdown-item" href="#">Producto z</a>
-										</div>
-									</div>
-								</div><br><br><br>
-								<div class="btn-group">
-									<p style="margin-right:10px">Seleccionar tipo de gráfico</p>
-									<div class="dropdown">
-										<button class="btn btn-sm  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-target="#Divdesplegable_5"><span>Grafico de Barras</span></button>
-										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="Divdesplegable_5">
-											<a class="dropdown-item" href="#">Gráfico de barras</a>
-											<a class="dropdown-item" href="#">Gráfico de pastel</a>
-											<a class="dropdown-item" href="#">Gráfico de lineas</a>
-										</div>
+								<div class="container">
+									<div class="row">
+										<form class="needs-validation" novalidate>
+											<div class="form-row">
+												<div class="col-md-4 mb-3">
+													<label class="" for="slc_categoria">Seleccione Año</label>
+
+													<select class="custom-select " id="slc_categoria"  onChange="mostrarResultados(this.value);">
+														<option selected>Elija Producto</option>
+														<?php
+														for($i=2000;$i<2020;$i++){
+															echo '<option value="'.$i.'">'.$i.'</option>';
+														}
+														?>
+													</select>				
+												</div>
+
+												<div class="col-md-4 mb-3">
+													<label class="" for="slc_categoria">Seleccione Producto</label>
+													<select class="custom-select " id="slc_categoria">
+														<option selected>Elija Producto</option>
+														<option value="1">Categoría X</option>
+														<option value="2">Categoría Y</option>
+														<option value="3">Categoría Z</option>
+													</select>										
+												</div>
+
+												<div class="col-md-4 mb-3">
+													<label class="" for="slc_categoria">Seleccione tipo de grafico</label>
+													<select  class="custom-select " id="slc_categoria">
+														<option selected>Elija Grafico</option>
+														<?php
+														foreach( $numbers as $value ) {
+															echo '<option value="'.$value.'">'.$value.'</option>';
+														}
+														?>
+													</select>							
+												</div>
+											</div>
+										</form>
 									</div>
 								</div>
-
-							</div>
-							<div class="col-md-6">
-								<canvas id="myChart" width="400" height="400"></canvas>
 							</div>
 						</div>
-
 					</div>
-				</div>
 
+					<div class="row">
+
+						<div class="col-md-7" style="padding-top: 3em;"> <br> <br>
+							<div class="resultados"><canvas id="graficos"></canvas></div>
+						</div>
+					</div>	
+				</div>
 				<!--Zona #3 Reservada para publicidad-->
 				<div class="col-md-2">
 				</div>
@@ -207,64 +227,56 @@
 	<footer>
 		<p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>	
 	</footer>
-	<script src="Estilos/js/jquery.min.js"></script>
-	<script src="Estilos/js/bootstrap.min.js"></script>
-	<script src="Estilos/js/scripts.js"></script>	
-	<script type="text/javascript" src="Estilos/js/Chart.min.js"></script>
-	<script type="text/javascript">
-		function changeColor(x){
-			if(x.style.color=="black"){
-				x.style.color="white";
-			}else{
-				x.style.color="black";
-			}
+
+	<style>
+		.resultados{
+			margin: auto;
+			margin-top: 40px;
+			width: 700px;
+		}
+	</style>
+
+
+
+
+
+
+
+
+
+	<script>
+
+
+
+
+		$(document).ready(mostrarResultados)	;
+		function mostrarResultados(year){
+			$('.resultados').html('<canvas id="grafico"></canvas>');
+			$.ajax({
+				type: 'POST',
+				url: 'php/procesar.php',
+				data: 'year='+year,
+				dataType: 'JSON',
+				success:function(response){
+					var Datos = {
+						labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+						datasets : [
+						{
+                                            fillColor : 'rgba(91,228,146,0.6)', //COLOR DE LAS BARRAS
+                                            strokeColor : 'rgba(57,194,112,0.7)', //COLOR DEL BORDE DE LAS BARRAS
+                                            highlightFill : 'rgba(73,206,180,0.6)', //COLOR "HOVER" DE LAS BARRAS
+                                            highlightStroke : 'rgba(66,196,157,0.7)', //COLOR "HOVER" DEL BORDE DE LAS BARRAS
+                                            data : response
+                                        }
+                                        ]
+                                    }
+                                    var contexto = document.getElementById('grafico').getContext('2d');
+                                    window.Barra = new Chart(contexto).Bar(Datos, { responsive : true });
+                                    Barra.clear();
+                                }
+                            });
 			return false;
 		}
-	</script>
-	<script type="text/javascript">
-		$(".dropdown-menu a").click(function(){
-			$(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-			$(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-		});
-	</script>
-	<script>
-		var ctx = document.getElementById("myChart").getContext('2d');
-		var myChart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: ["Producto U", "Producto V", "Producto W", "Producto X", "Producto Y", "Producto Z"],
-				datasets: [{
-					label: '# ventas',
-					data: [12, 19, 3, 5, 2, 3],
-					backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)'
-					],
-					borderColor: [
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)',
-					'rgba(153, 102, 255, 1)',
-					'rgba(255, 159, 64, 1)'
-					],
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero:true
-						}
-					}]
-				}
-			}
-		});
 	</script>
 </body>
 </html>
