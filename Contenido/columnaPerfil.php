@@ -22,7 +22,7 @@
 		</a>
 		<?php 
 			if ($_SESSION['TipoUsuario'] == '2') {
-				echo   "<a href=\"inventario.php\" class=\"list-group-item\"	>Inventario</a>
+				echo   "<a href=\"#Inventario\" class=\"list-group-item\" onclick=\"cargarDiv('zonaContenido','Contenido/inventario.php')\"	>Inventario</a>
 						<a href=\"estadisticas.php\" class=\"list-group-item\"	>Estadística</a>";		
 			}?>
 		<a id="enlace2" href="#Pedidos" onclick="cargarDiv('zonaContenido', 'Contenido/pedidos.php')" class="list-group-item">

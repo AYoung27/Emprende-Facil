@@ -53,7 +53,7 @@
 	<title>Emprende Fácil</title>	
 </head>
 
-<body onload="cargarDiv('barra', 'Contenido/header.php'), cargarDiv('zonaUsuario', 'Contenido/columnaPerfil.php'), cargarDiv('zonaContenido', 'Contenido/informacionDeContacto.php'), $.getScript('Estilos/js/script.js')">
+<body onload="cargarDiv('barra', 'Contenido/header.php'),listar(''),cargarDiv('zonaUsuario', 'Contenido/columnaPerfil.php'), cargarDiv('zonaContenido', 'Contenido/informacionDeContacto.php'), $.getScript('Estilos/js/script.js')">
 	<!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
 	<header>
 		<div id="barra"></div>
@@ -172,5 +172,23 @@
 	<script src="Estilos/js/cargarContenido.js"></script>
 	<script src="Estilos/js/jquery.filedrop.js"></script>
 	<script src="Estilos/js/jquery.script.js"></script>
+	<script type="text/javascript">
+			function listar(valor){
+				$.ajax({
+				url:'../Acciones/busquedaDatosProducto.php',
+				type:'POST',
+				data:'val='+valor
+				}).done(function(resp){
+				//alert(resp);
+				var valores = eval(resp);
+				html="<table class='table table-bordered'><thead><tr><th>Nombre Producto</th><th>Precio</th><th>Opciones</th></thead><tbody>";
+				for(i=0;i<valores.length;i++){
+					html+="<tr><td>"+valores[i][0]+"</td><td>"+valores[i][1]+'</td><td><button type='+'"button"'+'class='+'"btn btn-success mr-2"'+" "+'data-toggle='+'"modal"'+" "+' data-target='+'"#modalM"'+'><i class='+'"glyphicon glyphicon-pencil"'+'></i> Modificar</button><button class='+'"btn btn-danger"'+'><i class='+'"glyphicon glyphicon-remove"'+'></i> Eliminar</button></td></tr>';
+				}
+				html+="</tbody></table>";
+				$("#Producto").html(html);
+				});
+			}
+		</script>
 </body>
 </html>
