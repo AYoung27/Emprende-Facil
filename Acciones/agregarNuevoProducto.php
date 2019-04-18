@@ -25,7 +25,7 @@ $descripcion = $_POST["txtArea"];
         $data = fread($fp, filesize($imagenTemporal));
         fclose($fp);
 
-        $prod= new Producto(null,$nombreProducto,$descripcion,$precio,null,null,null,$data,null,$color,$categoria,null);
+        $prod= new Producto(null,$nombreProducto,$descripcion,$precio,null,null,$data,null,$color,$categoria,null,null);
 		$consulta = sprintf("SELECT count(NombreProducto) FROM tbl_producto WHERE NombreProducto='%s' AND IDProveedor=(SELECT IDProveedor FROM tbl_proveedor WHERE IDUsuario='%s')",
 		$conexion->antiInyeccion($nombreProducto),	
 		$conexion->antiInyeccion($_SESSION['ID']));
