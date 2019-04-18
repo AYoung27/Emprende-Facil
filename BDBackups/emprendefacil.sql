@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 18-04-2019 a las 20:43:29
+-- Tiempo de generación: 18-04-2019 a las 22:22:02
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.2.14
 
@@ -634,21 +634,23 @@ CREATE TABLE IF NOT EXISTS `tbl_notificacion` (
   `IDNotificacion` int(10) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(255) NOT NULL,
   `Redireccion` varchar(255) NOT NULL,
+  `Visto` int(2) NOT NULL,
   `IDUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDNotificacion`),
   KEY `IDUsuario` (`IDUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbl_notificacion`
 --
 
-INSERT INTO `tbl_notificacion` (`IDNotificacion`, `Descripcion`, `Redireccion`, `IDUsuario`) VALUES
-(1, 'Intento de Inicio de Sesion', 'perfil.php', 34),
-(2, 'Intento de Inicio de Sesion', 'perfil.php', 34),
-(3, 'Intento de Inicio de Sesion', 'perfil.php', 34),
-(4, 'Intento de Inicio de Sesion', 'perfil.php', 5),
-(5, 'Intento de Inicio de Sesion', 'perfil.php', 5);
+INSERT INTO `tbl_notificacion` (`IDNotificacion`, `Descripcion`, `Redireccion`, `Visto`, `IDUsuario`) VALUES
+(1, 'Intento de Inicio de Sesion', 'perfil.php', 0, 34),
+(2, 'Intento de Inicio de Sesion', 'perfil.php', 0, 34),
+(3, 'Intento de Inicio de Sesion', 'perfil.php', 0, 34),
+(4, 'Intento de Inicio de Sesion', 'perfil.php', 0, 5),
+(5, 'Intento de Inicio de Sesion', 'perfil.php', 0, 5),
+(6, 'Intento de Inicio de Sesion', 'perfil.php', 0, 5);
 
 -- --------------------------------------------------------
 

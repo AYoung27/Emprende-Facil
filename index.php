@@ -54,7 +54,7 @@
 </style>
 </head>
 
-<body onload="cargarDiv('barra','Contenido/header.php'), cargarDiv('divCollapse','Contenido/notificaciones.php')">
+<body onload="cargarDiv('barra','Contenido/header.php'), cargarDiv('divCollapse','Contenido/notificacionesBarra.php')">
 	<!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
 	<header> 
 		<div id="barra"></div>
@@ -259,6 +259,5 @@
 	<script src="Estilos/js/nouislider.min.js"></script>
 	<script src="Estilos/js/jquery.zoom.min.js"></script>
 	<script src="Estilos/js/main.js"></script>
-
 </body>
 </html>

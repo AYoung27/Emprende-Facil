@@ -28,6 +28,15 @@ function cargarMunicipios($conexion)
 		echo '<option>'.$conexion->obtenerFila($resultado)[0].'</option>';
 	}
 }
+
+function marcarNotificacion($id, $conexion){
+	$consulta = sprintf("UPDATE tbl_notificacion SET Visto = '1' WHERE IDNotificacion = '%s'", $conexion->antiInyeccion($id));
+	$conexion->ejecutarconsulta($consulta);
+}
+
+if (isset($_GET['idn'])) {
+	marcarNotificacion($_GET['idn'], $conexion);
+}
 ?>
 
 <!--Pagina de perfil-->
@@ -53,7 +62,7 @@ function cargarMunicipios($conexion)
 	<title>Emprende Fácil</title>	
 </head>
 
-<body onload="cargarDiv('barra', 'Contenido/header.php'),cargarDiv('divCollapse','Contenido/notificaciones.php'),cargarDiv('zonaUsuario', 'Contenido/columnaPerfil.php'), cargarDiv('zonaContenido', 'Contenido/informacionDeContacto.php')">
+<body onload="cargarDiv('barra', 'Contenido/header.php'),cargarDiv('divCollapse','Contenido/notificacionesBarra.php'),cargarDiv('zonaUsuario', 'Contenido/columnaPerfil.php'), cargarDiv('zonaContenido', 'Contenido/informacionDeContacto.php')">
 	<!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
 	<header>
 		<div id="barra"></div>

@@ -20,7 +20,7 @@
 		<a href="#Informacion" onclick="cargarDiv('zonaContenido', 'Contenido/informacionDeContacto.php')" class="list-group-item ">
 			Perfil
 		</a>
-		<?php 
+		<?php
 			if ($_SESSION['TipoUsuario'] == '2') {
 				echo   "<a href=\"#Inventario\" class=\"list-group-item\" onclick=\"cargarDiv('zonaContenido','Contenido/inventario.php')\"	>Inventario</a>
 						<a href=\"#Estadisticas\" class=\"list-group-item\"	onclick=\"cargarDiv('zonaContenido','Contenido/estadistica.php'), $.getScript('Estilos/js/script.js')\"	>Estadística</a>";		
