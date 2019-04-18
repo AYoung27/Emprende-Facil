@@ -10,6 +10,7 @@ $nombreProducto = ucwords(strtolower($_POST["txtNombreProducto"]));
 $categoria = $_POST["slcCategoria"];
 $color = $_POST["slcColor"];
 $descripcion = $_POST["txtArea"];
+$proveedor = $_SESSION['Proveedor'];
 
     // Verificamos si el tipo de archivo es un tipo de imagen permitido.
     // y que el tamaño del archivo no exceda los 16MB
@@ -25,7 +26,7 @@ $descripcion = $_POST["txtArea"];
         $data = fread($fp, filesize($imagenTemporal));
         fclose($fp);
 
-        $prod= new Producto(null,$nombreProducto,$descripcion,$precio,null,null,$data,null,$color,$categoria,null,null);
+        $prod= new Producto(null,$nombreProducto,$descripcion,$precio,null,null,$data,null,$color,$categoria,$proveedor,null);
 		$consulta = sprintf("SELECT count(NombreProducto) FROM tbl_producto WHERE NombreProducto='%s' AND IDProveedor=(SELECT IDProveedor FROM tbl_proveedor WHERE IDUsuario='%s')",
 		$conexion->antiInyeccion($nombreProducto),	
 		$conexion->antiInyeccion($_SESSION['ID']));

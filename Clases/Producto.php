@@ -55,7 +55,7 @@
 					$conexion->antiInyeccion("1"),
 					$conexion->antiInyeccion($this->idColor),
 					$conexion->antiInyeccion($this->idCategoria),
-					$conexion->antiInyeccion("1"),
+					$conexion->antiInyeccion($this->idProveedor),
 					$conexion->antiInyeccion("HNL"));
 
 			$resultado=$conexion->ejecutarconsulta($consulta);
