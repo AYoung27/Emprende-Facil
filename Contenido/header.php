@@ -16,13 +16,13 @@
 		<!--Todo lo incluido en este div sera ocultado en pantallas angostas-->	
 		<!--Div Oculto #1 (Derecha)-->
 		<div id="divSearch" class="collapse navbar-collapse header-search" style="margin-left: 5rem;">
-			<form>
+			<form action="busqueda.php" method="get">
 				<select class="input-select">
 					<option value="0">Categorias</option>
 					<option value="1">Category 01</option>
 					<option value="1">Category 02</option>
 				</select>
-				<input class="input" size="60" placeholder="Buscar Producto" >
+				<input class="input" id="txtBusqueda" name="q" size="60" placeholder="Buscar Producto" >
 				<button class="search-btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 			</form>
 		</div>
@@ -30,6 +30,7 @@
 
 		<!--Div Oculto #2 (Izquierda)-->
 		<div class="collapse navbar-collapse" id="divCollapse">
+			
 		</div>
 		<!--FIN Div Oculto #2-->
 	</nav>

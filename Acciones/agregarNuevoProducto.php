@@ -22,11 +22,13 @@ $proveedor = $_SESSION['Proveedor'];
         $imagenTemporal = $_FILES['chsImagen']['tmp_name'];
 
         // Leemos el contenido del archivo temporal en binario.
+		
+		//$contenidoImagen = file_get_contents($imagenTemporal);
         $fp = fopen($imagenTemporal, 'r+b');
         $data = fread($fp, filesize($imagenTemporal));
         fclose($fp);
 
-        $prod= new Producto(null,$nombreProducto,$descripcion,$precio,null,null,$data,null,$color,$categoria,$proveedor,null);
+        $prod= new Producto(null,$nombreProducto,$descripcion,$precio,null,null,$data/*$contenidoImagen*/,null,$color,$categoria,$proveedor,null);
 		$consulta = sprintf("SELECT count(NombreProducto) FROM tbl_producto WHERE NombreProducto='%s' AND IDProveedor=(SELECT IDProveedor FROM tbl_proveedor WHERE IDUsuario='%s')",
 		$conexion->antiInyeccion($nombreProducto),	
 		$conexion->antiInyeccion($_SESSION['ID']));

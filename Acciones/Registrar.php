@@ -35,6 +35,7 @@
 			$_SESSION['Usuario'] = $nombre." ".$apellido;
 			$_SESSION['Nombre'] = $nombre;
 			$_SESSION['Apellido'] = $apellido;
+			$_SESSION['Correo'] = $correo;
 			$_SESSION['Imagen'] = NULL;
 			
 			// Redirigir

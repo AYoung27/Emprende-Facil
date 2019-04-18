@@ -74,3 +74,20 @@ function listar(valor){
         $("#Producto").html(html);
       });
 }
+
+function listar(valor){
+  $.ajax({
+    url:'Acciones/busquedaDatosProducto.php',
+    type:'POST',
+    data:'val='+valor
+  }).done(function(resp){
+        //alert(resp);
+        var valores = eval(resp);
+        html="<table class='table table-bordered'><thead><tr><th>Nombre Producto</th><th>Precio</th><th>Opciones</th></thead><tbody>";
+        for(i=0;i<valores.length;i++){
+          html+="<tr><td>"+valores[i][0]+"</td><td>"+valores[i][1]+'</td><td><button type='+'"button"'+'class='+'"btn btn-success mr-2"'+" "+'data-toggle='+'"modal"'+" "+' data-target='+'"#modalM"'+'><i class='+'"glyphicon glyphicon-pencil"'+'></i> Modificar</button><button class='+'"btn btn-danger"'+'><i class='+'"glyphicon glyphicon-remove"'+'></i> Eliminar</button></td></tr>';
+        }
+        html+="</tbody></table>";
+        $("#Producto").html(html);
+      });
+}

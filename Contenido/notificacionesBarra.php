@@ -30,8 +30,8 @@
 	}
 
 ?>
-	<div class="dropdown">
-				<a class="btn ml-auto" href="pago.php">
+	<div class="dropdown ml-auto">
+				<a class="btn " href="pago.php">
 					<span class="glyphicon glyphicon-shopping-cart"></span>
 				</a>
 	</div>
@@ -84,8 +84,3 @@
 		}
 	 ?>
 </form>
-<script type="text/javascript">
-		$('#divDesplegable_1').on('show.bs.dropdown', function () {
-  			alert('hello');
-		})
-	</script>
