@@ -27,11 +27,12 @@ function mostrarProducto($id, $conexion){
 					</div>      			
 				</div>';
 		
+		$contador++;
 		if ($contador == 4) {
 			echo '</div>';
+			$contador = 0;
 		}
 
-		$contador++;
 	}
 }
 
