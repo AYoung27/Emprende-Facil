@@ -6,24 +6,24 @@ function cargarDiv(divID, ruta) {
       document.getElementById(divID).innerHTML = respuesta;
       listar('');
       $.getScript('Estilos/js/script.js');
-      mostrarResultados('2000');
+      mostrarResultados('2014');
     },
     error: function () {
     },
   });
 }
 
-function mostrarResultados(year) {
-
-  $('.resultados').html('<canvas id="grafico"></canvas>');
-  $.ajax({
-    type: 'POST',
-    url: 'php/procesar.php',
-    data: 'year='+year,
-    dataType: 'JSON',
-    success: function (response) {
-      var Datos = {
-        labels: [
+function mostrarResultados(year,grafico) {
+  if (grafico==1) {
+    $('.resultados').html('<canvas id="grafico"></canvas>');
+    $.ajax({
+      type: 'POST',
+      url: 'Acciones/ProcesarGraficoBarra.php',
+      data: 'year='+year,
+      dataType: 'JSON',
+      success: function (response) {
+        var Datos = {
+          labels: [
           'Enero',
           'Febrero',
           'Marzo',
@@ -36,8 +36,8 @@ function mostrarResultados(year) {
           'Octubre',
           'Noviembre',
           'Diciembre'
-        ],
-        datasets: [
+          ],
+          datasets: [
           {
             fillColor: 'rgba(91,228,146,0.6)', //COLOR DE LAS BARRAS
             strokeColor: 'rgba(57,194,112,0.7)', //COLOR DEL BORDE DE LAS BARRAS
@@ -45,24 +45,25 @@ function mostrarResultados(year) {
             highlightStroke: 'rgba(66,196,157,0.7)', //COLOR "HOVER" DEL BORDE DE LAS BARRAS
             data: response
           }
-        ]
+          ]
+        }
+        var contexto = document.getElementById('grafico').getContext('2d');
+        window.Barra = new Chart(contexto).Bar(Datos, {
+          responsive: true
+        });
+        Barra.clear();
       }
-      var contexto = document.getElementById('grafico').getContext('2d');
-      window.Barra = new Chart(contexto).Bar(Datos, {
-        responsive: true
-      });
-      Barra.clear();
-    }
-  });
-  return false;
+    });
+    return false;
+  }
 }
 
 function listar(valor){
-        $.ajax({
-        url:'Acciones/busquedaDatosProducto.php',
-        type:'POST',
-        data:'val='+valor
-        }).done(function(resp){
+  $.ajax({
+    url:'Acciones/busquedaDatosProducto.php',
+    type:'POST',
+    data:'val='+valor
+  }).done(function(resp){
         //alert(resp);
         var valores = eval(resp);
         html="<table class='table table-bordered'><thead><tr><th>Nombre Producto</th><th>Precio</th><th>Opciones</th></thead><tbody>";
@@ -71,5 +72,5 @@ function listar(valor){
         }
         html+="</tbody></table>";
         $("#Producto").html(html);
-        });
-      }
+      });
+}

@@ -21,7 +21,7 @@ if (empty($_SESSION)) {
 	<link rel="stylesheet" href="Estilos/css/perfil.css">
 
 	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/chartJS/Chart.min.js"></script>
+	<script type="text/javascript" src="Estilos/js/chartJSgraficos/Chart.min.js"></script>
 
 
 
@@ -254,7 +254,7 @@ if (empty($_SESSION)) {
 			$('.resultados').html('<canvas id="grafico"></canvas>');
 			$.ajax({
 				type: 'POST',
-				url: 'php/procesar.php',
+				url: 'Acciones/ProcesarGraficoBarra.php',
 				data: 'year='+year,
 				dataType: 'JSON',
 				success:function(response){

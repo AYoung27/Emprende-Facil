@@ -1,65 +1,81 @@
-	<?php
-	$numbers[0] = "grafico";
-	$numbers[1] = "Pastel";
-	$numbers[2] = "Linea";
-	?>
-	<div class="col-md-12" style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: lightgray;">
-						<br>
-						<h4 style="text-align: center;">
-							Estadísticas
-						</h4>
-						<div class="row">
-							<div class="col-md-12">
+<?php 
+include("../clases/Conexion.php");
+$conexion= new Conexion();
+$conexion->mysql_set_charset("utf8");
+session_start();
+if (empty($_SESSION)) {
+	header('Location: index.php');
+}
+?>	
 
-								<div class="container">
-									<div class="row">
-										<form class="needs-validation" novalidate>
-											<div class="form-row">
-												<div class="col-md-4 mb-3">
-													<label class="" for="slc_categoria">Seleccione Año</label>
+<div class="col-md-12" style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: lightgray;">
+	<br>
+	<h4 style="text-align: center;">
+		Estadísticas
+	</h4>
+	<div class="row">
+		<div class="col-md-12">
 
-							<select class="custom-select" id="slc_categoria" onchange="mostrarResultados(this.value)">
-														<option selected>Elija Producto</option>
-														<?php
-														for($i=2000;$i<2020;$i++){
-															echo '<option value="'.$i.'">'.$i.'</option>';
-														}
-														?>
-													</select>				
-												</div>
+			<div class="container">
+				<div class="row">
+					<form class="needs-validation" novalidate>
+						<div class="form-row">
+							<div class="col-md-4 mb-3">
+								<label class="" for="slc_categoria">Seleccione un Año</label>
 
-												<div class="col-md-4 mb-3">
-													<label class="" for="slc_categoria">Seleccione Producto</label>
-													<select class="custom-select " id="slc_categoria">
-														<option selected>Elija Producto</option>
-														<option value="1">Categoría X</option>
-														<option value="2">Categoría Y</option>
-														<option value="3">Categoría Z</option>
-													</select>										
-												</div>
+								<select class="custom-select" id="slc_Ano" onclick="mostrarResultados( this.value,document.getElementById('slcgrafico').value )">
+									<option selected>Año...</option>
+									<?php
+									for($i=2000;$i<2040;$i++){
+										echo '<option value="'.$i.'">'.$i.'</option>';
+									}
+									?>
+								</select>				
+							</div>
 
-												<div class="col-md-4 mb-3">
-													<label class="" for="slc_categoria">Seleccione tipo de grafico</label>
-													<select  class="custom-select " id="slc_categoria">
-														<option selected>Elija Grafico</option>
-														<?php
-														foreach( $numbers as $value ) {
-															echo '<option value="'.$value.'">'.$value.'</option>';
-														}
-														?>
-													</select>							
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
+							<div class="col-md-4 mb-3">
+								<label class="" for="slcCategoria">Seleccione un producto</label>
+								<?php  
+								$consulta="SELECT IDProducto, NombreProducto FROM tbl_producto";
+								$resultado=$conexion->ejecutarconsulta($consulta);
+								?>
+								<select class="custom-select " name="slcproducto" id="slcproducto" >
+									<option selected>Producto...</option>
+									<?php 
+									while ($arreglo=$resultado->fetch_array()) {
+										echo '<option value="'.$arreglo[IDProducto].'">'.$arreglo[NombreProducto]."</option>";
+									}
+									?>
+								</select>										
+							</div>
+
+							<div class="col-md-4 mb-3">
+								<label class="" for="slcGrafico">Seleccione el Tipo de Grafico</label>
+								<?php  
+								$consulta="SELECT IDGrafico, NombreGrafico FROM tbl_graficos";
+								$resultado=$conexion->ejecutarconsulta($consulta);
+								?>
+								<select class="custom-select " name="slcgrafico" id="slcgrafico" onclick="mostrarResultados(document.getElementById('slc_Ano').value , this.value )">
+									<option selected>Grafico...</option>
+									<?php 
+									while ($arreglo=$resultado->fetch_array()) {
+										echo '<option value="'.$arreglo[IDGrafico].'">'.$arreglo[NombreGrafico]."</option>";
+									}
+									?>
+								</select>	
 							</div>
 						</div>
-					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-					<div class="row">
+<div class="row">
 
-						<div class="col-md-7" style="padding-top: 3em;"> <br> <br>
-							<div class="resultados" id="resultados" style="margin: auto; margin-top: 40px; width: 700px;"><canvas id="graficos"></canvas></div>
-						</div>
-					</div>	
+	<div class="col-md-12" style="padding-top: 3em;"> <br> <br>
+		<div class="resultados"><canvas id="graficos"></canvas></div>
+	</div>
+</div>	
+

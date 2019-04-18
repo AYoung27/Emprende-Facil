@@ -1,34 +1,34 @@
 ﻿<?php 
-	session_start();
-	if (empty($_SESSION)) {
-		header('Location: index.php');
+session_start();
+if (empty($_SESSION)) {
+	header('Location: index.php');
+}
+include("Clases/Conexion.php");
+$conexion = new Conexion();
+$conexion->mysql_set_charset("utf8");
+
+function cargarDeptos($conexion)
+{
+	$consulta = sprintf("SELECT NombreDepartamento FROM tbl_departamentos ORDER BY IDDepartamento ASC");
+	$resultado = $conexion->ejecutarconsulta($consulta);
+
+	for ($i=0; $i < 18; $i++) { 
+		echo '<option>'.$conexion->obtenerFila($resultado)[0].'</option>';
 	}
-	include("Clases/Conexion.php");
-	$conexion = new Conexion();
-	$conexion->mysql_set_charset("utf8");
-	
-	function cargarDeptos($conexion)
-	{
-		$consulta = sprintf("SELECT NombreDepartamento FROM tbl_departamentos ORDER BY IDDepartamento ASC");
-		$resultado = $conexion->ejecutarconsulta($consulta);
+}
 
-		for ($i=0; $i < 18; $i++) { 
-			echo '<option>'.$conexion->obtenerFila($resultado)[0].'</option>';
-		}
+
+function cargarMunicipios($conexion)
+{
+	$consulta = sprintf("SELECT NombreMunicipio FROM tbl_municipio ORDER BY IDMunicipio ASC");
+	$resultado = $conexion->ejecutarconsulta($consulta);
+	$iter = $conexion->cantidadRegistros($resultado);
+
+	for ($i=0; $i < $iter; $i++) { 
+		echo '<option>'.$conexion->obtenerFila($resultado)[0].'</option>';
 	}
-
-
-	function cargarMunicipios($conexion)
-	{
-		$consulta = sprintf("SELECT NombreMunicipio FROM tbl_municipio ORDER BY IDMunicipio ASC");
-		$resultado = $conexion->ejecutarconsulta($consulta);
-		$iter = $conexion->cantidadRegistros($resultado);
-
-		for ($i=0; $i < $iter; $i++) { 
-			echo '<option>'.$conexion->obtenerFila($resultado)[0].'</option>';
-		}
-	}
- ?>
+}
+?>
 
 <!--Pagina de perfil-->
 
@@ -70,10 +70,10 @@
 				<!--Zona #3 Reservada para publicidad-->
 				<div class="col-md-2">
 					<?php 
-						if ($_SESSION['TipoUsuario'] == '1') {
-							echo '<a href="#" data-toggle="modal" data-target="#modalVendedor" class="btn btn-md btn-success btn-block">Sube tus productos Ya</a>';
-						}
-					 ?>
+					if ($_SESSION['TipoUsuario'] == '1') {
+						echo '<a href="#" data-toggle="modal" data-target="#modalVendedor" class="btn btn-md btn-success btn-block">Sube tus productos Ya</a>';
+					}
+					?>
 					<div class="card bg-default mt-2">
 						<h5 class="card-header">
 							Publicidad 1
@@ -113,44 +113,44 @@
 								<span aria-hidden="true">&times;</span>
 							</button>			
 						</div>
-					
+
 						<div class="modal-body">
 							<p>Llena la siguiente tabla con los datos de tu empresa</p>
 							<div class="form-label-group">
-  								<input type="text" id="txtNombreEmp" name="txtNombreEmp" class="form-control" required autofocus >
-  								<label for="inputEmail">Nombre de la empresa</label>
+								<input type="text" id="txtNombreEmp" name="txtNombreEmp" class="form-control" required autofocus >
+								<label for="inputEmail">Nombre de la empresa</label>
 							</div>
 
 							<div class="row">
-    	        				<div class="col-md-6 mb-3">
-        	      					<label for="country">Departamento</label>
-            	 	 				<select class="custom-select d-block w-100" id="optDepto" name="optDepto" required>
-                						<option value="">Seleccionar...</option>
-                						<?php cargarDeptos($conexion); ?>
-              						</select>
-            					</div>
-	            				<div class="col-md-6 mb-3">
-    	          					<label for="state">Estado</label>
-        	      					<select class="custom-select d-block w-100" id="optMun" name="optMun" required>
-					                	<option value="">Seleccionar...</option>
-                						<?php cargarMunicipios($conexion); ?>
-              						</select>
-            					</div>
-          					</div>
-
-							<div class="form-label-group">
-  								<input type="text" id="txtDireccion" name="txtDireccion" class="form-control" required autofocus>
-  								<label for="inputEmail">Dirección</label>
+								<div class="col-md-6 mb-3">
+									<label for="country">Departamento</label>
+									<select class="custom-select d-block w-100" id="optDepto" name="optDepto" required>
+										<option value="">Seleccionar...</option>
+										<?php cargarDeptos($conexion); ?>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<label for="state">Estado</label>
+									<select class="custom-select d-block w-100" id="optMun" name="optMun" required>
+										<option value="">Seleccionar...</option>
+										<?php cargarMunicipios($conexion); ?>
+									</select>
+								</div>
 							</div>
 
 							<div class="form-label-group">
-  								<input type="text" id="txtTelefono" name="txtTelefono" class="form-control" minlength="8" maxlength="8" pattern="[0-9]+" required autofocus>
-  								<label for="inputEmail">Teléfono</label>
+								<input type="text" id="txtDireccion" name="txtDireccion" class="form-control" required autofocus>
+								<label for="inputEmail">Dirección</label>
 							</div>
 
 							<div class="form-label-group">
-  								<input type="text" id="txtRTN" name="txtRTN" class="form-control" placeholder="Password"  minlength="6" pattern="[0-9]+" required>
-  								<label for="inputPassword">RTN</label>
+								<input type="text" id="txtTelefono" name="txtTelefono" class="form-control" minlength="8" maxlength="8" pattern="[0-9]+" required autofocus>
+								<label for="inputEmail">Teléfono</label>
+							</div>
+
+							<div class="form-label-group">
+								<input type="text" id="txtRTN" name="txtRTN" class="form-control" placeholder="Password"  minlength="6" pattern="[0-9]+" required>
+								<label for="inputPassword">RTN</label>
 							</div>
 						</div>
 
@@ -173,5 +173,6 @@
 	<script src="Estilos/js/script.js"></script>
 	<script src="Estilos/js/jquery.filedrop.js"></script>
 	<script src="Estilos/js/jquery.script.js"></script>
+	<script type="text/javascript" src="Estilos/js/chartJSgraficos/Chart.min.js"></script>
 </body>
 </html>
