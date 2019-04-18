@@ -30,6 +30,17 @@
 	
 	<!--Estilo exclusivo del carrusel-->
 	<style> 
+	@media screen and (max-width: 980px) {
+		div#divCarrusel {
+		display: none;
+		}
+	}
+
+	@media screen and (max-width: 980px) {
+		div#divSearch {
+		margin-left: 0;
+		}
+	}
 	.bd-placeholder-img {
 		font-size: 1.125rem;
 		text-anchor: middle;
@@ -122,7 +133,7 @@
 		</div>
 
 		<!--Contenido extra: Publicidad y otra información-->
-		<div class="container marketing">
+		<div class="container marketing mt-3">
 			<!--div que contiene tres tarjetas de publicidad, se puede utilizar para ampliar-->
 			<div class="row">
 				<div class="col-lg-4">

@@ -19,6 +19,10 @@
 					$consulta=sprintf("SELECT idusuario, correo, tipousuario, nombre, apellido, imagen FROM tbl_usuario WHERE correo = '%s'",$conexion->antiInyeccion($correo));
 					$_SESSION['ID'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['idusuario'];
 					$_SESSION['TipoUsuario']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['tipousuario'];
+					if ($_SESSION['TipoUsuario'] == '2') {
+						$consultaProv = sprintf("SELECT IDProveedor FROM tbl_proveedor WHERE IDUsuario = '%s'", $conexion->antiInyeccion($_SESSION['ID']));
+						$_SESSION['Proveedor'] = $conexion->ejecutarconsulta($consultaProv)->fetch_assoc()['IDProveedor'];
+					}
 					$_SESSION['Usuario']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['nombre']." ".$conexion->ejecutarconsulta($consulta)->fetch_assoc()['apellido'];
 					$_SESSION['Correo']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['correo'];
 					$_SESSION['Nombre']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['nombre'];

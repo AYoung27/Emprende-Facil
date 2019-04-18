@@ -33,6 +33,8 @@
 			$_SESSION['ID'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['IDUsuario'];
 			$_SESSION['TipoUsuario'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['TipoUsuario'];
 			$_SESSION['Usuario'] = $nombre." ".$apellido;
+			$_SESSION['Nombre'] = $nombre;
+			$_SESSION['Apellido'] = $apellido;
 			$_SESSION['Imagen'] = NULL;
 			
 			// Redirigir

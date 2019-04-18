@@ -1,112 +1,72 @@
-	<div id="nav">
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-custom">	 
-			<!--El siguiente botón permanecerá oculto hasta que sea necesario, usado por responsividad-->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#divCollapse">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+<style type="text/css">
+</style>
+<div id="nav">
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-custom">	 
+		<!--El siguiente botón permanecerá oculto hasta que sea necesario, usado por responsividad-->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#divCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-			<a class="navbar-brand" href="index.php">
-				<!--Emprende Fácil-->
-				<img src="img/logo/PROTOTIPO6_LOGO.png" height="35px;" style="padding-left: 1em; padding-right: 1em;">
-			</a>
+		<!--Emprende Fácil-->
+		<a class="navbar-brand" href="index.php">
+			<img src="img/logo/PROTOTIPO6_LOGO.png" height="35px;" style="padding-left: 1em; padding-right: 1em;">
+		</a>
+		<button class="btn btn-primary navbar-toggler"  type="button" data-toggle="collapse" data-target="#divSearch">
+			<span class="glyphicon glyphicon-search my-1"></span>
+		</button>
+		
+		<!--Todo lo incluido en este div sera ocultado en pantallas angostas-->	
+		<!--Div Oculto #1 (Derecha)-->
+		<div id="divSearch" class="collapse navbar-collapse header-search" style="margin-left: 5rem;">
+			<form>
+				<select class="input-select">
+					<option value="0">Categorias</option>
+					<option value="1">Category 01</option>
+					<option value="1">Category 02</option>
+				</select>
+				<input class="input" size="60" placeholder="Buscar Producto" >
+				<button class="search-btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+			</form>
+		</div>
+		<!--FIN Div Oculto #1-->
 
-			<!--Todo lo incluido en este div sera ocultado en pantallas angostas-->
-			
-
-			<div class="collapse navbar-collapse" id="divCollapse">
+		<!--Div Oculto #2 (Izquierda)-->
+		<div class="collapse navbar-collapse" id="divCollapse">
+			<form class="form-inline ml-auto">
 				<?php
-				session_start();
-				if (empty($_SESSION)){
-					echo "<ul class=\"navbar-nav mr-auto\">
-					<li class=\"nav-item\">
-					<a class=\"nav-link\" href=\"registro.php\">Registrarse</a>
-					</li>
-					<li class=\"nav-item\">
-					<a class=\"nav-link\" href=\"login.php\">Iniciar Sesión</a>
-					</li>
-					</ul>";	
-				} else {
-
-					if ($_SESSION['Imagen'] == NULL || $_SESSION['Imagen'] == "") {
-						$img = 'img/png/014-support.png';
-					} else{
-						$img = 'data:image/png;base64,'.base64_encode($_SESSION['Imagen']);
-					}
-					echo "<ul class=\"navbar-nav mr-auto\">
-					<li class=\"nav-item\">
-					<a class=\"nav-link\" href=\"perfil.php\">
-					Perfil
-					<img class=\"img-circle img-thumbnail img-responsive\" height=\"20\" width=\"20\" src=\"".$img."\"/>
-					</a>
-					</li>
-					</ul>";
-				}
+					session_start();
+					if (empty($_SESSION)){
+						echo "<ul class=\"navbar-nav\">
+								<li class=\"nav-item\">
+									<a class=\"nav-link\" href=\"registro.php\">Registrarse</a>
+								</li>
+								<li class=\"nav-item\">
+									<a class=\"nav-link\" href=\"login.php\">Iniciar Sesión</a>
+								</li>
+							</ul>";	
+					} else {
+						if ($_SESSION['Imagen'] == NULL || $_SESSION['Imagen'] == "") {
+							$img = 'img/png/014-support.png';
+						} else{
+							$img = 'data:image/png;base64,'.base64_encode($_SESSION['Imagen']);
+						}
+						echo "<ul class=\"navbar-nav\">
+								<li class=\"nav-item\">
+									<a class=\"nav-link\" href=\"perfil.php\">Perfil
+										<img class=\"img-circle img-thumbnail img-responsive\" height=\"20\" width=\"20\" src=\"".$img."\"/>
+									</a>
+								</li>
+							</ul>";
+						}
 				?>
-
-				
-
-
-
-
-				<!--Formulario de búsqueda que incluye dos menús desplegables-->
-				<!-- SEARCH BAR -->
-				<div class="col-md-6">
-					<div class="header-search">
-						<form>
-							<select class="input-select">
-								<option value="0">Categorias</option>
-								<option value="1">Category 01</option>
-								<option value="1">Category 02</option>
-							</select>
-							<input class="input" placeholder="Buscar Producto" >
-							<button class="search-btn"><span class="glyphicon glyphicon-search"></span></button>
-						</form>
-					</div>
-				</div>
-				<!-- /SEARCH BAR -->
-
-				<form class="form-inline mt-2 mt-md-0">
-					<div class="input-group">
-
-						<div class="content-search">
-							<div class="content-table">
-								<table id="table">
-									<thead>
-										<tr>
-											<td></td>
-										</tr>
-									</thead>
-
-									<tbody>
-										<tr> <td> <a href="busqueda.php">Cajas</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Envases</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Etiquetas para productos</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Madera</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Impresiones</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Diseño de logos</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Metales</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Plásticos</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Equipo de oficina</a> </td> </tr>
-										<tr> <td> <a href="busqueda.php">Locales</a> </td> </tr>  
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-
-					<!--script para jquery en el buscador-->
-					<script src="../Estilos/js/jq_search/search.js"></script>
-
-
-
-					<a href="pago.php"> <button class="btn" type="button" id="btnCarrito">
-						<span class="glyphicon glyphicon-shopping-cart"></span>
-					</button></a>
-					<?php
+				<a class="btn ml-auto" href="pago.php">
+					<span class="glyphicon glyphicon-shopping-cart"></span>
+				</a>
+				<?php
 					if (!empty($_SESSION)) {
 						echo "<!--Menu desplegable #1-->
-						<div class=\"dropdown\" style=\"margin-left:auto; margin-right:0;\">
-						<button id=\"btnDespegable_1\" class=\"btn\" type=\"button\" data-toggle=\"dropdown\" data-target = \"#divDesplegable_1\" >
+						<div class=\"dropdown\">
+						<button id=\"btnDespegable_1\" class=\"btn\"  data-toggle=\"dropdown\" data-target = \"#divDesplegable_1\" >
 						<span id=\"spnMenu\" class=\"glyphicon glyphicon-bell\" style=\"color: black\"></span>
 						</button>
 						<div id=\"divDesplegable_1\" class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenuButton\">
@@ -117,7 +77,7 @@
 						</div>
 
 						<!--Menu desplegable #2-->
-						<div class=\"dropdown\" style=\"margin-left:auto; margin-right:0;\">
+						<div class=\"dropdown\">
 						<button id=\"btnDesplegable_2\" class=\"btn dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" data-target = \"#divDesplegable_2\">
 						</button>
 						<div id=\"divDesplegable_2\" class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenuButton\">
@@ -127,8 +87,10 @@
 						</div>
 						</div>";
 					}
-					?>
-				</form>
-			</div>
-		</nav>
-	</div>
+				?>
+
+			</form>
+		</div>
+		<!--FIN Div Oculto #2-->
+	</nav>
+</div>

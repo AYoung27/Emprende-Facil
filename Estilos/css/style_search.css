@@ -73,14 +73,13 @@ tbody tr td a:hover{
   .header-search form .input {
     padding: 0px 15px;
     height: 33px;
-    width: calc(100% - 260px);
+    width: calc(100% - 180px);
     margin-right: -4px;
   }
 
   .header-search form .search-btn {
     height: 33px;
     width: 48px;
-    background: #1F90C4;
     color: #FFF;
     font-weight: 545;
     border: none;

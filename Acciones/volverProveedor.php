@@ -30,20 +30,24 @@
 	$resultado = $conexion->ejecutarconsulta($consulta);
 
 	#	2. Realizar el insert
-	$consultaA = sprintf("INSERT INTO tbl_proveedor(NombreProveedor, Direccion, IDMunicipio, Telefono, RTN, IDUsuario) values('%s','%s','%s','%s','%s','%s')", $conexion->antiInyeccion($nombreEmp), $conexion->antiInyeccion($direccion), $conexion->obtenerFila($resultado)[0], $conexion->antiInyeccion($telefono), $conexion->antiInyeccion($rtn), $conexion->antiInyeccion($_SESSION['ID']));
+	$consulta = sprintf("INSERT INTO tbl_proveedor(NombreProveedor, Direccion, IDMunicipio, Telefono, RTN, IDUsuario) values('%s','%s','%s','%s','%s','%s')", $conexion->antiInyeccion($nombreEmp), $conexion->antiInyeccion($direccion), $conexion->obtenerFila($resultado)[0], $conexion->antiInyeccion($telefono), $conexion->antiInyeccion($rtn), $conexion->antiInyeccion($_SESSION['ID']));
 
-	$conexion->ejecutarconsulta($consultaA);
+	$conexion->ejecutarconsulta($consulta);
 
 	#	Insercion en tabla de LOGS
  	$fecha=date("Y-m-d");
 	$hora=date("G:i:s");
 	
-	$consultaB = sprintf("INSERT INTO tbl_log(evento, descripcion, fecha, hora,direccion_ip_usuario ,usuarioid) values('%s','%s','%s','%s','%s','%s')",$conexion->antiInyeccion("Transicion a Vendedor"),$conexion->antiInyeccion("El usuario con correo:"." ".$_SESSION['Correo']." "."se ha vuelto vendedor"),$conexion->antiInyeccion($fecha),$conexion->antiInyeccion($hora), $conexion->antiInyeccion($conexion->ip()), $conexion->antiInyeccion($_SESSION['ID']));
+	$consulta = sprintf("INSERT INTO tbl_log(evento, descripcion, fecha, hora,direccion_ip_usuario ,usuarioid) values('%s','%s','%s','%s','%s','%s')",$conexion->antiInyeccion("Transicion a Vendedor"),$conexion->antiInyeccion("El usuario con correo:"." ".$_SESSION['Correo']." "."se ha vuelto vendedor"),$conexion->antiInyeccion($fecha),$conexion->antiInyeccion($hora), $conexion->antiInyeccion($conexion->ip()), $conexion->antiInyeccion($_SESSION['ID']));
 
-	$conexion->ejecutarconsulta($consultaB);
+	$conexion->ejecutarconsulta($consulta);
 
 	# Actualizacion de la sesion y alerta 
-	$_SESSION['TipoUsuario']='2';
+	$consulta = sprintf("SELECT IDProveedor FROM tbl_proveedor WHERE IDUsuario = '%s'", $conexion->antiInyeccion($_SESSION['ID']));
+	
+	$_SESSION['Proveedor'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['IDProveedor'];
+	$_SESSION['TipoUsuario'] = '2';
+	
 	$var = "Te has vuelto proveedor";		
 					echo "<script>
 							alert('".$var."'); 
