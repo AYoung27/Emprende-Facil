@@ -54,7 +54,7 @@
 </style>
 </head>
 
-<body onload="cargarDiv('barra','Contenido/header.php')">
+<body onload="cargarDiv('barra','Contenido/header.php'), cargarDiv('divCollapse','Contenido/notificaciones.php')">
 	<!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
 	<header> 
 		<div id="barra"></div>

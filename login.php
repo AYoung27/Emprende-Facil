@@ -9,7 +9,6 @@
   <link rel="stylesheet" type="text/css" href="Estilos/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="Estilos/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="Estilos/css/floating-labels.css">
-
   <title>Iniciar Sesión</title>
 </head>
 <form class="form-signin" method="post" action="Acciones/iniciarSesion.php">

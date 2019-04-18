@@ -9,6 +9,7 @@
 
  	$consulta= sprintf("SELECT count(*) FROM tbl_usuario where correo='%s'", $conexion->antiInyeccion($correo));
  	$resultado=$conexion->ejecutarconsulta($consulta);
+
  	if ($resultado->fetch_assoc()['count(*)'] == '1') {
  		$consulta=sprintf("SELECT Estado FROM tbl_sesion where idusuario=(SELECT idusuario FROM tbl_usuario where correo='%s')",$conexion->antiInyeccion($correo));
  		$aux=$conexion->ejecutarconsulta($consulta);
@@ -48,12 +49,23 @@
 				  		</script>";
 				}	
  		}else {
+ 			$consulta = sprintf("SELECT idusuario FROM tbl_usuario where correo='%s'", $conexion->antiInyeccion($correo));
+ 			$id = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['idusuario'];
+ 			$consulta = sprintf("INSERT INTO tbl_notificacion(Descripcion, Redireccion, IDUsuario) VALUES('%s','%s','%s')", $conexion->antiInyeccion("Intento de Inicio de Sesion"), $conexion->antiInyeccion("perfil.php"), $conexion->antiInyeccion($id));
+ 			$conexion->ejecutarconsulta($consulta);
 			mysqli_close($conexion->getLink());
-			$var = "error al conectar";		
+			$var = "Inicio de Sesion no Autorizado";		
 			echo "<script>
 					alert('".$var."'); 
   					window.location='../login.php';
 				  </script>";
 		}
+ 	} else {
+ 		$var = "El usuario no existe, registralo ahora";		
+			echo "<script>
+					alert('".$var."'); 
+  					window.location='../registro.php';
+				  </script>";
  	}
+
 ?>

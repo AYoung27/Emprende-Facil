@@ -53,7 +53,7 @@ function cargarMunicipios($conexion)
 	<title>Emprende Fácil</title>	
 </head>
 
-<body onload="cargarDiv('barra', 'Contenido/header.php'),cargarDiv('zonaUsuario', 'Contenido/columnaPerfil.php'), cargarDiv('zonaContenido', 'Contenido/informacionDeContacto.php')">
+<body onload="cargarDiv('barra', 'Contenido/header.php'),cargarDiv('divCollapse','Contenido/notificaciones.php'),cargarDiv('zonaUsuario', 'Contenido/columnaPerfil.php'), cargarDiv('zonaContenido', 'Contenido/informacionDeContacto.php')">
 	<!--Incluido en todas las paginas, incluye la barra de navegación y sus botones-->
 	<header>
 		<div id="barra"></div>
@@ -117,7 +117,7 @@ function cargarMunicipios($conexion)
 						<div class="modal-body">
 							<p>Llena la siguiente tabla con los datos de tu empresa</p>
 							<div class="form-label-group">
-								<input type="text" id="txtNombreEmp" name="txtNombreEmp" class="form-control" required autofocus >
+								<input type="text" id="txtNombreEmp" name="txtNombreEmp" class="form-control" placeholder="Password" required autofocus >
 								<label for="inputEmail">Nombre de la empresa</label>
 							</div>
 
@@ -139,12 +139,12 @@ function cargarMunicipios($conexion)
 							</div>
 
 							<div class="form-label-group">
-								<input type="text" id="txtDireccion" name="txtDireccion" class="form-control" required autofocus>
+								<input type="text" id="txtDireccion" name="txtDireccion" placeholder="Password" class="form-control" required autofocus>
 								<label for="inputEmail">Dirección</label>
 							</div>
 
 							<div class="form-label-group">
-								<input type="text" id="txtTelefono" name="txtTelefono" class="form-control" minlength="8" maxlength="8" pattern="[0-9]+" required autofocus>
+								<input type="text" id="txtTelefono" placeholder="Password" name="txtTelefono" class="form-control" minlength="8" maxlength="8" pattern="[0-9]+" required autofocus>
 								<label for="inputEmail">Teléfono</label>
 							</div>
 
