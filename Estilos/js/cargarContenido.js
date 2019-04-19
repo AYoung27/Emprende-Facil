@@ -6,19 +6,25 @@ function cargarDiv(divID, ruta) {
       document.getElementById(divID).innerHTML = respuesta;
       listar('');
       $.getScript('Estilos/js/script.js');
-      mostrarResultados('2014');
+      mostrarResultados();
     },
     error: function () {
     },
   });
 }
 
+
+
 function mostrarResultados(year,grafico) {
+
+
+
+  /*GRAFICO DE BARRA*/  
   if (grafico==1) {
     $('.resultados').html('<canvas id="grafico"></canvas>');
     $.ajax({
       type: 'POST',
-      url: 'Acciones/ProcesarGraficoBarra.php',
+      url: 'Acciones/ProcesarGrafico.php',
       data: 'year='+year,
       dataType: 'JSON',
       success: function (response) {
@@ -56,7 +62,102 @@ function mostrarResultados(year,grafico) {
     });
     return false;
   }
-}
+
+  /*GRAFICO DE RADAR*/
+
+  if (grafico==2) {
+    $('.resultados').html('<canvas id="grafico"></canvas>');
+    $.ajax({
+      type: 'POST',
+      url: 'Acciones/ProcesarGrafico.php',
+      data: 'year='+year,
+      dataType: 'JSON',
+      success: function (response) {
+        var Datos = {
+          labels: [
+          'Enero',
+          'Febrero',
+          'Marzo',
+          'Abril',
+          'Mayo',
+          'Junio',
+          'Julio',
+          'Agosto',
+          'Septiembre',
+          'Octubre',
+          'Noviembre',
+          'Diciembre'
+          ],
+          datasets: [
+          {
+            fillColor: 'rgba(91,228,146,0.6)', //COLOR DE LAS BARRAS
+            strokeColor: 'rgba(57,194,112,0.7)', //COLOR DEL BORDE DE LAS BARRAS
+            highlightFill: 'rgba(73,206,180,0.6)', //COLOR "HOVER" DE LAS BARRAS
+            highlightStroke: 'rgba(66,196,157,0.7)', //COLOR "HOVER" DEL BORDE DE LAS BARRAS
+            data: response
+          }
+          ]
+        }
+        var contexto = document.getElementById('grafico').getContext('2d');
+        window.Barra = new Chart(contexto).Radar(Datos, {
+          responsive: true
+        });
+        Barra.clear();
+      }
+    });
+    return false;
+  }
+
+  /*GRAFICO DE LINEAL*/ 
+  if (grafico==3) {
+    $('.resultados').html('<canvas id="grafico"></canvas>');
+    $.ajax({
+      type: 'POST',
+      url: 'Acciones/ProcesarGrafico.php',
+      data: 'year='+year,
+      dataType: 'JSON',
+      success: function (response) {
+        var Datos = {
+          labels: [
+          'Enero',
+          'Febrero',
+          'Marzo',
+          'Abril',
+          'Mayo',
+          'Junio',
+          'Julio',
+          'Agosto',
+          'Septiembre',
+          'Octubre',
+          'Noviembre',
+          'Diciembre'
+          ],
+          datasets: [
+          {
+            fillColor: 'rgba(91,228,146,0.6)', //COLOR DE LAS BARRAS
+            strokeColor: 'rgba(57,194,112,0.7)', //COLOR DEL BORDE DE LAS BARRAS
+            highlightFill: 'rgba(73,206,180,0.6)', //COLOR "HOVER" DE LAS BARRAS
+            highlightStroke: 'rgba(66,196,157,0.7)', //COLOR "HOVER" DEL BORDE DE LAS BARRAS
+            data: response
+          }
+          ]
+        }
+        var contexto = document.getElementById('grafico').getContext('2d');
+        window.Barra = new Chart(contexto).Line(Datos, {
+          responsive: true
+        });
+        Barra.clear();
+      }
+    });
+    return false;
+  }
+
+  
+
+
+
+} /*fin de la funcion para mostrar diferentes graficos*/
+
 
 function listar(valor){
   $.ajax({
@@ -98,6 +199,6 @@ function addCarrito(id){
     type:'POST',
     data:'id='+id
   }).done(function(resp){
-        alert('Agregado con exito'+id);
-      }); 
+    alert('Agregado con exito'+id);
+  }); 
 }
