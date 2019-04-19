@@ -17,9 +17,9 @@ $proveedor = $_SESSION['Proveedor'];
     $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
     $limite_kb = 16384;
 
-    if (in_array($_FILES['chsImagen']['type'], $permitidos) && $_FILES['chsImagen']['size'] <= $limite_kb * 1024){
+   // if (in_array($_FILES['chsImagen']['type'], $permitidos) && $_FILES['chsImagen']['size'] <= $limite_kb * 1024){
         // Archivo temporal
-        $imagenTemporal = $_FILES['chsImagen']['tmp_name'];
+        $imagenTemporal = $_FILES['chsImagen']['tmp_name'][0];
 
         // Leemos el contenido del archivo temporal en binario.
 		
@@ -29,30 +29,44 @@ $proveedor = $_SESSION['Proveedor'];
         //fclose($fp);
 
         $prod= new Producto(null,$nombreProducto,$descripcion,$precio,null,null,$contenidoImagen,null,$color,$categoria,$proveedor,null);
-		$consulta = sprintf("SELECT count(NombreProducto) FROM tbl_producto WHERE NombreProducto='%s' AND IDProveedor=(SELECT IDProveedor FROM tbl_proveedor WHERE IDUsuario='%s')",
+		$consulta = sprintf("SELECT count(NombreProducto) FROM tbl_producto WHERE NombreProducto='%s' AND IDProveedor='%s'",
 		$conexion->antiInyeccion($nombreProducto),	
-		$conexion->antiInyeccion($_SESSION['ID']));
+		$conexion->antiInyeccion($proveedor));
 		$resultado=$conexion->ejecutarconsulta($consulta);
-
-
 		if ($resultado->fetch_assoc()['count(NombreProducto)']=='0') {
 			$prod->agregar($conexion);
+
+
+			$consulta = sprintf("SELECT IDProducto FROM tbl_producto WHERE NombreProducto='%s' AND IDProveedor='%s'",$conexion->antiInyeccion($nombreProducto),$conexion->antiInyeccion($proveedor));
+			$result=$conexion->ejecutarconsulta($consulta);
+			$idprod=$result->fetch_assoc(); 
+
+			//$imagenTemporal1=$_FILES['chsImagen']['tmp_name'][1];
+			//$contenidoImagen = file_get_contents($imagenTemporal1);
+			//$cons = sprintf("INSERT INTO tbl_imagenes(IDProducto,Imagen) VALUES('%s','%s')",$conexion->antiInyeccion($idprod['IDProducto']),$conexion->antiInyeccion($contenidoImagen));
+			//$conexion->ejecutarconsulta($cons);
+			for ($i=1; $i<5; $i++){
+				$imagenTemporal = $_FILES['chsImagen']['tmp_name'][$i];
+				$contenidoImagen = file_get_contents($imagenTemporal);
+				$cons = sprintf("INSERT INTO tbl_imagenes(IDProducto,Imagen) VALUES('%s','%s')",$conexion->antiInyeccion($idprod['IDProducto']),$conexion->antiInyeccion($contenidoImagen));
+			$conexion->ejecutarconsulta($cons);
+			}
 			header('Location: ../perfil.php');
 			mysqli_close($conexion->getLink());
 		}else{
-			$var = "Error ";		
+			$var = "ERROR: Ya existe un producto con este nombre";		
 			echo "<script>
 					alert('".$var."'); 
-  					window.location='../agregarProducto.php';
+  					window.location='../perfil.php';
 				  </script>";
 	}
-   }else{
-    	$var = "Error archivo no permitido";		
-			echo "<script>
-					alert('".$var."'); 
-  					window.location='../agregarProducto.php';
-				  </script>";   
-    }
+ //  }else{
+ //   	$var = "Error archivo no permitido";		
+//			echo "<script>
+//					alert('".$var."'); 
+ // 					window.location='../agregarProducto.php';
+//				  </script>";   
+ //   }
 
 
 

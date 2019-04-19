@@ -87,11 +87,11 @@
     											<textarea class="form-control" id="txtArea" name="txtArea" rows="3"></textarea>
     											</div>
  											</div>
- 											<label class="" for="">Seleccione una imagenes para mostrar su producto</label>
+ 											<label class="" for="">Seleccione 5 imagenes para mostrar su producto</label>
  											 <div class="form-row">
  											  <div class=" col-md-6 mb-3 ">
-   												 <input type="file" name="chsImagen" id="chsImagen" class="custom-file-input">
-   												 <label class="custom-file-label" for="chsImagen">Seleccionar imagen...</label>
+   												 <input type="file" name="chsImagen[]" id="chsImagen" class="custom-file-input" multiple="5">
+   												 <label class="custom-file-label" for="chsImagen">Seleccionar imagenes...</label>
  											 </div>
  											 </div>
  											 <div class="form-row mb-3">
@@ -104,3 +104,6 @@
 							    </div>
 						</div>
 					</div>
+					<script type="text/javascript">
+      					$.getScript('Estilos/js/variasImagenes.js');
+					</script>
