@@ -1,3 +1,12 @@
+	<?php 
+	session_start();
+	if (empty($_SESSION)) {
+		header('Location: index.php');
+	}
+	include("../Clases/Conexion.php");
+	$conexion = new Conexion();
+	$conexion->mysql_set_charset("utf8");
+?>	
 		<div class="col-md-12">
 				<div class="col-md-12" style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: lightgray;">
 							<br>
@@ -23,28 +32,33 @@
 						<div id="existencia" class="container tab-pane active"><br>
 							<div class="row">
 								<div class="col-md-12 table-responsive">
-								 	<table class="table">
+								 	<table class="table table-bordered">
 								 	<thead>
 								 	   <tr>
 								 	   	<th></th>
  								         <th>Nombre Producto</th>
- 								         <th>Estado</th>
- 								         <th>Fecha de Elaboracion</th>
- 								         <th>Precio</th>
+ 								         <th>Descripcion</th>
+ 								         <th>Precio Actual</th>
+ 								         <th>Precio Anterior</th>
+ 								         <th>Categoria</th>
  								       </tr>
 								 	</thead>
  								     
  								     <tbody>
- 								     	<?php
- 								     		$consulta=sprintf("SELECT nombreProducto, ");
+ 								     <?php
+ 								     	$consulta=sprintf("SELECT nombreProducto, Descripcion ,precioActual, PrecioAnterior,ImagenPrincipal,nombreCategoria FROM tbl_producto, tbl_categoria WHERE IDProveedor=".$_SESSION['Proveedor']." AND tbl_producto.IDcategoria=tbl_categoria.IDcategoria");
+ 								     		$resultado=$conexion->ejecutarconsulta($consulta);
+ 								     		while($data=$conexion->obtenerfila($resultado)){
+ 								     			echo '<tr><td><img src=data:image/jpg;base64,'.base64_encode($data['ImagenPrincipal']).' width="60" height="60"></td>';
+ 								     			echo '<td>'.$data['nombreProducto'].'</td>';
+ 								     			echo '<td>'.$data['Descripcion'].'</td>';
+ 								     			echo '<td>'.$data['precioActual'].'</td>';
+ 								     			echo '<td>'.$data['PrecioAnterior'].'</td>';
+ 								     			echo '<td>'.$data['nombreCategoria'].'</td></tr>';
+
+ 								     		}
  								     	  ?>
- 								     	<tr>
- 								     		<td><img src="img/png/006-shopping" width="40" height="40"></td>
- 								     		<td>Producto X</td>
- 								     		<td>si</td>
- 								     		<td>2019-03-10</td>
- 								     		<td>HNL 100.00</td>
-								     	</tr>
+
 
  								     </tbody>
  								   </table>
