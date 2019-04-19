@@ -48,6 +48,8 @@
  								     <?php
  								     	$consulta=sprintf("SELECT nombreProducto, Descripcion ,precioActual, PrecioAnterior,ImagenPrincipal,nombreCategoria FROM tbl_producto, tbl_categoria WHERE IDProveedor=".$_SESSION['Proveedor']." AND tbl_producto.IDcategoria=tbl_categoria.IDcategoria");
  								     		$resultado=$conexion->ejecutarconsulta($consulta);
+ 								     		$bandera=mysqli_num_rows($resultado);
+ 								     		if($bandera!=0){
  								     		while($data=$conexion->obtenerfila($resultado)){
  								     			echo '<tr><td><img src=data:image/jpg;base64,'.base64_encode($data['ImagenPrincipal']).' width="60" height="60"></td>';
  								     			echo '<td>'.$data['nombreProducto'].'</td>';
@@ -57,7 +59,12 @@
  								     			echo '<td>'.$data['nombreCategoria'].'</td></tr>';
 
  								     		}
- 								     	  ?>
+ 								     	}else{
+ 								     		echo "<tr><td colspan=6 ><p style=\"text-align:center\">Aun no hay productos en su inventario</p></td>";
+ 								     	}
+
+ 								     ?>
+ 								     	
 
 
  								     </tbody>
