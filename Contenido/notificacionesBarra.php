@@ -31,7 +31,7 @@
 
 ?>
 	<div class="dropdown ml-auto">
-				<a class="btn " href="pago.php">
+				<a class="btn nav-link" href="pago.php">
 					<span class="glyphicon glyphicon-shopping-cart"></span>
 				</a>
 	</div>

@@ -1,38 +1,54 @@
-﻿<?php  include("Clases/Conexion.php");
+﻿<?php  
+include("Clases/Conexion.php");
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 function mostrarProducto($id, $conexion){
-	$consulta = sprintf("SELECT NombreProducto, Descripcion, ImagenPrincipal FROM tbl_producto WHERE NombreProducto LIKE '%s'", '%'.$conexion->antiInyeccion($id).'%');
+	$consulta = sprintf("SELECT IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion FROM tbl_producto WHERE NombreProducto LIKE '%s' ORDER BY (NombreProducto)", '%'.$conexion->antiInyeccion($id).'%');
 	$resultado = $conexion->ejecutarconsulta($consulta);
 	$contador = 0;
 	$iter = $conexion->cantidadRegistros($resultado);
-	for ($i=0; $i < $iter; $i++) {
-		
-		if ($contador == 0) {
-			echo '<div class="row" style="padding-bottom: 3em;">';
-		}
-		$data = $conexion->obtenerFila($resultado);
-		echo '<div class="col-lg-3">
-					<div class="card bg-default">
-						<h5 class="card-header">
-							'.$data["NombreProducto"].'
-						</h5>
-						<div class="card-body">
-							<img class="bd-placeholder-img rounded" width="140" height="140" src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'">
+for ($i=0; $i < $iter; $i++) {
+			if ($contador == 0) {
+				echo '<div class="row">';
+			}
+			$data = $conexion->obtenerFila($resultado);
+						$valoracion = (intval($data["Valoracion"]));
+			echo '<div class="col-md-3">
+					<div class="product">
+						<div class="product-img">
+								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">
 						</div>
-						<div class="card-footer">
-							<p>'.$data["Descripcion"].'</p>
-							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
+						<div class="product-body">
+							<p class="product-category">Categoria</p>
+							<h3 class="product-name">'.$data["NombreProducto"].'</h3>
+							<h4 class="product-price">'.$data["IDMoneda"].' '.$data["PrecioActual"].'
+							<!--<del class="product-old-price">$990.00</del>--></h4>
+							<div class="product-rating">';
+			for ($j=0; $j < $valoracion ; $j++) { 
+				echo '			<i class="glyphicon glyphicon-star"></i>';
+			}
+
+			$valoracion = 5 - $valoracion;
+			for ($k=0; $k < $valoracion; $k++) { 
+				echo '			<i class="glyphicon glyphicon-star-empty"></i>';
+			}
+			echo '				
+							</div>
+							<div class="product-btns">
+								<a href="detalle.php?idp='.$data["IDProducto"].'" class="quick-view"><i class="glyphicon glyphicon-list"></i><span class="tooltipp">Detalles del producto</span></a>
+							</div>
+						</div>
+						<div class="add-to-cart">
+							<button class="add-to-cart-btn" onclick="addCarrito('.$data["IDProducto"].')"><i class="glyphicon glyphicon-shopping-cart"></i>Agregar al carrito</button>
 						</div>
 					</div>      			
 				</div>';
-		
+
 		$contador++;
 		if ($contador == 4) {
 			echo '</div>';
 			$contador = 0;
 		}
-
 	}
 }
 
@@ -59,7 +75,13 @@ function mostrarProducto($id, $conexion){
 	<script src="Estilos/js/jq_search/jquery.dataTables.min.js"></script>
 
 	<title>Emprende Fácil</title>
-</style>
+	<style type="text/css">
+		@media screen and (max-width: 980px) {
+		div.banner {
+		display: none;
+		}
+	}
+	</style>
 </head>
 
 <body onload="cargarDiv('barra','Contenido/header.php'), cargarDiv('divCollapse','Contenido/notificacionesBarra.php')">
@@ -72,15 +94,17 @@ function mostrarProducto($id, $conexion){
 <main role="main">
 
 	<!--publicidad centro de pagina-->
-			<div style="text-align: center; position: absolute; padding-left: 15em; padding-top: 2em; animation-iteration-count: infinite; ">
+			<div class="banner" style="text-align: center; position: absolute; padding-left: 15em; padding-top: 2em; animation-iteration-count: infinite; ">
     			<iframe src="img/Banners/banner_prot_3/banner_prot_3.html" scrolling="no" height="90" width="728"   style=" border:none; animation-iteration-count: infinite;"></iframe>
 			</div>
 
 
 	<!--aside , contendrá el espacio para publicidad lateral-->
+	<div class="banner">
 	<aside style="float: right; padding: 2em 1em;">
-    <iframe src="img/Banners/banner_prot_1/banner_prototipo1.html" scrolling="no" height="600" width="160"  style=" border:none"></iframe>
+    	<iframe src="img/Banners/banner_prot_1/banner_prototipo1.html" scrolling="no" height="600" width="160"  style=" border:none"></iframe>
 	</aside>
+	</div>
 
 
 	<!--fila contenedora de el panel de resultados de búsqueda-->

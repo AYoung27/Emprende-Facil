@@ -1,6 +1,60 @@
 ﻿<?php 
 	session_start();
- ?>
+	include("Clases/Conexion.php");
+	$conexion = new Conexion();
+	$conexion->mysql_set_charset("utf8");
+
+	function mostrarProducto($conexion){
+		$consulta = sprintf("SELECT IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion FROM tbl_producto ORDER BY RAND() LIMIT 8");
+		$resultado = $conexion->ejecutarconsulta($consulta);
+		$contador = 0;
+		$iter = $conexion->cantidadRegistros($resultado);
+		for ($i=0; $i < $iter; $i++) {
+			if ($contador == 0) {
+				echo '<div class="row">';
+			}
+
+			$data = $conexion->obtenerFila($resultado);
+			$valoracion = (intval($data["Valoracion"]));
+			echo '<div class="col-md-3">
+					<div class="product">
+						<div class="product-img">
+								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">
+						</div>
+						<div class="product-body">
+							<p class="product-category">Categoria</p>
+							<h3 class="product-name">'.$data["NombreProducto"].'</h3>
+							<h4 class="product-price">'.$data["IDMoneda"].' '.$data["PrecioActual"].'
+							<!--<del class="product-old-price">$990.00</del>--></h4>
+							<div class="product-rating">';
+			for ($j=0; $j < $valoracion ; $j++) { 
+				echo '			<i class="glyphicon glyphicon-star"></i>';
+			}
+
+			$valoracion = 5 - $valoracion;
+			for ($k=0; $k < $valoracion; $k++) { 
+				echo '			<i class="glyphicon glyphicon-star-empty"></i>';
+			}
+			echo '				
+							</div>
+							<div class="product-btns">
+								<a href="detalle.php?idp='.$data["IDProducto"].'" class="quick-view"><i class="glyphicon glyphicon-list"></i><span class="tooltipp">Detalles del producto</span></a>
+							</div>
+						</div>
+						<div class="add-to-cart">
+							<button class="add-to-cart-btn" onclick="addCarrito('.$data["IDProducto"].')"><i class="glyphicon glyphicon-shopping-cart"></i>Agregar al carrito</button>
+						</div>
+					</div>      			
+				</div>';
+		
+		$contador++;
+		if ($contador == 4) {
+			echo '</div>';
+			$contador = 0;
+		}
+	}
+}
+?>
 <!--Pagina de inicio-->
 <!DOCTYPE html>
 <html>
@@ -134,98 +188,32 @@
 
 		<!--Contenido extra: Publicidad y otra información-->
 		<div class="container marketing mt-3">
+			<div class="col-md-12">
+				<div class="section-title">
+					<h3 class="title">Ofertas</h3>
+				</div>
+			</div>
 			<!--div que contiene tres tarjetas de publicidad, se puede utilizar para ampliar-->
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="card bg-default">
-						<h5 class="card-header">
-							Producto X
-						</h5>
-						<div class="card-body">
-							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
-						</div>
-						<div class="card-footer">
-							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
-						</div>
-					</div>      			
-				</div>
-				<div class="col-lg-4">
-					<div class="card bg-default">
-						<h5 class="card-header">
-							Producto Y
-						</h5>
-						<div class="card-body">
-							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
-						</div>
-						<div class="card-footer">
-							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
-						</div>
-					</div>      			
-				</div>
-				<div class="col-lg-4">
-					<div class="card bg-default">
-						<h5 class="card-header">
-							Producto Z
-						</h5>
-						<div class="card-body">
-							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
-						</div>
-						<div class="card-footer">
-							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
-						</div>
-					</div>      			
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="card bg-default">
-						<h5 class="card-header">
-							Producto X
-						</h5>
-						<div class="card-body">
-							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
-						</div>
-						<div class="card-footer">
-							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
-						</div>
-					</div>      			
-				</div>
-				<div class="col-lg-4">
-					<div class="card bg-default">
-						<h5 class="card-header">
-							Producto Y
-						</h5>
-						<div class="card-body">
-							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
-						</div>
-						<div class="card-footer">
-							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
-						</div>
-					</div>      			
-				</div>
-				<div class="col-lg-4">
-					<div class="card bg-default">
-						<h5 class="card-header">
-							Producto Z
-						</h5>
-						<div class="card-body">
-							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
-						</div>
-						<div class="card-footer">
-							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="detalle.php" role="button">Ver más &raquo;</a></p>
-						</div>
-					</div>      			
-				</div>
-			</div>
+			<?php 
+				mostrarProducto($conexion);
+			 ?>
 			<hr class="featurette-divider">
-
-
+			<div class="col-md-12">
+				<div class="section-title">
+					<h3 class="title">Categorias</h3>
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<div class="shop-img">
+								<img src="img/png/006-shopping.png" alt="">
+							</div>
+							<div class="shop-body">
+								<h3>Cajas</h3>
+								<a href="busqueda.php?q=" class="cta-btn">Buscar ahora <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
 			<!--Información Extra, no indispensable-->
 			<div class="row featurette" style="padding-top: 3em;">
 				<div class="col-md-7">

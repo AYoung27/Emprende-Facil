@@ -91,3 +91,13 @@ function listar(valor){
         $("#Producto").html(html);
       });
 }
+
+function addCarrito(id){
+  $.ajax({
+    url:'Acciones/agregarACarrito.php',
+    type:'POST',
+    data:'id='+id
+  }).done(function(resp){
+        alert('Agregado con exito'+id);
+      }); 
+}
