@@ -41,7 +41,7 @@ session_start();
     		$salida.='<tr>
     					<td>'.$arreglo['NombreProducto'].'</td>
     					<td>'.$arreglo['PrecioActual'].'</td>
-    					<td><a role="button"'.'class='.'"btn btn-primary mr-2"'.'href="#" onclick="modificar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-pencil"'.'></i> Modificar</a><a role="button" class='.'"btn btn-danger"'.' href="#" onclick="eliminar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-remove"'.'></i> Eliminar</a></td></tr>';
+    					<td><button type="button"'.'class='.'"btn btn-primary mr-2"'.' '." ".'data-toggle='.'"modal"'." ".' data-target='.'"#modalM"'.'><i class='.'"glyphicon glyphicon-pencil"'.'></i> Modificar</button><a role="button" class='.'"btn btn-danger"'.' href="#" onclick="eliminar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-remove"'.'></i> Eliminar</a></td></tr>';
     	}
     	$salida.="</tbody></table>";
     }else{
