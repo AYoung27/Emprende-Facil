@@ -4,6 +4,98 @@ include("Clases/Conexion.php");
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 
+function cargarDetalleProducto($conexion, $idProducto){
+	$consulta = sprintf("SELECT NombreProducto, Valoracion, PrecioActual, ImagenPrincipal, tbl_categoria.NombreCategoria, tbl_color.NombreColor FROM tbl_producto, tbl_categoria, tbl_color WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria AND tbl_color.IDColor = tbl_producto.IDColor AND IDProducto = '%s'", $conexion->antiInyeccion($idProducto));
+	$resultado = $conexion->ejecutarconsulta($consulta);
+	$data = $conexion->obtenerFila($resultado);
+	$valoracion = (intval($data["Valoracion"]));
+	echo '<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="breadcrumb-tree">
+							<li><a href="index.php">Home</a></li>
+							<li><a href="#">Todas las categorias</a></li>
+							<li><a href="busqueda.php?cat='.$data["NombreCategoria"].'">'.$data["NombreCategoria"].'</a></li>
+							<li class="active">'.$data["NombreProducto"].'</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<div class="container" >
+      	<div class="row" style="margin-bottom:15px"> <!-- Inicio subfila 1 -->
+
+        <!--subfila 1 columna 1 -->
+        <div class="col-lg-1" style="padding-top: 3em;"> 
+          <div class="row" style="padding-bottom: 1em;">  <img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" height="75" width="75" data-imagenes="img0" style="border:1px solid" class="imagen"> </div>
+          <div  class="row" style="padding-bottom: 1em;"> <img src="img/png/005-ecommerce" height="75" width="75" data-imagenes="img1" style="border:1px solid" class="imagen"> </div>
+          <div class="row" style="padding-bottom: 1em;"> <img src="img/png/008-reward" height="75" width="75" data-imagenes="img2" style="border:1px solid" class="imagen"> </div>
+          <div class="row" style="padding-bottom: 1em;"> <img src="img/png/013-present" height="75" width="75" data-imagenes="img3" style="border:1px solid" class="imagen"> </div>
+        </div> 
+        <!--fin subfila 1 columna 1 -->
+
+        <!--subfila 1 columna 2 -->
+        <div class="col-lg-5" id="cambio"> 
+         <img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" height="350" width="350" style="margin:55px" id="">
+         <br>
+       </div> 
+       <!--fin subfila 1 columna 2 -->
+
+
+       <!--subfila 1 columna 3 -->
+       <div style="padding-top: 3em;" class="col-lg-4" >      
+
+        <h3>'.$data["NombreProducto"].'</h3>
+                <hr>
+        <div>
+          <p style="margin:0; font-size: small;" > Calificacion: <em>(Evaluada por usuario)</em> </p>
+          <p class="clasificacion">
+          <div class="product-rating">';
+
+        for ($j=0; $j < $valoracion ; $j++) { 
+				echo '			<i class="glyphicon glyphicon-star"></i>';
+			}
+
+			$valoracion = 5 - $valoracion;
+			for ($k=0; $k < $valoracion; $k++) { 
+				echo '			<i class="glyphicon glyphicon-star-empty"></i>';
+			}
+
+        echo '
+          </div>
+        	<hr>
+          </p> 
+        </div>
+
+
+        <div class="row">
+        	<span style="padding-left: 1em;">Categoria:&ensp;</span> <label style="height: 27px; "> '.$data["NombreCategoria"].' </label> </div>
+
+        <div class="row"><span style="padding-left: 1em;">Precio:&emsp;&emsp;</span>  <label style="height: 27px;">HNL'.' '.$data["PrecioActual"].'</label></div>
+
+        <div class="row"><span style="padding-left: 1em;">Color:&nbsp;&emsp;&emsp;</span>  <label style="height: 27px;">'.$data["NombreColor"].'</label></div>
+		<br>
+
+        <div class="row"><span style="padding-left: 1em; padding-right: 1em;">Cantidad:</span> <input type="number" class="form-control col-3" min="0" style="height: 27px;"></div> <br>
+
+        <div class="row"><span style="padding-left: 1em; color:blue;">Total Billete:</span> <label style="height: 27px;">ni idea de como modificar esto via php</div> <br>
+
+          <div class="row" style="padding-left:  2em;">
+            <div class="add-to-cart" >
+            	<button class="add-to-cart-btn" onclick="addCarrito('.$idProducto.')"><i class="glyphicon glyphicon-shopping-cart"></i>Agregar al carrito</button>
+            </div>
+          </div> <!--fin de subfila1 columna 3-->
+        </div>
+
+'
+
+		;
+}
 ?>
 <!--Pagina de inicio-->
 <!DOCTYPE html>
@@ -66,78 +158,15 @@ $conexion->mysql_set_charset("utf8");
 
   <!--Inicio del cuerpo principal de la pagina-->
   <main role="main">
-    <br>
-    <hr>
-    <div class="container" >
-
-      <div class="row">
-
-        <p style="font-size:12px">En la categoría:</p><span style="margin-left:15px; font-size:12px"><a href="#">Categoria x</a> > <a href="#">Subcategoria x</a></span>
-      </div>
-
-
-      <div class="row" style="margin-bottom:15px"> <!-- Inicio subfila 1 -->
-
-        <!--subfila 1 columna 1 -->
-        <div class="col-lg-1" style="padding-top: 3em;"> 
-          <div class="row" style="padding-bottom: 1em;">  <img src="img/png/006-shopping" height="75" width="75" data-imagenes="img0" style="border:1px solid" class="imagen"> </div>
-          <div  class="row" style="padding-bottom: 1em;"> <img src="img/png/005-ecommerce" height="75" width="75" data-imagenes="img1" style="border:1px solid" class="imagen"> </div>
-          <div class="row" style="padding-bottom: 1em;"> <img src="img/png/008-reward" height="75" width="75" data-imagenes="img2" style="border:1px solid" class="imagen"> </div>
-          <div class="row" style="padding-bottom: 1em;"> <img src="img/png/013-present" height="75" width="75" data-imagenes="img3" style="border:1px solid" class="imagen"> </div>
-        </div> 
-        <!--fin subfila 1 columna 1 -->
-
-        <!--subfila 1 columna 2 -->
-        <div class="col-lg-5" id="cambio"> 
-         <img src="img/png/006-shopping" height="350" width="350" style="margin:55px" id="">
-         <br>
-       </div> 
-       <!--fin subfila 1 columna 2 -->
-
-
-       <!--subfila 1 columna 3 -->
-       <div style="padding-top: 3em;" class="col-lg-4" >      
-
-        <h3> Nombre Producto</h3>
-
-        <hr>
-        <div>
-          <p style="margin:0; font-size: small;" > Calificacion: <em>(Evaluada por usuario)</em> </p>
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="5">
-            <label class="lblstar" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-            <input id="radio2" type="radio" name="estrellas" value="4">
-            <label class="lblstar" for="radio2"><i class="fa fa-star"></i></label>
-            <input id="radio3" type="radio" name="estrellas" value="3">
-            <label class="lblstar" for="radio3"><i class="fa fa-star"></i></label>
-            <input class="lblstar" id="radio4" type="radio" name="estrellas" value="2">
-            <label  class="lblstar" for="radio4"><i class="fa fa-star"></i></label>
-            <input id="radio5" type="radio" name="estrellas" value="1">
-            <label class="lblstar" for="radio5"><i class="fa fa-star"></i></label>
-          </p> 
-        </div>
-
-
-        <div class="row"><span style="padding-left: 1em;">Categoria:&ensp;</span> <label style="height: 27px; "> NombreCategoria </label> </div>
-
-        <div class="row"><span style="padding-left: 1em;">Precio:&emsp;&emsp;</span>  <label style="height: 27px;"> Precio Producto $$$ </label></div>
-
-        <div class="row"><span style="padding-left: 1em;">Color:&nbsp;&emsp;&emsp;</span>  <label style="height: 27px;"> Color Produto </label></div>
-
-        <div class="row"><span style="padding-left: 1em;">Tamaño:&emsp;</span>  <label style="height: 27px;"> Tamaño Producto</label></div> <br>
-
-        <div class="row"><span style="padding-left: 1em; padding-right: 1em;">Cantidad:</span> <input type="number" class="form-control col-3" min='0' style="height: 27px;"></div> <br>
-
-        <div class="row"><span style="padding-left: 1em; color:blue;">&emsp;Total Billete:</span> <label style="height: 27px;">TotalProductosLLevados$$$</div> <br>
-
-          <div class="row" style="padding-left:  2em;">
-            <div class="add-to-cart" >
-              <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Añadir al Carrito</button>
-            </div>
-          </div> <!--fin de subfila1 columna 3-->
-        </div>
+  	<br>
+  	<?php  
+  		if (isset($_GET["idp"])) {
+  			cargarDetalleProducto($conexion, $_GET["idp"]);
+  		}
+  	 ?>
+    
         <!--inicio de subfila1 columna 4-->
-        <div class="col-lg-1" style="padding-left: 5em;" ><iframe src="img/Banners/banner_prot_1/banner_prototipo1.html" scrolling="no" height="600" width="160"  style=" border:none"></iframe> </div>
+        <div class="col-md-1" style="padding-left: 5em;" ><iframe src="img/Banners/banner_prot_1/banner_prototipo1.html" scrolling="no" height="600" width="160"  style=" border:none"></iframe> </div>
         <!--fin de subfila1 columna 4-->
 
 

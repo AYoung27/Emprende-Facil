@@ -15,7 +15,7 @@
 				</li>
 			</ul>";	
 	} else {
-				if (!isset($_SESSION["ID"])) {
+		if (!isset($_SESSION["ID"])) {
 		echo "<ul class=\"navbar-nav\">
 				<li class=\"nav-item\">
 					<a class=\"nav-link\" href=\"registro.php\">Registrarse</a>

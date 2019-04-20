@@ -3,16 +3,16 @@ include("Clases/Conexion.php");
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 function mostrarProducto($id, $conexion){
-	$consulta = sprintf("SELECT IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria as NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria AND NombreProducto LIKE '%s' ORDER BY (NombreProducto)", '%'.$conexion->antiInyeccion($id).'%');
+	$consulta = sprintf("SELECT IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria AND NombreProducto LIKE '%s' ORDER BY (NombreProducto)", '%'.$conexion->antiInyeccion($id).'%');
 	$resultado = $conexion->ejecutarconsulta($consulta);
 	$contador = 0;
 	$iter = $conexion->cantidadRegistros($resultado);
-for ($i=0; $i < $iter; $i++) {
+		for ($i=0; $i < $iter; $i++) {
 			if ($contador == 0) {
 				echo '<div class="row">';
 			}
 			$data = $conexion->obtenerFila($resultado);
-						$valoracion = (intval($data["Valoracion"]));
+			$valoracion = (intval($data["Valoracion"]));
 			echo '<div class="col-md-3">
 					<div class="product">
 						<div class="product-img">
