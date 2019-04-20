@@ -196,6 +196,6 @@ function addCarrito(id){
     type:'POST',
     data:'id='+id
   }).done(function(resp){
-    alert('Agregado con exito'+id);
+    alert('Agregado con exito');
   }); 
 }

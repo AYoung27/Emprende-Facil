@@ -1,39 +1,52 @@
 <?php 
   session_start();
+  include("Clases/Conexion.php");
+  $conexion = new Conexion(); 
+  $conexion->mysql_set_charset("utf8");
 
-  function cargarCarrito(){
-      echo '
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
+  function cargarCarrito($conexion){
+    if (isset($_SESSION["Carrito"])) {
+      $consulta = sprintf("SELECT PrecioActual, NombreProducto, Descripcion FROM tbl_producto, tbl_productos_carrito WHERE tbl_producto.IDProducto = tbl_productos_carrito.IDProducto AND tbl_productos_carrito.IDCarrito = '%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));
+      $resultado = $conexion->ejecutarconsulta($consulta);
+
+      $iter = $conexion->cantidadRegistros($resultado);
+      echo '         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Tu carro</span>
-          <span class="badge badge-secondary badge-pill">3</span>
+          <span class="badge badge-secondary badge-pill">'.$iter.'</span>
         </h4>
-        <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <ul class="list-group mb-3">';
+
+      $total = 0;
+      for ($i=0; $i < $iter ; $i++) { 
+        $data = $conexion->obtenerFila($resultado);
+        $total += intval($data["PrecioActual"]);
+        echo '<li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
-              <h6 class="my-0">Producto 1</h6>
-              <small class="text-muted">Descripción</small>
+              <h6 class="my-0">'.$data["NombreProducto"].'</h6>
+              <small class="text-muted">'.$data["Descripcion"].'</small>
             </div>
-            <span class="text-muted">$12</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Producto 2</h6>
-              <small class="text-muted">Descripción</small>
-            </div>
-            <span class="text-muted">$8</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Producto 3</h6>
-              <small class="text-muted">Descripción</small>
-            </div>
-            <span class="text-muted">$5</span>
-          </li>
+            <span class="text-muted">HNL'.$data["PrecioActual"].'</span>
+          </li>';
+      }
+        echo '
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (USD)</span>
-            <strong>$25</strong>
+            <strong>HNL'.$total.'</strong>
           </li>
         </ul>';
+    } else {
+      echo '         <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Tu carro</span>
+          <span class="badge badge-secondary badge-pill">0</span>
+        </h4>
+      <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong>HNL 0</strong>
+          </li>
+        </ul>';
+
+    }
   }
  ?>
 <!--Pagina de inicio-->
@@ -55,6 +68,7 @@
   <link rel="stylesheet" href="Estilos/css/style.css">
   <link rel="stylesheet" href="Estilos/css/carousel.css">
 
+<link rel="stylesheet" href="Estilos/css/floating-labels-2.css">
   <!--archivos para la búsqueda con jquery-->
   <link rel="stylesheet" href="Estilos/css/style_search.css">
   
@@ -75,7 +89,7 @@
 
 <!--Inicio del cuerpo principal de la pagina-->
 <main role="main">
-  <div class="container">
+  <div class="container mt-5">
     <div class="pt text-center">
       <h2>Carro de Compras</h2>
       <p class="lead"></p>
@@ -83,8 +97,8 @@
 
     <div class="row">
       <div class="col-md-4 order-md-2">
-        <?php 
-          cargarCarrito();
+        <?php
+          cargarCarrito($conexion);
          ?>
       </div>
       <div class="col-md-8 order-md-1">

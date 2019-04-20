@@ -31,14 +31,18 @@
 					$_SESSION['Imagen']=$conexion->ejecutarconsulta($consulta)->fetch_assoc()['imagen'];
 					$sql = sprintf("UPDATE tbl_sesion SET Estado = '1' WHERE idusuario = '%s'",$conexion->antiInyeccion($_SESSION['ID']));
 					$conexion->ejecutarconsulta($sql);
-					header('Location: ../index.php');
 
 					$fecha=date("Y-m-d");
 					$hora=date("G:i:s");
 					$consultaB = sprintf("INSERT INTO tbl_log(evento, descripcion, fecha, hora,direccion_ip_usuario ,usuarioid) values('%s','%s','%s','%s','%s','%s')",$conexion->antiInyeccion("Inicio de sesion"),$conexion->antiInyeccion("El usuario con correo:"." ".$correo." "."ha iniciado sesion"),$conexion->antiInyeccion($fecha),$conexion->antiInyeccion($hora), $conexion->antiInyeccion($conexion->ip()),$conexion->antiInyeccion($_SESSION['ID']));
 					$conexion->ejecutarconsulta($consultaB);
-
+					
+					if (isset($_SESSION["Carrito"])) {
+						$consulta = sprintf("UPDATE tbl_carrito SET IDUsuario = '%s' WHERE IDCarrito = '%s'", $conexion->antiInyeccion($_SESSION["ID"]), $conexion->antiInyeccion($_SESSION["Carrito"]));
+						$conexion->ejecutarconsulta($consulta);
+					}
 					mysqli_close($conexion->getLink());
+					header('Location: ../index.php');
 					
 				} else {
 					mysqli_close($conexion->getLink());

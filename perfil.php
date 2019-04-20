@@ -2,6 +2,8 @@
 session_start();
 if (empty($_SESSION)) {
 	header('Location: index.php');
+} elseif (!isset($_SESSION["ID"])) {
+		header('Location: index.php');
 }
 include("Clases/Conexion.php");
 $conexion = new Conexion();
@@ -54,11 +56,12 @@ if (isset($_GET['idn'])) {
 	<link rel="stylesheet" href="Estilos/css/bootstrap.css">
 	<link rel="stylesheet" href="Estilos/css/perfil.css">
 	<link rel="stylesheet" href="Estilos/css/drag.css">
-
+	<link rel="stylesheet" href="Estilos/css/style.css">
 	<!--archivos para la búsqueda con jquery-->
 	<link rel="stylesheet" href="Estilos/css/style_search.css">
 	<script src="Estilos/js/jq_search/jquery.js"></script>
 	<script src="Estilos/js/jq_search/jquery.dataTables.min.js"></script>
+
 	<title>Emprende Fácil</title>	
 </head>
 

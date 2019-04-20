@@ -17,9 +17,16 @@
 }
 
 .product .product-img>img {
+  -webkit-transition: 0.2s all;
   height: 180px;
   width: 75%;
   margin: 12%;
+}
+
+.product:hover .product-img>img {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .product .product-img .product-label {
@@ -215,11 +222,19 @@
 }
 
 .dropdown:hover>a{
-  color: white; 
+  color: white;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+
 }
 
 .dropdown:hover>button{
   color: white; 
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+
 }
 
 .shop {

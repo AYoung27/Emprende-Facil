@@ -25,6 +25,7 @@
 		//	Verificar que no se haya registrado el correo, insertar si no hay coincidencias
 		if ($resultado->fetch_assoc()['count(*)'] == '0') {		
 			//	Realizar insercion
+
 			$reg ->registrar($conexion);
 			
 			//	Crear sesion
@@ -37,6 +38,10 @@
 			$_SESSION['Apellido'] = $apellido;
 			$_SESSION['Correo'] = $correo;
 			$_SESSION['Imagen'] = NULL;
+			if (isset($_SESSION["Carrito"])) {
+				$consulta = sprintf("UPDATE tbl_carrito SET IDUsuario = '%S' WHERE IDCarrito = '%s'", $conexion->antiInyeccion($_SESSION["ID"]), $conexion->antiInyeccion($_SESSION["Carrito"]));
+				$conexion->ejecutarconsulta($consulta);
+			}
 			
 			// Redirigir
 			header('Location: ../index.php');

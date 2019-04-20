@@ -15,6 +15,16 @@
 				</li>
 			</ul>";	
 	} else {
+				if (!isset($_SESSION["ID"])) {
+		echo "<ul class=\"navbar-nav\">
+				<li class=\"nav-item\">
+					<a class=\"nav-link\" href=\"registro.php\">Registrarse</a>
+				</li>
+				<li class=\"nav-item\">
+					<a class=\"nav-link\" href=\"login.php\">Iniciar Sesión</a>
+				</li>
+			</ul>";	
+		}
 		if (isset($_SESSION["Imagen"])) {
 			if ($_SESSION['Imagen'] == NULL || $_SESSION['Imagen'] == "") {
 				$img = 'img/png/014-support.png';
@@ -67,13 +77,8 @@
 						<div id=\"divDesplegable_1\" class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenuButton\">
 							<a class=\"dropdown-item disabled\" href=\"#\">No hay notificaciones</a>
 						";
-
-
 			}
- 		}
-							
-
-			echo "		</div>
+				echo "		</div>
 					</div>
 
 					<!--Menu desplegable #2-->
@@ -86,6 +91,10 @@
 							<a class=\"dropdown-item\" href=\"Acciones/cerrarSesion.php\">Salir</a>
 						</div>
 					</div>";
+ 		}
+							
+
+		
 		}
 	 ?>
 </form>
