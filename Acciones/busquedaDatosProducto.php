@@ -19,11 +19,13 @@ session_start();
 	$val=$_POST['val'];
 	echo json_Encode(listarProductos($val,$conexion));*/
 
-   $salida="<table class='table table-bordered'>
+   $salida="<div class='col-md-12 table-responsive'>
+            <table class='table table-bordered'>
     			<thead>
     				<tr id='titulo'>
     					<th>NombreProducto</th>
     					<th>Precio</th>
+                        <th>Cantidad</th>
     					<th>Opciones</th>
     				</tr>
 
@@ -31,7 +33,7 @@ session_start();
     	<tbody>";
 	$sql="SELECT NombreProducto,PrecioActual FROM tbl_producto WHERE NombreProducto NOT LIKE '' ORDER BY NombreProducto ASC ";
 	if(isset($_POST['consulta'])){
-		$sql="SELECT IDProducto,NombreProducto,PrecioActual FROM tbl_producto WHERE NombreProducto like '%".$_POST['consulta']."%' and IDProveedor=".$_SESSION['Proveedor'];
+		$sql="SELECT IDProducto,NombreProducto,PrecioActual,Cantidad FROM tbl_producto WHERE NombreProducto like '%".$_POST['consulta']."%' and IDProveedor=".$_SESSION['Proveedor'];
 	}
 	$resultado=$conexion->ejecutarconsulta($sql);
 	if ($conexion->cantidadregistros($resultado)>0) {
@@ -41,11 +43,12 @@ session_start();
     		$salida.='<tr>
     					<td>'.$arreglo['NombreProducto'].'</td>
     					<td>'.$arreglo['PrecioActual'].'</td>
-    					<td><button type="button"'.'class='.'"btn btn-primary mr-2"'.' '." ".'data-toggle='.'"modal"'." ".' data-target='.'"#modalM"'.'><i class='.'"glyphicon glyphicon-pencil"'.'></i> Modificar</button><a role="button" class='.'"btn btn-danger"'.' href="#" onclick="eliminar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-remove"'.'></i> Eliminar</a></td></tr>';
+                        <td>'.$arreglo['Cantidad'].'</td>
+    					<td><button type="button"'.'class='.'"btn btn-primary mr-2 mb-2"'.' '." ".'data-toggle='.'"modal"'." ".' data-target='.'"#modalM"'.'><i class='.'"glyphicon glyphicon-pencil"'.'></i> Modificar</button><a role="button" class='.'"btn btn-danger mb-2"'.' href="#" onclick="eliminar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-remove"'.'></i> Eliminar</a></td></tr>';
     	}
     	$salida.="</tbody></table>";
     }else{
-    	$salida.="<tr><td colspan='3' style='text-align:center'>Aun no hay Productos en su inventario</td></tr>";
+    	$salida.="<tr><td colspan='4' style='text-align:center'>Aun no hay Productos en su inventario</td></tr></div>";
     }
 
 

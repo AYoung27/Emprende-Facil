@@ -38,6 +38,7 @@
 								 	   	<th></th>
  								         <th>Nombre Producto</th>
  								         <th>Descripcion</th>
+ 								         <th>Cantidad</th>
  								         <th>Precio Actual</th>
  								         <th>Precio Anterior</th>
  								         <th>Categoria</th>
@@ -46,7 +47,7 @@
  								     
  								     <tbody>
  								     <?php
- 								     	$consulta=sprintf("SELECT nombreProducto, Descripcion ,precioActual, PrecioAnterior,ImagenPrincipal,nombreCategoria FROM tbl_producto, tbl_categoria WHERE IDProveedor=".$_SESSION['Proveedor']." AND tbl_producto.IDcategoria=tbl_categoria.IDcategoria");
+ 								     	$consulta=sprintf("SELECT nombreProducto, Descripcion ,precioActual, PrecioAnterior,ImagenPrincipal,Cantidad,nombreCategoria FROM tbl_producto, tbl_categoria WHERE IDProveedor=".$_SESSION['Proveedor']." AND tbl_producto.IDcategoria=tbl_categoria.IDcategoria");
  								     		$resultado=$conexion->ejecutarconsulta($consulta);
  								     		$bandera=mysqli_num_rows($resultado);
  								     		if($bandera!=0){
@@ -54,6 +55,7 @@
  								     			echo '<tr><td><img src=data:image/jpg;base64,'.base64_encode($data['ImagenPrincipal']).' width="60" height="60"></td>';
  								     			echo '<td>'.$data['nombreProducto'].'</td>';
  								     			echo '<td>'.$data['Descripcion'].'</td>';
+ 								     			echo '<td>'.$data['Cantidad'].'</td>';
  								     			echo '<td>'.$data['precioActual'].'</td>';
  								     			echo '<td>'.$data['PrecioAnterior'].'</td>';
  								     			echo '<td>'.$data['nombreCategoria'].'</td></tr>';

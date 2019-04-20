@@ -32,13 +32,25 @@
 							      	<div class="row">
 							      		<form enctype="multipart/form-data" method="POST" action="Acciones/agregarNuevoProducto.php" class="needs-validation" novalidate>
 											  <div class="form-row">
-											    <div class="col-md-6 mb-3">
-											      <label >Nombre del Producto</label>
+											    <div class="col-md-12 mb-3">
+											      <label >Ingrese el Nombre del Producto</label>
 											      <input type="text" class="form-control" id="txtNombreProducto" name="txtNombreProducto" placeholder="Nombre producto" value="" required size="40">
 											    </div>
 
-											    <div class="col-md-4 mb-3">
- 											     <label >Precio</label>
+
+ 											 </div>
+ 											 <div class="form-row">
+ 											  <div class="col-md-6 mb-3">
+ 											     <label >Digite la cantidad inicial </label>
+ 											     <div class="input-group">
+ 											       <div class="input-group-prepend">
+ 											         <span class="input-group-text" id="txtCantidad">Unidades</span>
+ 											       </div>
+ 											       <input type="number" class="form-control" id="txtCantidad" name="txtCantidad" placeholder="Cantidad" aria-describedby="precio" min="0" required>
+ 											     </div>
+ 											   </div>
+ 											   <div class="col-md-6 mb-3">
+ 											     <label >Digite el Precio del producto</label>
  											     <div class="input-group">
  											       <div class="input-group-prepend">
  											         <span class="input-group-text" id="txtPrecio">HNL</span>
