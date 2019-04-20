@@ -106,27 +106,25 @@
 
           <h4 class="mb-3">Dirección de envío</h4>
           <div class="row">
-            
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6">
               <div class="form-label-group">
-                <input type="text" id="firstName" class="form-control" placeholder="Nombre" required autofocus>
+                <input type="text" id="firstName" class="form-control" value="<?php if(isset($_SESSION["Nombre"])){echo($_SESSION["Nombre"]);} ?>" placeholder="Nombre" required autofocus>
                 <label for="firstName">Nombre</label>
               </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6">
               <div class="form-label-group">
-                <input type="text" id="secondName" class="form-control" placeholder="Apellido" required autofocus>
+                <input type="text" id="secondName" class="form-control" value="<?php if(isset($_SESSION["Apellido"])){echo($_SESSION["Apellido"]);} ?>" placeholder="Apellido" required autofocus>
                 <label for="secondName">Apellido</label>
               </div>            
             </div>
           </div>
           <div class="mb-3">
             <div class="form-label-group">
-              <input type="email" id="email" class="form-control" placeholder="Correo ELectronico" required autofocus>
+              <input type="email" id="email" class="form-control" value="<?php if(isset($_SESSION["Correo"])){echo($_SESSION["Correo"]);} ?>" placeholder="Correo ELectronico" required autofocus>
               <label for="email">Correo Electrónico</label>
             </div>
           </div>
-
           <div class="mb-3">
             <div class="form-label-group">
               <input type="text" id="address" class="form-control" placeholder="Direccion de envio" required autofocus>

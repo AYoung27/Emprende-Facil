@@ -24,8 +24,7 @@
 					<a class=\"nav-link\" href=\"login.php\">Iniciar Sesión</a>
 				</li>
 			</ul>";	
-		}
-		if (isset($_SESSION["Imagen"])) {
+		}else {
 			if ($_SESSION['Imagen'] == NULL || $_SESSION['Imagen'] == "") {
 				$img = 'img/png/014-support.png';
 			} else{
@@ -33,7 +32,7 @@
 			}
 						echo "<ul class=\"navbar-nav\">
 								<li class=\"nav-item\">
-									<a class=\"nav-link\" href=\"perfil.php\">Perfil
+									<a class=\"nav-link\" href=\"perfil.php\">".$_SESSION["Nombre"]."
 										<img class=\"img-circle img-thumbnail img-responsive\" height=\"20\" width=\"20\" src=\"".$img."\"/>
 									</a>
 								</li>

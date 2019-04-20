@@ -23,7 +23,7 @@
                    <input type="text" class="form-control" id="txtSurname" name="txtApellido" value="<?php echo $_SESSION['Apellido'];?>" required data-validation-required-message="Por favor introduzca sus apellidos.">
                    <br>
                    <label>Correo</label>
-                   <input type="email" class="form-control" id="txtEmail" name="txtEmail" value=<?php echo $_SESSION['Correo'];?> required data-validation-required-message="Por favor introduzca su email.">
+                   <input type="email" class="form-control" id="txtEmail" name="txtEmail" value="<?php echo $_SESSION['Correo'];?>" required data-validation-required-message="Por favor introduzca su email.">
                </div>
            </div>
            <div class="form-group">
