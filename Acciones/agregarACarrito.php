@@ -22,7 +22,7 @@
 			$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito) VALUES('%s','%s')", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
 
 			$conexion->ejecutarconsulta($consulta);
-		} elseif (isset($_SESSION["Carrito"])) {
+		} elseif (!isset($_SESSION["Carrito"])) {
 			$consulta = sprintf("INSERT INTO tbl_carrito(IDUsuario, IP) VALUES('%s', '%s')",$conexion->antiInyeccion($_SESSION["ID"]), $conexion->ip());
 			$conexion->ejecutarconsulta($consulta);
 
@@ -34,6 +34,7 @@
 
 			$conexion->ejecutarconsulta($consulta);
 		} else {
+
 			$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito) VALUES('%s','%s')", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
 
 			$conexion->ejecutarconsulta($consulta);
