@@ -1,4 +1,4 @@
-﻿<?php  
+<?php  
 include("Clases/Conexion.php");
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
@@ -15,6 +15,7 @@ function mostrarProducto($id, $conexion){
 			$valoracion = (intval($data["Valoracion"]));
 			echo '<div class="col-md-3">
 					<div class="product">
+						<a href="detalle.php?idp='.$data["IDProducto"].'" >
 						<div class="product-img">
 								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">
 						</div>
@@ -41,7 +42,8 @@ function mostrarProducto($id, $conexion){
 						<div class="add-to-cart">
 							<button class="add-to-cart-btn" onclick="addCarrito('.$data["IDProducto"].')"><i class="glyphicon glyphicon-shopping-cart"></i>Agregar al carrito</button>
 						</div>
-					</div>      			
+					</div>
+					</a>     			
 				</div>';
 
 		$contador++;

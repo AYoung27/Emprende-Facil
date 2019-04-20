@@ -100,6 +100,7 @@
         <?php
           cargarCarrito($conexion);
          ?>
+         <button class="btn btn-primary btn-block" onclick="pagar()">PAGAR</button>
       </div>
       <div class="col-md-8 order-md-1">
         <form class="form-signin" novalidate>

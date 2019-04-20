@@ -205,6 +205,15 @@ function addCarrito(id){
     type:'POST',
     data:'id='+id
   }).done(function(resp){
-    alert('Agregado con exito');
+    alert('Agregado con exito'+resp);
   }); 
+}
+
+function pagar(){
+	$.ajax({
+    url:'Acciones/pagarCarrito.php',
+    type:'POST'
+  	}).done(function(resp){
+    	alert('Pagado'+resp);
+  	});
 }
