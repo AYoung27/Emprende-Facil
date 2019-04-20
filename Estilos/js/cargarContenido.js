@@ -155,8 +155,7 @@ function mostrarResultados(year,grafico) {
 
 } /*fin de la funcion para mostrar diferentes graficos*/
 
-
-function listar(valor){
+/*function listar(valor){
   $.ajax({
     url:'Acciones/busquedaDatosProducto.php',
     type:'POST',
@@ -171,23 +170,33 @@ function listar(valor){
         html+="</tbody></table>";
         $("#Producto").html(html);
       });
+}*/
+
+function listar(consulta){
+  $.ajax({
+    url:'Acciones/busquedaDatosProducto.php',
+    type:'POST',
+    dataType:'html',
+    data:{consulta: consulta}
+  }).done(function(respuesta){
+    $("#Producto").html(respuesta);
+  })
 }
 
-function listar(valor){
+function eliminar(idProducto){
+  if (confirm("Realmente desea eliminar el preducto?")) {
+    window.location.href= "Acciones/eliminarDatosProducto.php?idProducto="+idProducto;
+  }
+}
+
+function modificar(idProducto){
   $.ajax({
-    url:'Acciones/busquedaDatosProducto.php',
+    url:"Acciones/modificarDatosProducto.php",
     type:'POST',
-    data:'val='+valor
+    data:'idProducto='+idProducto
   }).done(function(resp){
-        //alert(resp);
-        var valores = eval(resp);
-        html="<table class='table table-bordered'><thead><tr><th>Nombre Producto</th><th>Precio</th><th>Opciones</th></thead><tbody>";
-        for(i=0;i<valores.length;i++){
-          html+="<tr><td>"+valores[i][0]+"</td><td>"+valores[i][1]+'</td><td><button type='+'"button"'+'class='+'"btn btn-success mr-2"'+" "+'data-toggle='+'"modal"'+" "+' data-target='+'"#modalM"'+'><i class='+'"glyphicon glyphicon-pencil"'+'></i> Modificar</button><button class='+'"btn btn-danger"'+'><i class='+'"glyphicon glyphicon-remove"'+'></i> Eliminar</button></td></tr>';
-        }
-        html+="</tbody></table>";
-        $("#Producto").html(html);
-      });
+
+  });
 }
 
 function addCarrito(id){
