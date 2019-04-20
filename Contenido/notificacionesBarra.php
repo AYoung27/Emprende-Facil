@@ -15,6 +15,7 @@
 				</li>
 			</ul>";	
 	} else {
+		if (isset($_SESSION["Imagen"])) {
 			if ($_SESSION['Imagen'] == NULL || $_SESSION['Imagen'] == "") {
 				$img = 'img/png/014-support.png';
 			} else{
@@ -27,6 +28,7 @@
 									</a>
 								</li>
 							</ul>";
+		}
 	}
 
 ?>
@@ -37,7 +39,8 @@
 	</div>
 	<?php 
 		if (!empty($_SESSION)) {
- 			$consulta= sprintf("SELECT count(*) FROM tbl_notificacion where IDUsuario='%s' and Visto = '0'", $conexion->antiInyeccion($_SESSION['ID']));
+			if (isset($_SESSION["ID"])) {
+				 			$consulta= sprintf("SELECT count(*) FROM tbl_notificacion where IDUsuario='%s' and Visto = '0'", $conexion->antiInyeccion($_SESSION['ID']));
  			$num = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['count(*)'];
 
  			
@@ -65,7 +68,9 @@
 							<a class=\"dropdown-item disabled\" href=\"#\">No hay notificaciones</a>
 						";
 
- 			}
+
+			}
+ 		}
 							
 
 			echo "		</div>

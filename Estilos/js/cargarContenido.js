@@ -16,9 +16,6 @@ function cargarDiv(divID, ruta) {
 
 
 function mostrarResultados(year,grafico) {
-
-
-
   /*GRAFICO DE BARRA*/  
   if (grafico==1) {
     $('.resultados').html('<canvas id="grafico"></canvas>');

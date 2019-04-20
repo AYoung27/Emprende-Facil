@@ -3,7 +3,7 @@ include("Clases/Conexion.php");
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 function mostrarProducto($id, $conexion){
-	$consulta = sprintf("SELECT IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion FROM tbl_producto WHERE NombreProducto LIKE '%s' ORDER BY (NombreProducto)", '%'.$conexion->antiInyeccion($id).'%');
+	$consulta = sprintf("SELECT IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria as NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria AND NombreProducto LIKE '%s' ORDER BY (NombreProducto)", '%'.$conexion->antiInyeccion($id).'%');
 	$resultado = $conexion->ejecutarconsulta($consulta);
 	$contador = 0;
 	$iter = $conexion->cantidadRegistros($resultado);
@@ -19,7 +19,7 @@ for ($i=0; $i < $iter; $i++) {
 								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">
 						</div>
 						<div class="product-body">
-							<p class="product-category">Categoria</p>
+							<p class="product-category">'.$data["NombreCategoria"].'</p>
 							<h3 class="product-name">'.$data["NombreProducto"].'</h3>
 							<h4 class="product-price">'.$data["IDMoneda"].' '.$data["PrecioActual"].'
 							<!--<del class="product-old-price">$990.00</del>--></h4>
