@@ -33,7 +33,7 @@ session_start();
  <tbody>";
 
 
- $sql="SELECT DISTINCT (tbl_factura.IDFactura), tbl_usuario.Nombre , tbl_factura.FechaFactura FROM tbl_factura  
+ $sql="SELECT DISTINCT (tbl_factura.IDFactura), CONCAT(tbl_usuario.Nombre,' ',tbl_usuario.Apellido) as Nombre , tbl_factura.FechaFactura FROM tbl_factura  
  INNER JOIN tbl_detalle_factura on tbl_detalle_factura.IDFactura=tbl_factura.IDFactura
  INNER JOIN tbl_producto on tbl_detalle_factura.IDProducto=tbl_producto.IDProducto
  INNER JOIN tbl_usuario on tbl_factura.IDUsuario = tbl_usuario.IDUsuario
@@ -43,12 +43,12 @@ session_start();
 
 
  if(isset($_POST['consulta'])){
-  $sql="SELECT DISTINCT(tbl_factura.IDFactura),tbl_usuario.Nombre , tbl_factura.FechaFactura  FROM tbl_factura  
+  $sql="SELECT DISTINCT(tbl_factura.IDFactura),CONCAT(tbl_usuario.Nombre, ' ' ,tbl_usuario.Apellido) as Nombre , tbl_factura.FechaFactura  FROM tbl_factura  
   INNER JOIN tbl_detalle_factura on tbl_detalle_factura.IDFactura=tbl_factura.IDFactura
   INNER JOIN tbl_producto on tbl_detalle_factura.IDProducto=tbl_producto.IDProducto
   INNER JOIN tbl_usuario on tbl_factura.IDUsuario = tbl_usuario.IDUsuario
   INNER JOIN tbl_proveedor on tbl_producto.IDProveedor=tbl_proveedor.IDProveedor
-  WHERE tbl_proveedor.IDProveedor=".$_SESSION['Proveedor']." and (Nombre like '%".$_POST['consulta']."%' OR NombreProducto like '%".$_POST['consulta']."%' OR FechaFactura like '%".$_POST['consulta']."%') ORDER BY IDFactura ASC  ";
+  WHERE tbl_proveedor.IDProveedor=".$_SESSION['Proveedor']." and (Nombre like '%".$_POST['consulta']."%' OR Apellido like '%".$_POST['consulta']."%' OR FechaFactura like '%".$_POST['consulta']."%') ORDER BY IDFactura ASC  ";
 }
 
 
@@ -62,7 +62,7 @@ if ($conexion->cantidadregistros($resultado)>0) {
   <td>'.$arreglo['IDFactura'].'</td>
   <td>'.$arreglo['Nombre'].'</td>
   <td>'.$arreglo['FechaFactura'].'</td>
-  <td><a role="button"'.'class='.'"btn btn-primary mr-2 mb-2"'.'href="#"'.' onclick=" ReportePagina('.$arreglo["IDFactura"].')"><i class='.'"glyphicon glyphicon-eye-open"'.'></i>&nbsp;Ver Detalles</a></td>
+  <td><a style="float: right;" role="button"'.'class='.'"btn btn-primary"'.'href="#"'.' onclick=" ReportePagina('.$arreglo["IDFactura"].')"><i class='.'"glyphicon glyphicon-eye-open"'.'></i>&nbsp;Ver Detalles</a></td>
   </tr>';
 }
 $salida.="</tbody></table>";

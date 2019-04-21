@@ -21,7 +21,7 @@
 							<div class="form-row">
 								<label>Deseas Buscar una Venta Realizada</label>
 								<div class="col-lg-12 mb-3">
-									<input type="text" name="srcProducto" id="srcProducto" class="form-control" placeholder="Ingresa: Fecha, Cliente ó Producto" onkeyup="listarReporte(this.value);">
+									<input type="text" name="srcProducto" id="srcProducto" class="form-control" placeholder="Ingresa: Fecha ó Cliente" onkeyup="listarReporte(this.value);">
 								</div>
 							</div>
 							<div id="reportes"> </div>
