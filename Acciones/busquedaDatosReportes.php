@@ -26,7 +26,7 @@ session_start();
  <th>N.Factura</th>
  <th>Cliente</th>
  <th>Fecha</th>
- <th>Selecciona</th>
+ <th></th>
  </tr>
 
  </thead>
@@ -62,7 +62,7 @@ if ($conexion->cantidadregistros($resultado)>0) {
   <td>'.$arreglo['IDFactura'].'</td>
   <td>'.$arreglo['Nombre'].'</td>
   <td>'.$arreglo['FechaFactura'].'</td>
-  <td><a role="button"'.'class='.'"btn btn-primary mr-2 mb-2"'.'href="#"'.' onclick=" ReportePagina('.$arreglo["IDFactura"].')"><i class='.'"glyphicon glyphicon-eye-open"'.'></i></a></td>
+  <td><a role="button"'.'class='.'"btn btn-primary mr-2 mb-2"'.'href="#"'.' onclick=" ReportePagina('.$arreglo["IDFactura"].')"><i class='.'"glyphicon glyphicon-eye-open"'.'></i>&nbsp;Ver Detalles</a></td>
   </tr>';
 }
 $salida.="</tbody></table>";
