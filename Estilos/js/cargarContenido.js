@@ -170,50 +170,67 @@ function mostrarResultados(year,grafico) {
         html+="</tbody></table>";
         $("#Producto").html(html);
       });
-}*/
+    }*/
 
-function listar(consulta){
+    function listar(consulta){
+      $.ajax({
+        url:'Acciones/busquedaDatosProducto.php',
+        type:'POST',
+        dataType:'html',
+        data:{consulta: consulta}
+      }).done(function(respuesta){
+        $("#Producto").html(respuesta);
+      })
+    }
+
+    function eliminar(idProducto){
+      if (confirm("Realmente desea eliminar el preducto?")) {
+        window.location.href= "Acciones/eliminarDatosProducto.php?idProducto="+idProducto;
+      }
+    }
+
+    function modificar(idProducto){
+      $.ajax({
+        url:"Acciones/modificarDatosProducto.php",
+        type:'POST',
+        data:'idProducto='+idProducto
+      }).done(function(resp){
+
+      });
+    }
+
+    function addCarrito(id){
+      $.ajax({
+        url:'Acciones/agregarACarrito.php',
+        type:'POST',
+        data:'id='+id
+      }).done(function(resp){
+        alert('Agregado con exito'+resp);
+      }); 
+    }
+
+    function pagar(){
+     $.ajax({
+      url:'Acciones/pagarCarrito.php',
+      type:'POST'
+    }).done(function(resp){
+    	alert('Pagado'+resp);
+    });
+  }
+
+
+
+/*------------------------------------------------------
+FUNCION PARA TABLA REPORTES
+--------------------------------------------------------*/
+
+function listarReporte(consulta){
   $.ajax({
-    url:'Acciones/busquedaDatosProducto.php',
+    url:'Acciones/busquedaDatosReportes.php',
     type:'POST',
     dataType:'html',
     data:{consulta: consulta}
   }).done(function(respuesta){
-    $("#Producto").html(respuesta);
+    $("#reportes").html(respuesta);
   })
-}
-
-function eliminar(idProducto){
-  if (confirm("Realmente desea eliminar el preducto?")) {
-    window.location.href= "Acciones/eliminarDatosProducto.php?idProducto="+idProducto;
-  }
-}
-
-function modificar(idProducto){
-  $.ajax({
-    url:"Acciones/modificarDatosProducto.php",
-    type:'POST',
-    data:'idProducto='+idProducto
-  }).done(function(resp){
-
-  });
-}
-
-function addCarrito(id){
-  $.ajax({
-    url:'Acciones/agregarACarrito.php',
-    type:'POST',
-    data:'id='+id
-  }).done(function(resp){
-    alert('Agregado con exito'+resp);
-  }); 
-}
-
-function pagar(){
-	$.ajax({
-    url:'Acciones/pagarCarrito.php',
-    type:'POST'
-  	}).done(function(resp){
-    	alert('Pagado'+resp);
-  	});
 }
