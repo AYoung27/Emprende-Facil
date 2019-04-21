@@ -40,15 +40,14 @@ session_start();
  INNER JOIN tbl_proveedor on tbl_producto.IDProveedor=tbl_proveedor.IDProveedor
  WHERE  tbl_proveedor.IDProveedor=".$_SESSION['Proveedor']."  ORDER BY IDFactura ASC" ;
 
-
-
+ 
  if(isset($_POST['consulta'])){
   $sql="SELECT DISTINCT(tbl_factura.IDFactura),CONCAT(tbl_usuario.Nombre, ' ' ,tbl_usuario.Apellido) as Nombre , tbl_factura.FechaFactura  FROM tbl_factura  
   INNER JOIN tbl_detalle_factura on tbl_detalle_factura.IDFactura=tbl_factura.IDFactura
   INNER JOIN tbl_producto on tbl_detalle_factura.IDProducto=tbl_producto.IDProducto
   INNER JOIN tbl_usuario on tbl_factura.IDUsuario = tbl_usuario.IDUsuario
   INNER JOIN tbl_proveedor on tbl_producto.IDProveedor=tbl_proveedor.IDProveedor
-  WHERE tbl_proveedor.IDProveedor=".$_SESSION['Proveedor']." and (Nombre like '%".$_POST['consulta']."%' OR Apellido like '%".$_POST['consulta']."%' OR FechaFactura like '%".$_POST['consulta']."%') ORDER BY IDFactura ASC  ";
+  WHERE tbl_proveedor.IDProveedor=".$_SESSION['Proveedor']." and (Nombre like '%".$_POST['consulta']."%' OR (CONCAT(Nombre,' ',Apellido)) like '%".$_POST['consulta']."%' OR FechaFactura like '%".$_POST['consulta']."%')  ORDER BY IDFactura ASC  ";
 }
 
 
