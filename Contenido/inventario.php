@@ -24,7 +24,7 @@
 								    <a class="nav-link" href="#agregarProducto" onclick="cargarDiv('zonaContenido','Contenido/agregarProducto.php')">Agregar Producto</a>
 								  </li>
 								  <li class="nav-item">
-								    <a class="nav-link" href="#modificarProducto" onclick="cargarDiv('zonaContenido','Contenido/modificarProducto.php'),listar('')">Modificar Producto</a>
+								    <a class="nav-link" href="#modificarProducto" onclick="cargarDiv('zonaContenido','Contenido/gestionarProducto.php'),listar('')">Modificar Producto</a>
 								  </li>
 								</ul>
 							</div>

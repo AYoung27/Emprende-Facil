@@ -171,6 +171,9 @@ function mostrarResultados(year,grafico) {
         $("#Producto").html(html);
       });
     }*/
+/*------------------------------------------------------
+FUNCION PARA TABLA Productos
+--------------------------------------------------------*/
 
     function listar(consulta){
       $.ajax({
@@ -189,15 +192,26 @@ function mostrarResultados(year,grafico) {
       }
     }
 
-    function modificar(idProducto){
-      $.ajax({
-        url:"Acciones/modificarDatosProducto.php",
-        type:'POST',
-        data:'idProducto='+idProducto
-      }).done(function(resp){
+function modificar(idProducto){
+  $.ajax({
+    url:'Contenido/modificarProducto.php',
+    type: 'POST',
+    dataType:'text',
+    data:'idProducto='+idProducto
+  }).done(function(res){
+    $('#zonaContenido').html(res);
+  });
+}
 
-      });
-    }
+function confirmar(){
+
+  confirm("Esta seguro de modificar el producto?");
+  }
+
+/*------------------------------------------------------
+FUNCION PARA CARRITO
+--------------------------------------------------------*/
+
 
     function addCarrito(id){
       $.ajax({

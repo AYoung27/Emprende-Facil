@@ -24,16 +24,17 @@ session_start();
     			<thead>
     				<tr id='titulo'>
     					<th>NombreProducto</th>
-    					<th>Precio</th>
+    					<th>Precio Actual</th>
+                        <th>Precio Anterior</th>
                         <th>Cantidad</th>
+                        <th>Estado</th>
     					<th>Opciones</th>
     				</tr>
 
     			</thead>
     	<tbody>";
-	$sql="SELECT NombreProducto,PrecioActual FROM tbl_producto WHERE NombreProducto NOT LIKE '' ORDER BY NombreProducto ASC ";
 	if(isset($_POST['consulta'])){
-		$sql="SELECT IDProducto,NombreProducto,PrecioActual,Cantidad FROM tbl_producto WHERE NombreProducto like '%".$_POST['consulta']."%' and IDProveedor=".$_SESSION['Proveedor'];
+		$sql="SELECT IDProducto,NombreProducto,PrecioActual,PrecioAnterior,Cantidad,NombreEstado FROM tbl_producto, tbl_estado WHERE tbl_producto.IDEstado=tbl_estado.IDEstado and NombreProducto like '%".$_POST['consulta']."%' and IDProveedor=".$_SESSION['Proveedor'];
 	}
 	$resultado=$conexion->ejecutarconsulta($sql);
 	if ($conexion->cantidadregistros($resultado)>0) {
@@ -43,8 +44,10 @@ session_start();
     		$salida.='<tr>
     					<td>'.$arreglo['NombreProducto'].'</td>
     					<td>'.$arreglo['PrecioActual'].'</td>
+                        <td>'.$arreglo['PrecioAnterior'].'</td>
                         <td>'.$arreglo['Cantidad'].'</td>
-    					<td><button type="button"'.'class='.'"btn btn-primary mr-2 mb-2"'.' '." ".'data-toggle='.'"modal"'." ".' data-target='.'"#modalM"'.'><i class='.'"glyphicon glyphicon-pencil"'.'></i> Modificar</button><a role="button" class='.'"btn btn-danger mb-2"'.' href="#" onclick="eliminar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-remove"'.'></i> Eliminar</a></td></tr>';
+                        <td>'.$arreglo['NombreEstado'].'</td>
+    					<td><a role="button"'.'class='.'"btn btn-primary mr-2 mb-2"'.'href="#"'.' onclick="modificar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-pencil"'.'></i> Modificar</a><a role="button" class='.'"btn btn-danger mb-2 pl-3 pr-3"'.' href="#" onclick="eliminar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-remove"'.'></i> Eliminar  </a></td></tr>';
     	}
     	$salida.="</tbody></table>";
     }else{
