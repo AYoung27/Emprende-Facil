@@ -205,7 +205,13 @@ function modificar(idProducto){
 
 function confirmar(){
 
-  confirm("Esta seguro de modificar el producto?");
+
+   if (confirm("Realmente desea eliminar el preducto?")) {
+        window.location.href= "Acciones/modificarDatosProducto.php";
+      } else {
+      window.location.href= "perfil.php";
+}
+
   }
 
 /*------------------------------------------------------
@@ -247,4 +253,18 @@ function listarReporte(consulta){
   }).done(function(respuesta){
     $("#reportes").html(respuesta);
   })
+}
+
+
+
+
+function ReportePagina(idFactura){
+  $.ajax({
+    url:'Contenido/reportesPagina.php',
+    type: 'POST',
+    dataType:'text',
+    data:'idFactura='+idFactura
+  }).done(function(res){
+    $('#zonaContenido').html(res);
+  });
 }

@@ -31,10 +31,10 @@
 						</div>
 						<div class="form-row">
 							<div class="col-md-6 mb-3">
-								<label >Asigne una nueva cantidad </label>
+								<label >Asigne una nueva cantidad disponible </label>
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<span class="input-group-text" id="txtCantidad">HNL</span>
+										<span class="input-group-text" id="txtCantidad">Unidades</span>
 									</div>
 									<input type="number" class="form-control" id="txtCantidad" name="txtCantidad"  aria-describedby="precio" min="0" required value="<?php echo $data['Cantidad'] ?>">
 								</div>
@@ -85,7 +85,7 @@
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12 mb-3">
-								<label for="txtArea">Ingrese una descripcion del producto</label>
+								<label for="txtArea">Ingrese una descripción del producto</label>
 								<textarea class="form-control" id="txtArea" name="txtArea" rows="3" value><?php echo $data['Descripcion']; ?></textarea>
 							</div>
 						</div>

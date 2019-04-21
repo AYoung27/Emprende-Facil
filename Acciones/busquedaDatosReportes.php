@@ -26,17 +26,14 @@ session_start();
  <th>N.Factura</th>
  <th>Cliente</th>
  <th>Fecha</th>
- <th>Producto</th>
- <th>Cantidad</th>
- <th>Precio Unidad</th>
- <th>Total</th>
+ <th>Selecciona</th>
  </tr>
 
  </thead>
  <tbody>";
 
 
- $sql="SELECT tbl_factura.IDFactura, tbl_usuario.Nombre , tbl_factura.FechaFactura, tbl_producto.NombreProducto, tbl_detalle_factura.Cantidad, tbl_producto.PrecioActual, tbl_detalle_factura.Total  FROM tbl_factura  
+ $sql="SELECT DISTINCT (tbl_factura.IDFactura), tbl_usuario.Nombre , tbl_factura.FechaFactura FROM tbl_factura  
  INNER JOIN tbl_detalle_factura on tbl_detalle_factura.IDFactura=tbl_factura.IDFactura
  INNER JOIN tbl_producto on tbl_detalle_factura.IDProducto=tbl_producto.IDProducto
  INNER JOIN tbl_usuario on tbl_factura.IDUsuario = tbl_usuario.IDUsuario
@@ -46,7 +43,7 @@ session_start();
 
 
  if(isset($_POST['consulta'])){
-  $sql="SELECT tbl_factura.IDFactura,tbl_usuario.Nombre , tbl_factura.FechaFactura, tbl_producto.NombreProducto, tbl_detalle_factura.Cantidad, tbl_producto.PrecioActual, tbl_detalle_factura.Total  FROM tbl_factura  
+  $sql="SELECT DISTINCT(tbl_factura.IDFactura),tbl_usuario.Nombre , tbl_factura.FechaFactura  FROM tbl_factura  
   INNER JOIN tbl_detalle_factura on tbl_detalle_factura.IDFactura=tbl_factura.IDFactura
   INNER JOIN tbl_producto on tbl_detalle_factura.IDProducto=tbl_producto.IDProducto
   INNER JOIN tbl_usuario on tbl_factura.IDUsuario = tbl_usuario.IDUsuario
@@ -65,10 +62,8 @@ if ($conexion->cantidadregistros($resultado)>0) {
   <td>'.$arreglo['IDFactura'].'</td>
   <td>'.$arreglo['Nombre'].'</td>
   <td>'.$arreglo['FechaFactura'].'</td>
-  <td>'.$arreglo['NombreProducto'].'</td>
-  <td>'.$arreglo['Cantidad'].'</td>
-  <td>'.$arreglo['PrecioActual'].'</td>
-  <td>'.$arreglo['Total'].'</td></tr>';
+  <td><a role="button"'.'class='.'"btn btn-primary mr-2 mb-2"'.'href="#"'.' onclick=" ReportePagina('.$arreglo["IDFactura"].')"><i class='.'"glyphicon glyphicon-eye-open"'.'></i></a></td>
+  </tr>';
 }
 $salida.="</tbody></table>";
 }else{
