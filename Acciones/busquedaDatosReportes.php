@@ -47,7 +47,7 @@ session_start();
   INNER JOIN tbl_producto on tbl_detalle_factura.IDProducto=tbl_producto.IDProducto
   INNER JOIN tbl_usuario on tbl_factura.IDUsuario = tbl_usuario.IDUsuario
   INNER JOIN tbl_proveedor on tbl_producto.IDProveedor=tbl_proveedor.IDProveedor
-  WHERE tbl_proveedor.IDProveedor=".$_SESSION['Proveedor']." and (Nombre like '%".$_POST['consulta']."%' OR (CONCAT(Nombre,' ',Apellido)) like '%".$_POST['consulta']."%' OR FechaFactura like '%".$_POST['consulta']."%')  ORDER BY IDFactura ASC  ";
+  WHERE tbl_proveedor.IDProveedor=".$_SESSION['Proveedor']." and (Nombre like '%".$_POST['consulta']."%' OR (CONCAT(Nombre,' ',Apellido)) like '%".$_POST['consulta']."%' OR  (CONCAT(Apellido,' ',Nombre)) like '%".$_POST['consulta']."%' OR FechaFactura like '%".$_POST['consulta']."%')  ORDER BY IDFactura ASC  ";
 }
 
 
