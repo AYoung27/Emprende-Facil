@@ -27,7 +27,10 @@
               <small class="text-muted">'.$data["Descripcion"].'</small>
             </div>
             <br>
-            <span class="text-muted">HNL '.$data["PrecioActual"]*$data["Cantidad"].'</span>
+            <div>
+            <span class="text-muted">HNL '.$data["PrecioActual"]*$data["Cantidad"].' </span>
+            <a href="detalle.php?idp" style="color: #e95a51;"><i class="glyphicon glyphicon-remove"></i><span class="tooltipp">Eliminar del carrito</span></a>
+            </div>
           </li>';
       }
         echo '
@@ -99,12 +102,12 @@
     </div>
 
     <div class="row">
-      <div class="col-md-5 order-md-2">
+      <div class="col-md-6 order-md-2">
         <?php
           cargarCarrito($conexion);
          ?>
       </div>
-      <div class="col-md-7 order-md-1">
+      <div class="col-md-6 order-md-1">
         <form class="form-signin" novalidate>
 
           <h4 class="mb-3">Dirección de envío</h4>
@@ -180,7 +183,6 @@
         </form>
       </div>
     </div>
-    <strong id="bla">BLAAAAAAAAAAAAAH</strong>
   </div>
 </main>
 <footer>

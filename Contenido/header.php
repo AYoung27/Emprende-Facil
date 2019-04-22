@@ -15,7 +15,7 @@
 		
 		<!--Todo lo incluido en este div sera ocultado en pantallas angostas-->	
 		<!--Div Oculto #1 (Derecha)-->
-		<div id="divSearch" class="collapse navbar-collapse header-search" style="margin-left: 5rem;">
+		<div id="divSearch" class="collapse navbar-collapse header-search" style="margin-left: auto;">
 			<form action="busqueda.php" method="get">
 				<select class="input-select">
 					<option value="0">Categorias</option>

@@ -44,6 +44,15 @@
 	<div class="dropdown ml-auto">
 				<a class="btn nav-link" href="pago.php">
 					<span class="glyphicon glyphicon-shopping-cart"></span>
+					<?php 
+						if (isset($_SESSION["Carrito"])) {
+							$consulta = sprintf("SELECT count(*) FROM tbl_productos_carrito WHERE IDCarrito = '%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));
+							$num = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['count(*)'];
+							if($num > 0){
+								echo "<span class=\"qty\">".$num."</span>";
+							}
+						}
+					 ?>
 				</a>
 	</div>
 	<?php 
@@ -63,8 +72,8 @@
 						<button id=\"btnDespegable_1\" class=\"btn\"  data-toggle=\"dropdown\" data-target = \"#divDesplegable_1\" >
 							<span id=\"spnMenu\" class=\"glyphicon glyphicon-bell\"></span>";
 			if ($num > 0) {
- 				echo "<span class=\"qty\">".$num."</span>";
- 				echo "		</button>
+ 				echo "<span class=\"qty\">".$num."</span>
+ 						</button>
 						<div id=\"divDesplegable_1\" class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenuButton\">";
 
 					for ($i=0; $i < $iter; $i++) {
