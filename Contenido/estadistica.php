@@ -26,7 +26,9 @@ if (empty($_SESSION)) {
 						<select class="custom-select" id="slc_Ano" onchange="mostrarResultados( this.value,document.getElementById('slcgrafico').value )">
 							<option selected>Año</option>
 							<?php
-							for($i=2012;$i<2040;$i++){
+							date_default_timezone_set('America/Tegucigalpa');
+							$year = date("Y");
+							for($i=2019;$i<=$year;$i++){
 								echo '<option value="'.$i.'">'.$i.'</option>';
 							}
 							?>

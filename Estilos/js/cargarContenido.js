@@ -204,9 +204,7 @@ function modificar(idProducto){
 }
 
 function confirmar(){
-
-
-   if (confirm("Realmente desea eliminar el preducto?")) {
+   if (confirm("Realmente desea modificar el preducto?")) {
         window.location.href= "Acciones/modificarDatosProducto.php";
       } else {
       window.location.href= "perfil.php";
@@ -235,6 +233,7 @@ FUNCION PARA CARRITO
       type:'POST'
     }).done(function(resp){
     	alert('Pagado'+resp);
+    	location.reload(true);
     });
   }
 

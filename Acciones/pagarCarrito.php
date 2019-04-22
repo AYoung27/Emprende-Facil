@@ -30,4 +30,6 @@
 
 	$consulta = sprintf("UPDATE tbl_carrito SET pagado = 1 WHERE IDCarrito ='%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));
 	$conexion->ejecutarconsulta($consulta);
+
+	unset($_SESSION["Carrito"]);
  ?>

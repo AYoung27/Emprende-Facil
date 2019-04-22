@@ -33,7 +33,8 @@
             <span>Total (USD)</span>
             <strong>HNL'.$total.'</strong>
           </li>
-        </ul>';
+        </ul>
+          <button class="btn btn-primary btn-block" onclick="pagar()">PAGAR</button>';
     } else {
       echo '         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Tu carro</span>
@@ -41,8 +42,7 @@
         </h4>
       <ul class="list-group mb-3">
                 <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>HNL 0</strong>
+            <span>Todavia no has agregado productos aqui</span>
           </li>
         </ul>';
 
@@ -100,7 +100,6 @@
         <?php
           cargarCarrito($conexion);
          ?>
-         <button class="btn btn-primary btn-block" onclick="pagar()">PAGAR</button>
       </div>
       <div class="col-md-8 order-md-1">
         <form class="form-signin" novalidate>
