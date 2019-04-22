@@ -14,12 +14,12 @@
 		
 		$_SESSION["Carrito"] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['IDCarrito'];
 
-		$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito) VALUES('%s','%s')", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
+		$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito, Cantidad) VALUES('%s','%s', 1)", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
 
 		$conexion->ejecutarconsulta($consulta);
 	} else {
 		if (!isset($_SESSION["ID"])) {
-			$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito) VALUES('%s','%s')", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
+			$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito, Cantidad) VALUES('%s','%s', 1)", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
 
 			$conexion->ejecutarconsulta($consulta);
 		} elseif (!isset($_SESSION["Carrito"])) {
@@ -31,11 +31,11 @@
 		
 			$_SESSION["Carrito"] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['IDCarrito'];
 
-			$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito) VALUES('%s','%s')", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
+			$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito, Cantidad) VALUES('%s','%s', 1)", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
 
 			$conexion->ejecutarconsulta($consulta);
 		} else {
-			$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito) VALUES('%s','%s')", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
+			$consulta = sprintf("INSERT INTO tbl_productos_carrito(IDProducto, IDCarrito, Cantidad) VALUES('%s','%s', 1)", $conexion->antiInyeccion($producto), $conexion->antiInyeccion($_SESSION["Carrito"]));
 
 			$conexion->ejecutarconsulta($consulta);
 		}

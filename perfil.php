@@ -36,6 +36,54 @@ function marcarNotificacion($id, $conexion){
 	$conexion->ejecutarconsulta($consulta);
 }
 
+	function mostrarProducto($conexion){
+		$consulta = sprintf("SELECT IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria as NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria ORDER BY RAND() LIMIT 2");
+		$resultado = $conexion->ejecutarconsulta($consulta);
+		$contador = 0;
+		$iter = $conexion->cantidadRegistros($resultado);
+		for ($i=0; $i < $iter; $i++) {
+			if ($contador == 0) {
+				echo '<div class="row">';
+			}
+
+			$data = $conexion->obtenerFila($resultado);
+			$valoracion = (intval($data["Valoracion"]));
+			echo '<div class="col-md-12">
+					<a href="detalle.php?idp='.$data["IDProducto"].'" >
+					<div class="product">
+						<div class="product-img">
+								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">
+						</div>
+						<div class="product-body">
+							<p class="product-category">'.$data["NombreCategoria"].'</p>
+							<h3 class="product-name">'.$data["NombreProducto"].'</h3>
+							<h4 class="product-price">'.$data["IDMoneda"].' '.$data["PrecioActual"].'
+							<!--<del class="product-old-price">$990.00</del>--></h4>
+							<div class="product-rating">';
+			for ($j=0; $j < $valoracion ; $j++) { 
+				echo '			<i class="glyphicon glyphicon-star"></i>';
+			}
+
+			$valoracion = 5 - $valoracion;
+			for ($k=0; $k < $valoracion; $k++) { 
+				echo '			<i class="glyphicon glyphicon-star-empty"></i>';
+			}
+			echo '				
+							</div>
+							<div class="product-btns">
+								<a href="detalle.php?idp='.$data["IDProducto"].'" class="quick-view"><i class="glyphicon glyphicon-list"></i><span class="tooltipp">Detalles del producto</span></a>
+							</div>
+						</div>
+						<div class="add-to-cart">
+							<button class="add-to-cart-btn" onclick="addCarrito('.$data["IDProducto"].')"><i class="glyphicon glyphicon-shopping-cart"></i>Agregar</button>
+						</div>
+					</div>
+					</a>      			
+				</div></div>';
+	}
+}
+
+
 if (isset($_GET['idn'])) {
 	marcarNotificacion($_GET['idn'], $conexion);
 }
@@ -80,36 +128,14 @@ if (isset($_GET['idn'])) {
 				<!--Zona #2 Reservada para información del contacto y productos del usuario-->
 				<div id="zonaContenido" class="col-md-7"></div>
 				<!--Zona #3 Reservada para publicidad-->
-				<div class="col-md-2">
+				<div class="col-lg-2">
 					<?php 
 					if ($_SESSION['TipoUsuario'] == '1') {
 						echo '<a href="#" data-toggle="modal" data-target="#modalVendedor" class="btn btn-md btn-success btn-block">Sube tus productos Ya</a>';
 					}
+					echo '<h5>Productos destacados</h5>';
+					mostrarProducto($conexion);
 					?>
-					<div class="card bg-default mt-2">
-						<h5 class="card-header">
-							Publicidad 1
-						</h5>
-						<div class="card-body">
-							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
-						</div>
-						<div class="card-footer">
-							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
-						</div>
-					</div>
-					<div class="card bg-default mt-2">
-						<h5 class="card-header">
-							Publicidad 2
-						</h5>
-						<div class="card-body">
-							<img class="bd-placeholder-img rounded" width="140" height="140" src="img/png/006-shopping.png">
-						</div>
-						<div class="card-footer">
-							<p>Detalles de producto</p>
-							<p><a class="btn btn-secondary" href="#" role="button">Ver más &raquo;</a></p>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

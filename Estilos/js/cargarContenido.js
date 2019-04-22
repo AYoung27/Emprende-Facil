@@ -228,8 +228,10 @@ FUNCION PARA CARRITO
     }
 
     function pagar(){
+     subTotal = document.getElementById('total').value;
      $.ajax({
       url:'Acciones/pagarCarrito.php',
+      data:'ST='+subTotal,
       type:'POST'
     }).done(function(resp){
     	alert('Pagado'+resp);

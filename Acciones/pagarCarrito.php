@@ -4,13 +4,13 @@
 	$conexion = new Conexion();
 	$conexion->mysql_set_charset("utf8");
 	session_start();
-
+	$subTotal = $_POST["ST"];
 	$fecha=date("Y-m-d");
-	$consulta = sprintf("SELECT IDProducto FROM tbl_productos_carrito WHERE IDCarrito ='%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));
+	$consulta = sprintf("SELECT IDProducto, Cantidad FROM tbl_productos_carrito WHERE IDCarrito ='%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));
 	$resultado = $conexion->ejecutarconsulta($consulta);
 	$iter = $conexion->cantidadRegistros($resultado);
 
-	$consulta = sprintf("INSERT INTO tbl_factura(IDUsuario, FechaFactura) VALUES('%s','%s')", $conexion->antiInyeccion($_SESSION["ID"]), $conexion->antiInyeccion($fecha));
+	$consulta = sprintf("INSERT INTO tbl_factura(IDUsuario, FechaFactura, SubTotal) VALUES('%s','%s', '%s')", $conexion->antiInyeccion($_SESSION["ID"]), $conexion->antiInyeccion($fecha), $conexion->antiInyeccion($subTotal));
 	$conexion->ejecutarconsulta($consulta);
 
 	$consulta = sprintf("SELECT IDFactura FROM tbl_factura WHERE IDUsuario = '%s' AND FechaFactura = '%s'", $conexion->antiInyeccion($_SESSION["ID"]), $conexion->antiInyeccion($fecha));
@@ -24,8 +24,12 @@
 		$precio = $conexion->ejecutarconsulta($consulta);
 		$precio = $conexion->obtenerFila($precio)["PrecioActual"];
 		
-		$consulta = sprintf("INSERT INTO tbl_detalle_factura(IDFactura, IDProducto, Cantidad, Total) VALUES('%s','%s','1','%s')", $conexion->antiInyeccion($conexion->antiInyeccion($id["IDFactura"])), $conexion->antiInyeccion($data["IDProducto"]), $conexion->antiInyeccion($precio));
+		$consulta = sprintf("INSERT INTO tbl_detalle_factura(IDFactura, IDProducto, Cantidad, Total) VALUES('%s','%s','%s','%s')", $conexion->antiInyeccion($id["IDFactura"]), $conexion->antiInyeccion($data["IDProducto"]), $conexion->antiInyeccion($data["Cantidad"]), $conexion->antiInyeccion($precio));
 		$conexion->ejecutarconsulta($consulta);
+
+		$consulta = sprintf("INSERT INTO tbl_pedido(IDProducto, Cantidad, IDFactura) VALUES('%s','%s','%s')", $conexion->antiInyeccion($data["IDProducto"]), $conexion->antiInyeccion($data["Cantidad"]), $conexion->antiInyeccion($id["IDFactura"]));
+		$conexion->ejecutarconsulta($consulta);
+		
 	}
 
 	$consulta = sprintf("UPDATE tbl_carrito SET pagado = 1 WHERE IDCarrito ='%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));

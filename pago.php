@@ -6,7 +6,7 @@
 
   function cargarCarrito($conexion){
     if (isset($_SESSION["Carrito"])) {
-      $consulta = sprintf("SELECT PrecioActual, NombreProducto, Descripcion FROM tbl_producto, tbl_productos_carrito WHERE tbl_producto.IDProducto = tbl_productos_carrito.IDProducto AND tbl_productos_carrito.IDCarrito = '%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));
+      $consulta = sprintf("SELECT PrecioActual, NombreProducto, Descripcion, tbl_productos_carrito.Cantidad FROM tbl_producto, tbl_productos_carrito WHERE tbl_producto.IDProducto = tbl_productos_carrito.IDProducto AND tbl_productos_carrito.IDCarrito = '%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));
       $resultado = $conexion->ejecutarconsulta($consulta);
 
       $iter = $conexion->cantidadRegistros($resultado);
@@ -19,19 +19,22 @@
       $total = 0;
       for ($i=0; $i < $iter ; $i++) { 
         $data = $conexion->obtenerFila($resultado);
-        $total += intval($data["PrecioActual"]);
+        $total += intval($data["PrecioActual"]*$data["Cantidad"]);
         echo '<li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
-              <h6 class="my-0">'.$data["NombreProducto"].'</h6>
+              <span class="text-muted">'.$data["Cantidad"].'x</span>
+              <h6 style"text-align: right;" class="my-0">'.$data["NombreProducto"].'</h6>
               <small class="text-muted">'.$data["Descripcion"].'</small>
             </div>
-            <span class="text-muted">HNL'.$data["PrecioActual"].'</span>
+            <br>
+            <span class="text-muted">HNL '.$data["PrecioActual"]*$data["Cantidad"].'</span>
           </li>';
       }
         echo '
-          <li class="list-group-item d-flex justify-content-between">
+          <li class="list-group-item d-flex justify-content-between" style="background: #bae8d5;">
             <span>Total (USD)</span>
-            <strong>HNL'.$total.'</strong>
+            <strong>HNL '.$total.'</strong>
+            <input id="total" value="'.$total.'" type="hidden"></input>
           </li>
         </ul>
           <button class="btn btn-primary btn-block" onclick="pagar()">PAGAR</button>';
@@ -96,12 +99,12 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4 order-md-2">
+      <div class="col-md-5 order-md-2">
         <?php
           cargarCarrito($conexion);
          ?>
       </div>
-      <div class="col-md-8 order-md-1">
+      <div class="col-md-7 order-md-1">
         <form class="form-signin" novalidate>
 
           <h4 class="mb-3">Dirección de envío</h4>
@@ -177,8 +180,8 @@
         </form>
       </div>
     </div>
+    <strong id="bla">BLAAAAAAAAAAAAAH</strong>
   </div>
-
 </main>
 <footer>
   <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>	
