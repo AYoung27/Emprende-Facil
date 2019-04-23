@@ -218,14 +218,28 @@ FUNCION PARA CARRITO
 
 
     function addCarrito(id){
+
+        $.ajax({
+          url:'Acciones/agregarACarrito.php',
+          type:'POST',
+          data:'id='+id
+        }).done(function(resp){
+          alert('Agregado con exito'+resp);
+        });
+      }
+
+    function eliminarItem(id){
+      if (confirm("Realmente desea eliminar este elemento de su carrito")) {
       $.ajax({
-        url:'Acciones/agregarACarrito.php',
+        url:'Acciones/eliminarDeCarrito.php',
         type:'POST',
         data:'id='+id
       }).done(function(resp){
-        alert('Agregado con exito'+resp);
-      }); 
+        alert('Eliminado con exito'+resp);
+        location.reload(true);
+      });  
     }
+  }
 
     function pagar(){
      subTotal = document.getElementById('total').value;

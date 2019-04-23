@@ -3,8 +3,8 @@
   margin: 15px 0px;
   -webkit-box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
   box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all; 
+  -webkit-transition: 0.1s all;
+  transition: 0.1s all; 
 }
 
 .product:hover {
@@ -17,15 +17,14 @@
 }
 
 .product .product-img>img {
-  -webkit-transition: 0.2s all;
+  -webkit-transition: 0.1s all;
+  transition: 0.1s all; 
   height: 180px;
   width: 75%;
   margin: 12%;
 }
 
 .product:hover .product-img>img {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
@@ -110,8 +109,6 @@
   top: 50%;
   left: 0;
   right: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   height: 1px;
   background-color: #E4E7ED;
@@ -132,7 +129,7 @@
 .product .product-body .product-btns>a:hover {
   background-color: #E4E7ED;
   color: #007bff;
-  border-radius: 50%;
+  border-radius: 100%;
 }
 
 .product .product-body .product-btns>a .tooltipp {

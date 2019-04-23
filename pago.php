@@ -6,7 +6,7 @@
 
   function cargarCarrito($conexion){
     if (isset($_SESSION["Carrito"])) {
-      $consulta = sprintf("SELECT PrecioActual, NombreProducto, Descripcion, tbl_productos_carrito.Cantidad FROM tbl_producto, tbl_productos_carrito WHERE tbl_producto.IDProducto = tbl_productos_carrito.IDProducto AND tbl_productos_carrito.IDCarrito = '%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));
+      $consulta = sprintf("SELECT PrecioActual, NombreProducto, Descripcion, tbl_producto.IDProducto, tbl_productos_carrito.Cantidad FROM tbl_producto, tbl_productos_carrito WHERE tbl_producto.IDProducto = tbl_productos_carrito.IDProducto AND tbl_productos_carrito.IDCarrito = '%s'", $conexion->antiInyeccion($_SESSION["Carrito"]));
       $resultado = $conexion->ejecutarconsulta($consulta);
 
       $iter = $conexion->cantidadRegistros($resultado);
@@ -28,8 +28,8 @@
             </div>
             <br>
             <div>
-            <span class="text-muted">HNL '.$data["PrecioActual"]*$data["Cantidad"].' </span>
-            <a href="detalle.php?idp" style="color: #e95a51;"><i class="glyphicon glyphicon-remove"></i><span class="tooltipp">Eliminar del carrito</span></a>
+            <span class="text-muted">HNL '.$data["PrecioActual"].' </span>
+            <a href="" style="color: #e95a51;" onclick="eliminarItem('.$data["IDProducto"].')"><i class="glyphicon glyphicon-remove"></i><span class="tooltipp">Eliminar del carrito</span></a>
             </div>
           </li>';
       }

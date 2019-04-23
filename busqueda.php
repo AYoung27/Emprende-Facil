@@ -3,7 +3,7 @@ include("Clases/Conexion.php");
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 function mostrarProducto($id, $conexion){
-	$consulta = sprintf("SELECT IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria AND NombreProducto LIKE '%s' ORDER BY (NombreProducto)", '%'.$conexion->antiInyeccion($id).'%');
+	$consulta = sprintf("SELECT Cantidad, IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria AND NombreProducto LIKE '%s' ORDER BY (NombreProducto)", '%'.$conexion->antiInyeccion($id).'%');
 	$resultado = $conexion->ejecutarconsulta($consulta);
 	$contador = 0;
 	$iter = $conexion->cantidadRegistros($resultado);
@@ -17,13 +17,24 @@ function mostrarProducto($id, $conexion){
 					<div class="product">
 						<a href="detalle.php?idp='.$data["IDProducto"].'" >
 						<div class="product-img">
-								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">
+								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">';
+			if ($data["Cantidad"] == 0) {
+				echo '			<div class="product-label">
+										<span class="new">AGOTADO</span>
+								</div>';
+			} elseif ($data["Cantidad"] <= 10) {
+				echo '			<div class="product-label">
+										<span class="new">POCOS EN INVENTARIO</span>
+								</div>';
+			}
+			echo		'
 						</div>
 						<div class="product-body">
 							<p class="product-category">'.$data["NombreCategoria"].'</p>
 							<h3 class="product-name">'.$data["NombreProducto"].'</h3>
 							<h4 class="product-price">'.$data["IDMoneda"].' '.$data["PrecioActual"].'
 							<!--<del class="product-old-price">$990.00</del>--></h4>
+							<p class="product-category">Art. en Inventario: '.$data["Cantidad"].'</p>
 							<div class="product-rating">';
 			for ($j=0; $j < $valoracion ; $j++) { 
 				echo '			<i class="glyphicon glyphicon-star"></i>';

@@ -37,7 +37,7 @@ function marcarNotificacion($id, $conexion){
 }
 
 	function mostrarProducto($conexion){
-		$consulta = sprintf("SELECT IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria as NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria ORDER BY RAND() LIMIT 2");
+		$consulta = sprintf("SELECT Cantidad, IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria as NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria ORDER BY RAND() LIMIT 2");
 		$resultado = $conexion->ejecutarconsulta($consulta);
 		$contador = 0;
 		$iter = $conexion->cantidadRegistros($resultado);
@@ -52,7 +52,17 @@ function marcarNotificacion($id, $conexion){
 					<a href="detalle.php?idp='.$data["IDProducto"].'" >
 					<div class="product">
 						<div class="product-img">
-								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">
+								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">';
+			if ($data["Cantidad"] == 0) {
+				echo '			<div class="product-label">
+										<span class="new">AGOTADO</span>
+								</div>';
+			} elseif ($data["Cantidad"] <= 10) {
+				echo '			<div class="product-label">
+										<span class="new">POCOS EN INVENTARIO</span>
+								</div>';
+			}
+			echo		'
 						</div>
 						<div class="product-body">
 							<p class="product-category">'.$data["NombreCategoria"].'</p>
