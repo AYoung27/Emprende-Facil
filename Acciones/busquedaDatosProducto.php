@@ -23,9 +23,8 @@ session_start();
             <table class='table table-bordered'>
     			<thead>
     				<tr id='titulo'>
-    					<th>NombreProducto</th>
-    					<th>Precio Actual</th>
-                        <th>Precio Anterior</th>
+    					<th>Nombre</th>
+    					<th>Precio</th>
                         <th>Cantidad</th>
                         <th>Estado</th>
     					<th>Opciones</th>
@@ -44,10 +43,9 @@ session_start();
     		$salida.='<tr>
     					<td>'.$arreglo['NombreProducto'].'</td>
     					<td>'.$arreglo['PrecioActual'].'</td>
-                        <td>'.$arreglo['PrecioAnterior'].'</td>
                         <td>'.$arreglo['Cantidad'].'</td>
                         <td>'.$arreglo['NombreEstado'].'</td>
-    					<td><a role="button"'.'class='.'"btn btn-primary mr-2 mb-2"'.'href="#"'.' onclick="modificar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-pencil"'.'></i>&nbsp;Modificar</a><a role="button" class='.'"btn btn-danger mb-2"'.' href="#" onclick="eliminar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-remove"'.'></i>&nbsp;Eliminar&nbsp;&nbsp;</a></td></tr>';
+    					<td><a role="button"'.'class='.'"btn btn-block btn-primary mr-2 mb-2"'.'href="#"'.' onclick="modificar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-pencil"'.'></i>&nbsp;Modificar</a><a role="button" class='.'"btn btn-danger btn-block mb-2"'.' href="#" onclick="eliminar('.$arreglo["IDProducto"].')"><i class='.'"glyphicon glyphicon-remove"'.'></i>&nbsp;Eliminar</a></td></tr>';
     	}
     	$salida.="</tbody></table>";
     }else{

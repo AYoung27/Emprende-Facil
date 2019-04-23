@@ -21,22 +21,22 @@
 
  
  <div class="form-label-group">
-  <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Email address" pattern="[A-Za-z]+" title="El campo solo debe contener letras" required autofocus >
+  <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" pattern="[A-Za-z]+" title="El campo solo debe contener letras" required autofocus >
   <label for="inputEmail">Nombre</label>
 </div>
 
 <div class="form-label-group">
-  <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Email address" pattern="[A-Za-z]+" title="El campo solo debe contener letras" required autofocus>
+  <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido" pattern="[A-Za-z]+" title="El campo solo debe contener letras" required autofocus>
   <label for="inputEmail">Apellido</label>
 </div>
 
 <div class="form-label-group">
-  <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" placeholder="Email address" required autofocus>
+  <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" placeholder="Correo electrónico" required autofocus>
   <label for="inputEmail">Correo electrónico</label>
 </div>
 
 <div class="form-label-group">
-  <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Password"  minlength="6" required>
+  <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Contraseña"  minlength="6" required>
   <label for="inputPassword">Contraseña</label>
 </div>
 

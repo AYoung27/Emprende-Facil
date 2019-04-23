@@ -51,7 +51,7 @@ function mostrarProducto($id, $conexion){
 							</div>
 						</div>
 						<div class="add-to-cart">
-							<button class="add-to-cart-btn" onclick="addCarrito('.$data["IDProducto"].')"><i class="glyphicon glyphicon-shopping-cart"></i>Agregar al carrito</button>
+							<button class="add-to-cart-btn" onclick="addCarrito('.$data["IDProducto"].')"><i class="glyphicon glyphicon-shopping-cart"></i>Agregar</button>
 						</div>
 					</div>
 					</a>     			

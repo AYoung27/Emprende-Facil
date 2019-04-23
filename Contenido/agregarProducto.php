@@ -1,7 +1,10 @@
 <?php 
 	include("../clases/Conexion.php");
 	$conexion= new Conexion();
+	$conexion->mysql_set_charset("utf8");
+
 	session_start();
+
 	if (empty($_SESSION)) {
 		header('Location: index.php');
 	}

@@ -13,7 +13,29 @@ function cargarDiv(divID, ruta) {
   });
 }
 
+function cargarMun(idDepto){
+    $.ajax({
+      url: 'Acciones/cargarMunicipios.php',
+      type: 'POST',
+      data: 'idd='+idDepto,
+      dataType: 'text',
+      success: function (response) {
+          $('#Municipio').html('<label for="state">Municipio</label><select class="custom-select d-block w-100" id="optMun" name="optMun" required><option value="">Seleccionar...</option>'+response+'</select>');
+      }
+    });
+}
 
+function actualizarPedido(idEstado, idPedido){
+    $.ajax({
+      url: 'Acciones/actualizarPedido.php',
+      type: 'POST',
+      data: 'ide='+idEstado+'&idp='+idPedido,
+      dataType: 'text',
+      success: function (response) {
+        alert(response);
+      }
+    });
+}
 
 function mostrarResultados(year,grafico) {
   /*GRAFICO DE BARRA*/  
@@ -224,7 +246,7 @@ FUNCION PARA CARRITO
           type:'POST',
           data:'id='+id
         }).done(function(resp){
-          alert('Agregado con exito'+resp);
+          alert(resp);
         });
       }
 
@@ -248,7 +270,7 @@ FUNCION PARA CARRITO
       data:'ST='+subTotal,
       type:'POST'
     }).done(function(resp){
-    	alert('Pagado'+resp);
+    	alert(resp);
     	location.reload(true);
     });
   }
@@ -269,9 +291,6 @@ function listarReporte(consulta){
     $("#reportes").html(respuesta);
   })
 }
-
-
-
 
 function ReportePagina(idFactura){
   $.ajax({

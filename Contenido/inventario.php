@@ -35,12 +35,11 @@
 								 	<table class="table table-bordered">
 								 	<thead>
 								 	   <tr>
-								 	   	<th></th>
- 								         <th>Nombre Producto</th>
+								 	   	<th>Imagen</th>
+ 								         <th>Nombre</th>
  								         <th>Descripcion</th>
  								         <th>Cantidad</th>
- 								         <th>Precio Actual</th>
- 								         <th>Precio Anterior</th>
+ 								         <th>Precio</th>
  								         <th>Categoria</th>
  								       </tr>
 								 	</thead>
@@ -57,7 +56,6 @@
  								     			echo '<td>'.$data['Descripcion'].'</td>';
  								     			echo '<td>'.$data['Cantidad'].'</td>';
  								     			echo '<td>'.$data['precioActual'].'</td>';
- 								     			echo '<td>'.$data['PrecioAnterior'].'</td>';
  								     			echo '<td>'.$data['nombreCategoria'].'</td></tr>';
 
  								     		}

@@ -11,23 +11,12 @@ $conexion->mysql_set_charset("utf8");
 
 function cargarDeptos($conexion)
 {
-	$consulta = sprintf("SELECT NombreDepartamento FROM tbl_departamentos ORDER BY IDDepartamento ASC");
+	$consulta = sprintf("SELECT NombreDepartamento, IDDepartamento FROM tbl_departamentos ORDER BY IDDepartamento ASC");
 	$resultado = $conexion->ejecutarconsulta($consulta);
 
-	for ($i=0; $i < 18; $i++) { 
-		echo '<option>'.$conexion->obtenerFila($resultado)[0].'</option>';
-	}
-}
-
-
-function cargarMunicipios($conexion)
-{
-	$consulta = sprintf("SELECT NombreMunicipio FROM tbl_municipio ORDER BY IDMunicipio ASC");
-	$resultado = $conexion->ejecutarconsulta($consulta);
-	$iter = $conexion->cantidadRegistros($resultado);
-
-	for ($i=0; $i < $iter; $i++) { 
-		echo '<option>'.$conexion->obtenerFila($resultado)[0].'</option>';
+	for ($i=0; $i < 18; $i++) {
+			$data = $conexion->obtenerFila($resultado);
+		echo '<option value="'.$data['IDDepartamento'].'">'.$data['NombreDepartamento'].'</option>';
 	}
 }
 
@@ -119,7 +108,6 @@ if (isset($_GET['idn'])) {
 	<link rel="stylesheet" href="Estilos/css/style_search.css">
 	<script src="Estilos/js/jq_search/jquery.js"></script>
 	<script src="Estilos/js/jq_search/jquery.dataTables.min.js"></script>
-
 	<title>Emprende Fácil</title>	
 </head>
 
@@ -138,12 +126,12 @@ if (isset($_GET['idn'])) {
 				<!--Zona #2 Reservada para información del contacto y productos del usuario-->
 				<div id="zonaContenido" class="col-md-7"></div>
 				<!--Zona #3 Reservada para publicidad-->
-				<div class="col-lg-2">
+				<div class="col-md-2">
 					<?php 
 					if ($_SESSION['TipoUsuario'] == '1') {
-						echo '<a href="#" data-toggle="modal" data-target="#modalVendedor" class="btn btn-md btn-success btn-block">Sube tus productos Ya</a>';
+						echo '<a href="#" data-toggle="modal" data-target="#modalVendedor" class="btn btn-md btn-success btn-block">Sube tus productos</a><hr>';
 					}
-					echo '<h5>Productos destacados</h5>';
+					echo '<h6 text-align="center">Productos destacados</h6>';
 					mostrarProducto($conexion);
 					?>
 				</div>
@@ -165,39 +153,35 @@ if (isset($_GET['idn'])) {
 						<div class="modal-body">
 							<p>Llena la siguiente tabla con los datos de tu empresa</p>
 							<div class="form-label-group">
-								<input type="text" id="txtNombreEmp" name="txtNombreEmp" class="form-control" placeholder="Password" required autofocus >
+								<input type="text" id="txtNombreEmp" name="txtNombreEmp" class="form-control" placeholder="Nombre de la Empresa" required autofocus >
 								<label for="inputEmail">Nombre de la empresa</label>
 							</div>
 
 							<div class="row">
 								<div class="col-md-6 mb-3">
 									<label for="country">Departamento</label>
-									<select class="custom-select d-block w-100" id="optDepto" name="optDepto" required>
+									<select class="custom-select d-block w-100" id="optDepto" name="optDepto" onchange="cargarMun(this.value)" required>
 										<option value="">Seleccionar...</option>
 										<?php cargarDeptos($conexion); ?>
 									</select>
 								</div>
-								<div class="col-md-6 mb-3">
-									<label for="state">Estado</label>
-									<select class="custom-select d-block w-100" id="optMun" name="optMun" required>
-										<option value="">Seleccionar...</option>
-										<?php cargarMunicipios($conexion); ?>
-									</select>
+								<div class="col-md-6 mb-3" id="Municipio">
+
 								</div>
 							</div>
 
 							<div class="form-label-group">
-								<input type="text" id="txtDireccion" name="txtDireccion" placeholder="Password" class="form-control" required autofocus>
+								<input type="text" id="txtDireccion" name="txtDireccion" placeholder="Dirección" class="form-control" required autofocus>
 								<label for="inputEmail">Dirección</label>
 							</div>
 
 							<div class="form-label-group">
-								<input type="text" id="txtTelefono" placeholder="Password" name="txtTelefono" class="form-control" minlength="8" maxlength="8" pattern="[0-9]+" required autofocus>
+								<input type="text" id="txtTelefono" placeholder="Teléfono" name="txtTelefono" class="form-control" minlength="8" maxlength="8" pattern="[0-9]+" required autofocus>
 								<label for="inputEmail">Teléfono</label>
 							</div>
 
 							<div class="form-label-group">
-								<input type="text" id="txtRTN" name="txtRTN" class="form-control" placeholder="Password"  minlength="6" pattern="[0-9]+" required>
+								<input type="text" id="txtRTN" name="txtRTN" class="form-control" placeholder="RTN"  minlength="6" pattern="[0-9]+" required>
 								<label for="inputPassword">RTN</label>
 							</div>
 						</div>
@@ -222,5 +206,6 @@ if (isset($_GET['idn'])) {
 	<script src="Estilos/js/jquery.filedrop.js"></script>
 	<script src="Estilos/js/jquery.script.js"></script>
 	<script type="text/javascript" src="Estilos/js/chartJSgraficos/Chart.min.js"></script>
+	
 </body>
 </html>
