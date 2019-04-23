@@ -212,18 +212,39 @@
 					<h3 class="title">Categorias</h3>
 				</div>
 			</div>
-			<div class="col-md-4 col-xs-6">
+
+			<?php 
+				$consulta = sprintf("SELECT NombreCategoria FROM tbl_categoria");
+				$resultado = $conexion->ejecutarconsulta($consulta);
+				$iterador = 0;
+				while ($data = $conexion->obtenerFila($resultado)) {
+					if ($iterador == 0) {
+						echo '<div class="row">';
+					}
+
+					echo '<div class="col-md-4">
 						<div class="shop">
 							<div class="shop-img">
-								<img src="img/png/006-shopping.png" alt="">
+								<img src="img/Categorias/'.$data["NombreCategoria"].'.jpg" alt="">
 							</div>
 							<div class="shop-body">
-								<h3>Cajas</h3>
-								<a href="busqueda.php?q=" class="cta-btn">Buscar ahora <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+								<h3>'.$data["NombreCategoria"].'</h3>
+								<a href="busqueda.php?cat='.$data["NombreCategoria"].'" class="cta-btn">Buscar ahora <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
 							</div>
-						</div>
-					</div>
-			<!--Información Extra, no indispensable-->
+						</div></div>';
+
+					$iterador++;
+					if ($iterador == 3) {
+						echo '</div>';
+						$iterador = 0;
+					}
+
+				}
+
+			 ?>
+
+			
+						
 		</div>
 	</main>
 	<footer>
