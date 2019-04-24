@@ -35,18 +35,18 @@
       }
         echo '
           <li class="list-group-item d-flex justify-content-between" style="background: #bae8d5;">
-            <span>Sub Total (USD)</span>
-            <strong>HNL '.$total.'</strong>
+            <span>Sub Total (HNL)</span>
+            <strong>'.$total.'</strong>
             <input id="total" value="'.$total.'" type="hidden"></input>
           </li>
           <li class="list-group-item d-flex justify-content-between" style="background: #bae8d5;">
-            <span>Total (USD)</span>
-            <strong>ISV '.$total*0.15.'</strong>
+            <span>ISV (HNL)</span>
+            <strong>'.($total*0.15).'</strong>
             <input id="total" value="'.$total.'" type="hidden"></input>
           </li>
           <li class="list-group-item d-flex justify-content-between" style="background: #bae8d5;">
-            <span>Total (USD)</span>
-            <strong>HNL '.$total+($total*0.15).'</strong>
+            <span>Total (HNL)</span>
+            <strong>'.$total+($total*0.15).'</strong>
             <input id="total" value="'.$total.'" type="hidden"></input>
           </li>
         </ul>
