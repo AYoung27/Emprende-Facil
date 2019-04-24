@@ -31,17 +31,17 @@ function cargarDetalleProducto($conexion, $idProducto){
       	<div class="row" style="margin-bottom:15px"> <!-- Inicio subfila 1 -->
 
         <!--subfila 1 columna 1 -->
-        <div class="col-lg-1" style="padding-top: 3em;"> 
-          <div class="row" style="padding-bottom: 1em;">  <img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" height="75" width="75" data-imagenes="img0" style="border:1px solid" class="imagen"> </div>
-          <div  class="row" style="padding-bottom: 1em;"> <img src="img/png/005-ecommerce" height="75" width="75" data-imagenes="img1" style="border:1px solid" class="imagen"> </div>
-          <div class="row" style="padding-bottom: 1em;"> <img src="img/png/008-reward" height="75" width="75" data-imagenes="img2" style="border:1px solid" class="imagen"> </div>
-          <div class="row" style="padding-bottom: 1em;"> <img src="img/png/013-present" height="75" width="75" data-imagenes="img3" style="border:1px solid" class="imagen"> </div>
+        <div class="col-lg-1 " style="padding-top: 3em;"> 
+           <img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" height="90" width="90" data-imagenes="img0" class="imagen mb-3 border" >
+           <img src="img/png/005-ecommerce" height="90" width="90" data-imagenes="img1" class="imagen mb-3 border" > 
+           <img src="img/png/008-reward" height="90" width="90" data-imagenes="img2" class="imagen mb-3 border" > 
+          <img src="img/png/013-present" height="90" width="90" data-imagenes="img3" class="imagen mb-3 border" > 
         </div> 
         <!--fin subfila 1 columna 1 -->
 
         <!--subfila 1 columna 2 -->
-        <div class="col-lg-5" id="cambio"> 
-         <img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" height="350" width="350" style="margin:55px" id="">
+        <div class="col-lg-5"  id="cambio"> 
+         <img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" height="350" width="350" style="margin:55px" id="" >
          <br>
        </div> 
        <!--fin subfila 1 columna 2 -->
@@ -178,253 +178,95 @@ function cargarDetalleProducto($conexion, $idProducto){
 
           <!-- Product tab -->
           <div class="col-md-12">
-            <div id="product-tab">
-              <!-- product tab nav -->
-              <ul class="tab-nav">
-                <li class="active" ><a data-toggle="tab" href="#tab1">Descripcion</a></li>
-                
-                <li><a data-toggle="tab" href="#tab3">Comentarios</a></li>
-              </ul>
-              <!-- /product tab nav -->
+           
+                 <p class="mb-5"><h4 style="text-align: center;">Descripcion</h4></p>  
 
-              <!-- product tab content -->
-              <div class="tab-content">
-                <!-- tab1  -->
-                <div id="tab1" class="tab-pane fade in active">
                   <div class="row">
-                    <div class="col-md-12">
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                  </div>
                 </div>
-                <!-- /tab1  -->
+                <hr>
 
+                  <p class="mb-5"><h4 style="text-align: center;">Comentarios y Valoracion</h4></p>  
 
-
-                <!-- tab3  -->
-                <div id="tab3" class="tab-pane fade in active">
                   <div class="row">
+
                     <!-- Rating -->
                     <div class="col-md-3">
                       <div id="rating">
                         <div class="rating-avg"> <!--rating promediado jalar pocion con codigo, los colores azul se activan al datos las estrellas-->
-                          <span>5.1XD</span>    
-                          <div class="clasificacion">
-                            <input id="radio1" type="radio" name="estrellas" value="5">
-                            <label class="" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-                            <input id="radio2" type="radio" name="estrellas" value="4">
-                            <label class="" for="radio2"><i class="fa fa-star"></i></label>
-                            <input id="radio3" type="radio" name="estrellas" value="3">
-                            <label class="" for="radio3"><i class="fa fa-star"></i></label>
-                            <input class="" id="radio4" type="radio" name="estrellas" value="2">
-                            <label  class="" for="radio4"><i class="fa fa-star"></i></label>
-                            <input id="radio5" type="radio" name="estrellas" value="1">
-                            <label class="" for="radio5"><i class="fa fa-star"></i></label>
-                          </div> 
-                        </div>
+                          <?php $consulta ="SELECT FLOOR(avg(Valoracion)) as rating from tbl_comentarios_producto where IDProducto=".$_GET['idp'];
+                            $resultado=$conexion->ejecutarconsulta($consulta);
+                            $valor=$conexion->obtenerFila($resultado);
+                            echo "<span style='font-size:medium'>Calificacion : ".$valor['rating']."</span>";
+                            echo "<div class=\"clasificacion\">";
+                            $valoracion=5-$valor['rating'];
+                                for ($i=0; $i <$valoracion ; $i++) { 
+                                  echo "<label for=\"radio1\"> <i class=\"fa fa-star\" style=\"color:black;\"></i> </span> </label>";
+                                }
+                                for ($i=0; $i <$valor['rating']; $i++) { 
+                                  echo "<label for=\"radio1\"> <i class=\"fa fa-star\" style=\"color:#007bff;\"></i> </span> </label>";
+                                }
+                                echo "</div>";
+                                if($resultado->num_rows>0){
+                                $consulta ="UPDATE tbl_producto SET Valoracion=".$valor['rating']." where IDProducto=".$_GET['idp'];
+                                $conexion->ejecutarconsulta($consulta);
+                              }else{
+                                $consulta ="UPDATE tbl_producto SET Valoracion='0' where IDProducto=".$_GET['idp'];
+                                $conexion->ejecutarconsulta($consulta);
+                              }
+                           ?>
+                            
 
-
-                        <ul class="rating">
-                          <li>
-                            <div class="clasificacion">
-                              <input id="radio1" type="radio" name="estrellas" value="5">
-                              <label class="" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-                              <input id="radio2" type="radio" name="estrellas" value="4">
-                              <label class="" for="radio2"><i class="fa fa-star"></i></label>
-                              <input id="radio3" type="radio" name="estrellas" value="3">
-                              <label class="" for="radio3"><i class="fa fa-star"></i></label>
-                              <input class="" id="radio4" type="radio" name="estrellas" value="2">
-                              <label  class="" for="radio4"><i class="fa fa-star"></i></label>
-                              <input id="radio5" type="radio" name="estrellas" value="1">
-                              <label class="" for="radio5"><i class="fa fa-star"></i></label>
-                            </div> 
-                            <div class="rating-progress">
-                              <div style="width: 80%;"></div>
-                            </div>
-                            <span class="">3</span>
-                          </li>
-
-
-                          <li>
-                            <div class="clasificacion">
-                              <input id="radio1" type="radio" name="estrellas" value="5">
-                              <label class="" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-                              <input id="radio2" type="radio" name="estrellas" value="4">
-                              <label class="" for="radio2"><i class="fa fa-star"></i></label>
-                              <input id="radio3" type="radio" name="estrellas" value="3">
-                              <label class="" for="radio3"><i class="fa fa-star"></i></label>
-                              <input class="" id="radio4" type="radio" name="estrellas" value="2">
-                              <label  class="" for="radio4"><i class="fa fa-star"></i></label>
-                              <input id="radio5" type="radio" name="estrellas" value="1">
-                              <label class="" for="radio5"><i class="fa fa-star"></i></label>
-                            </div> 
-                            <div class="rating-progress">
-                              <div style="width: 60%;"></div>
-                            </div>
-                            <span class="">2</span>
-                          </li>
-                          
-
-                          <li>
-                            <div class="clasificacion">
-                              <input id="radio1" type="radio" name="estrellas" value="5">
-                              <label class="" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-                              <input id="radio2" type="radio" name="estrellas" value="4">
-                              <label class="" for="radio2"><i class="fa fa-star"></i></label>
-                              <input id="radio3" type="radio" name="estrellas" value="3">
-                              <label class="" for="radio3"><i class="fa fa-star"></i></label>
-                              <input class="" id="radio4" type="radio" name="estrellas" value="2">
-                              <label  class="" for="radio4"><i class="fa fa-star"></i></label>
-                              <input id="radio5" type="radio" name="estrellas" value="1">
-                              <label class="" for="radio5"><i class="fa fa-star"></i></label>
-                            </div> 
-                            <div class="rating-progress">
-                              <div></div>
-                            </div>
-                            <span class="">0</span>
-                          </li>
-                          
-
-                          <li>
-                            <div class="clasificacion">
-                              <input id="radio1" type="radio" name="estrellas" value="5">
-                              <label class="" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-                              <input id="radio2" type="radio" name="estrellas" value="4">
-                              <label class="" for="radio2"><i class="fa fa-star"></i></label>
-                              <input id="radio3" type="radio" name="estrellas" value="3">
-                              <label class="" for="radio3"><i class="fa fa-star"></i></label>
-                              <input class="" id="radio4" type="radio" name="estrellas" value="2">
-                              <label  class="" for="radio4"><i class="fa fa-star"></i></label>
-                              <input id="radio5" type="radio" name="estrellas" value="1">
-                              <label class="" for="radio5"><i class="fa fa-star"></i></label>
-                            </div> 
-                            <div class="rating-progress">
-                              <div></div>
-                            </div>
-                            <span class="">0</span>
-                          </li>
-                          
-                          <li>
-                            <div class="clasificacion">
-                              <input id="radio1" type="radio" name="estrellas" value="5">
-                              <label class="" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-                              <input id="radio2" type="radio" name="estrellas" value="4">
-                              <label class="" for="radio2"><i class="fa fa-star"></i></label>
-                              <input id="radio3" type="radio" name="estrellas" value="3">
-                              <label class="" for="radio3"><i class="fa fa-star"></i></label>
-                              <input class="" id="radio4" type="radio" name="estrellas" value="2">
-                              <label  class="" for="radio4"><i class="fa fa-star"></i></label>
-                              <input id="radio5" type="radio" name="estrellas" value="1">
-                              <label class="" for="radio5"><i class="fa fa-star"></i></label>
-                            </div> 
-                            <div class="rating-progress">
-                              <div></div>
-                            </div>
-                            <span class="">0</span>
-                          </li>
-                        </ul>
-                      </div>
+                         </div>
+                      
                     </div>
+                  </div>
+
                     <!-- /Rating -->
 
                     <!-- Reviews -->
                     <div class="col-md-6">
                       <div id="reviews">
                         <ul class="reviews">
-                          <li>
-                            <div class="review-heading">
-                              <h5 class="name">John</h5>
-                              <p class="date">27 DEC 2018, 8:0 PM</p>
-                              <div class="clasificacion">
-                                <input id="radio1" type="radio" name="estrellas" value="5">
-                                <label class="" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-                                <input id="radio2" type="radio" name="estrellas" value="4">
-                                <label class="" for="radio2"><i class="fa fa-star"></i></label>
-                                <input id="radio3" type="radio" name="estrellas" value="3">
-                                <label class="" for="radio3"><i class="fa fa-star"></i></label>
-                                <input class="" id="radio4" type="radio" name="estrellas" value="2">
-                                <label  class="" for="radio4"><i class="fa fa-star"></i></label>
-                                <input id="radio5" type="radio" name="estrellas" value="1">
-                                <label class="" for="radio5"><i class="fa fa-star"></i></label>
-                              </div> 
-                            </div>
-                            <div class="review-body">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="review-heading">
-                              <h5 class="name">John</h5>
-                              <p class="date">27 DEC 2018, 8:0 PM</p>
-                              <div class="clasificacion">
-                                <input id="radio1" type="radio" name="estrellas" value="5">
-                                <label class="" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-                                <input id="radio2" type="radio" name="estrellas" value="4">
-                                <label class="" for="radio2"><i class="fa fa-star"></i></label>
-                                <input id="radio3" type="radio" name="estrellas" value="3">
-                                <label class="" for="radio3"><i class="fa fa-star"></i></label>
-                                <input class="" id="radio4" type="radio" name="estrellas" value="2">
-                                <label  class="" for="radio4"><i class="fa fa-star"></i></label>
-                                <input id="radio5" type="radio" name="estrellas" value="1">
-                                <label class="" for="radio5"><i class="fa fa-star"></i></label>
-                              </div> 
-                            </div>
-                            
+                          <?php 
+                            $consulta= "SELECT Comentario, Valoracion, Nombre , Fecha, Hora FROM tbl_comentarios_producto, tbl_usuario where tbl_comentarios_producto.IDUsuario=tbl_usuario.IDUsuario and tbl_comentarios_producto.IDProducto=".$_GET['idp'];
+                            $resultado = $conexion->ejecutarconsulta($consulta);
+                            if($resultado->num_rows>0){
+                            while($arreglo=$conexion->obtenerFila($resultado)){
+                              echo "<li>
+                                <div class=\"review-heading\">
+                              <h5 class=\"name\">".$arreglo['Nombre']."</h5>
+                              <p class=\"date\">".$arreglo['Fecha'].", ".$arreglo['Hora']."</p>
+                              <div class=\"clasificacion\">";
+                                  $valoracion=5-$arreglo['Valoracion'];
+                                for ($i=0; $i <$valoracion ; $i++) { 
+                                  echo "<label for=\"radio1\"> <i class=\"fa fa-star\" style=\"color:black;\"></i> </span> </label>";
+                                }
+                                for ($i=0; $i <$arreglo['Valoracion']; $i++) { 
+                                  echo "<label for=\"radio1\"> <i class=\"fa fa-star\" style=\"color:#007bff;\"></i> </span> </label>";
+                                }
 
-                            <div class="review-body">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                             echo "</div> 
                             </div>
-                          </li>
-                          <li>
-                            <div class="review-heading">
-                              <h5 class="name">John</h5>
-                              <p class="date">27 DEC 2018, 8:0 PM</p>
-                              <div class="clasificacion">
-                                <input id="radio1" type="radio" name="estrellas" value="5">
-                                <label class="" for="radio1"> <i class="fa fa-star"></i> </span> </label>
-                                <input id="radio2" type="radio" name="estrellas" value="4">
-                                <label class="" for="radio2"><i class="fa fa-star"></i></label>
-                                <input id="radio3" type="radio" name="estrellas" value="3">
-                                <label class="" for="radio3"><i class="fa fa-star"></i></label>
-                                <input class="" id="radio4" type="radio" name="estrellas" value="2">
-                                <label  class="" for="radio4"><i class="fa fa-star"></i></label>
-                                <input id="radio5" type="radio" name="estrellas" value="1">
-                                <label class="" for="radio5"><i class="fa fa-star"></i></label>
-                              </div> 
+                            <div class=\"review-body\">
+                              <p>".$arreglo['Comentario']."</p>
                             </div>
-                            <div class="review-body">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                            </div>
-                          </li>
-                        </ul>
-                        
-
-                        <ul class="reviews-pagination">
-                          <li class="active">1</li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                          </li>";
+                          }
+                            }else{
+                              echo "Aun no hay comentarios para mostrar";
+                            }
+                           ?>
                         </ul>
                       </div>
                     </div>
+                   
                     <!-- /Reviews -->
 
                     <!-- Review Form -->
                     <div class="col-md-3">
                       <div id="review-form">
-                        <form class="review-form">
-                          <div style="padding-bottom: 1em;">
-                            <input type="text" class="form-control" id="txtNombreProducto" name="txtNombreProducto" placeholder="Tu Nombre" value="" size="40">
-                          </div>
-                          <div style="padding-bottom: 1em;">
-                            <input type="text" class="form-control" id="txtNombreProducto" name="txtNombreProducto" placeholder="Tu Nombre" value="" size="40">
-                          </div>
-                          <div style="padding-bottom: 1em;">
-                            <textarea class="form-control" placeholder="Escribe tu comentario."></textarea>
-                          </div>
-
-
+                          <form class="review-form" method="POST" action="Acciones/comentariosProducto.php">
                           <div class="input-rating">
                             <span>Calificar: </span>
                             <div class="stars">
@@ -434,14 +276,16 @@ function cargarDetalleProducto($conexion, $idProducto){
                               <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
                               <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
                             </div>
-                          </div>
-                          <button type="button" class="btn btn-lg-12 btn-primary" style=" margin-left:5px; border-radius: 40px 40px 40px 40px;">Enviar
-                          </form>
+
+                            <textarea class="form-control" placeholder="Escribe tu comnetario..." id="txtComentario" name="txtComentario"></textarea>
+                            <button type="submit" class="btn btn-primary mt-2" style="border-radius: 40px; float: right;">Comentar</button>
+                            <input type="number" name="txtIdProducto" value="<?php echo $_GET['idp'] ?>" style="display: none;">
                         </div>
+                      </form>
                       </div>
                       <!-- /Review Form -->
                     </div>
-                  </div>
+                     </div>
                   <!-- /tab3  -->
                 </div>
                 <!-- /product tab content  -->
@@ -454,16 +298,6 @@ function cargarDetalleProducto($conexion, $idProducto){
         </div><!--fin subfila 2-->
 
         <hr> <br>
-
-        <div class="row"> <!--Inicio subfila 3 -->
-          <div class="col-lg-10"> <!--Inicio subfila 3 columna 1-->
-            <h3>Preguntas y Respuestas</h3><br>
-            <div class="row" style="padding-left: 1em;">
-              <input type="text" id="txtcomentario"  placeholder="Escribe una pregunta..." pattern="[A-Za-z]+" title="" size="50">
-              <button type="button" class="btn btn-lg btn-primary" style="margin-left:15px; border-radius: 40px 40px 40px 40px;">Preguntar</button> 
-            </div>
-          </div> <!--Inicio subfila 3 columna 1-->
-        </div> <!--Fin subfila 3 -->
 
 
 
