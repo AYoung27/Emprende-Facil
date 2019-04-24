@@ -24,12 +24,13 @@ session_start();
 			if ($_SESSION['TipoUsuario'] == '2') {
 				echo   "<a href=\"#Inventario\" class=\"list-group-item\" onclick=\"cargarDiv('zonaContenido','Contenido/inventario.php')\"	>Inventario</a>
 				<a href=\"#Estadisticas\" class=\"list-group-item\"	onclick=\"cargarDiv('zonaContenido','Contenido/estadistica.php'), $.getScript('Estilos/js/script.js')\"	>Estadística</a>
-				<a href=\"#Reportes\" class=\"list-group-item\"	onclick=\"cargarDiv('zonaContenido','Contenido/reportes.php'), listarReporte(''), $.getScript('Estilos/js/script.js')\"	>Reportes</a>";		
+				";		
 			}?>
 			<a id="enlace2" href="#Pedidos" onclick="cargarDiv('zonaContenido', 'Contenido/pedidos.php')" class="list-group-item">
 				Pedidos
 			</a>
-			<a id="enlace3" href="#Historial" onclick="cargarDiv('zonaContenido', 'Contenido/historial.php')" class="list-group-item">
+			
+			<a id="enlace4" href="#Reportes" onclick="cargarDiv('zonaContenido', 'Contenido/reportes.php'),listarReporte(''), $.getScript('Estilos/js/script.js')" class="list-group-item">
 				Historial de Compra
 			</a>
 		</ul>
