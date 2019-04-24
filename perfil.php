@@ -3,7 +3,7 @@ session_start();
 if (empty($_SESSION)) {
 	header('Location: index.php');
 } elseif (!isset($_SESSION["ID"])) {
-		header('Location: index.php');
+	header('Location: index.php');
 }
 include("Clases/Conexion.php");
 $conexion = new Conexion();
@@ -15,7 +15,7 @@ function cargarDeptos($conexion)
 	$resultado = $conexion->ejecutarconsulta($consulta);
 
 	for ($i=0; $i < 18; $i++) {
-			$data = $conexion->obtenerFila($resultado);
+		$data = $conexion->obtenerFila($resultado);
 		echo '<option value="'.$data['IDDepartamento'].'">'.$data['NombreDepartamento'].'</option>';
 	}
 }
@@ -25,60 +25,60 @@ function marcarNotificacion($id, $conexion){
 	$conexion->ejecutarconsulta($consulta);
 }
 
-	function mostrarProducto($conexion){
-		$consulta = sprintf("SELECT Cantidad, IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria as NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria ORDER BY RAND() LIMIT 2");
-		$resultado = $conexion->ejecutarconsulta($consulta);
-		$contador = 0;
-		$iter = $conexion->cantidadRegistros($resultado);
-		for ($i=0; $i < $iter; $i++) {
-			if ($contador == 0) {
-				echo '<div class="row">';
-			}
+function mostrarProducto($conexion){
+	$consulta = sprintf("SELECT Cantidad, IDProducto, NombreProducto, ImagenPrincipal, PrecioActual, IDMoneda, Valoracion, tbl_categoria.NombreCategoria as NombreCategoria FROM tbl_producto, tbl_categoria WHERE tbl_producto.IDCategoria = tbl_categoria.IDCategoria ORDER BY RAND() LIMIT 2");
+	$resultado = $conexion->ejecutarconsulta($consulta);
+	$contador = 0;
+	$iter = $conexion->cantidadRegistros($resultado);
+	for ($i=0; $i < $iter; $i++) {
+		if ($contador == 0) {
+			echo '<div class="row">';
+		}
 
-			$data = $conexion->obtenerFila($resultado);
-			$valoracion = (intval($data["Valoracion"]));
-			echo '<div class="col-md-12">
-					<a href="detalle.php?idp='.$data["IDProducto"].'" >
-					<div class="product">
-						<div class="product-img">
-								<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">';
-			if ($data["Cantidad"] == 0) {
-				echo '			<div class="product-label">
-										<span class="new">AGOTADO</span>
-								</div>';
-			} elseif ($data["Cantidad"] <= 10) {
-				echo '			<div class="product-label">
-										<span class="new">POCOS EN INVENTARIO</span>
-								</div>';
-			}
-			echo		'
-						</div>
-						<div class="product-body">
-							<p class="product-category">'.$data["NombreCategoria"].'</p>
-							<h3 class="product-name">'.$data["NombreProducto"].'</h3>
-							<h4 class="product-price">'.$data["IDMoneda"].' '.$data["PrecioActual"].'
-							<!--<del class="product-old-price">$990.00</del>--></h4>
-							<div class="product-rating">';
-			for ($j=0; $j < $valoracion ; $j++) { 
-				echo '			<i class="glyphicon glyphicon-star"></i>';
-			}
+		$data = $conexion->obtenerFila($resultado);
+		$valoracion = (intval($data["Valoracion"]));
+		echo '<div class="col-md-12">
+		<a href="detalle.php?idp='.$data["IDProducto"].'" >
+		<div class="product">
+		<div class="product-img">
+		<img src="data:image/jpg;base64,'.base64_encode($data["ImagenPrincipal"]).'" alt="">';
+		if ($data["Cantidad"] == 0) {
+			echo '			<div class="product-label">
+			<span class="new">AGOTADO</span>
+			</div>';
+		} elseif ($data["Cantidad"] <= 10) {
+			echo '			<div class="product-label">
+			<span class="new">POCOS EN INVENTARIO</span>
+			</div>';
+		}
+		echo		'
+		</div>
+		<div class="product-body">
+		<p class="product-category">'.$data["NombreCategoria"].'</p>
+		<h3 class="product-name">'.$data["NombreProducto"].'</h3>
+		<h4 class="product-price">'.$data["IDMoneda"].' '.$data["PrecioActual"].'
+		<!--<del class="product-old-price">$990.00</del>--></h4>
+		<div class="product-rating">';
+		for ($j=0; $j < $valoracion ; $j++) { 
+			echo '			<i class="glyphicon glyphicon-star"></i>';
+		}
 
-			$valoracion = 5 - $valoracion;
-			for ($k=0; $k < $valoracion; $k++) { 
-				echo '			<i class="glyphicon glyphicon-star-empty"></i>';
-			}
-			echo '				
-							</div>
-							<div class="product-btns">
-								<a href="detalle.php?idp='.$data["IDProducto"].'" class="quick-view"><i class="glyphicon glyphicon-list"></i><span class="tooltipp">Detalles del producto</span></a>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button class="add-to-cart-btn" onclick="addCarrito('.$data["IDProducto"].')"><i class="glyphicon glyphicon-shopping-cart"></i>Agregar</button>
-						</div>
-					</div>
-					</a>      			
-				</div></div>';
+		$valoracion = 5 - $valoracion;
+		for ($k=0; $k < $valoracion; $k++) { 
+			echo '			<i class="glyphicon glyphicon-star-empty"></i>';
+		}
+		echo '				
+		</div>
+		<div class="product-btns">
+		<a href="detalle.php?idp='.$data["IDProducto"].'" class="quick-view"><i class="glyphicon glyphicon-list"></i><span class="tooltipp">Detalles del producto</span></a>
+		</div>
+		</div>
+		<div class="add-to-cart">
+		<button class="add-to-cart-btn" onclick="addCarrito('.$data["IDProducto"].')"><i class="glyphicon glyphicon-shopping-cart"></i>Agregar</button>
+		</div>
+		</div>
+		</a>      			
+		</div></div>';
 	}
 }
 
@@ -187,6 +187,11 @@ if (isset($_GET['idn'])) {
 						</div>
 
 						<div class="modal-footer">
+							<div class="checkbox mb-3">
+								<label>
+									<input style="padding-top: 1em;" type="checkbox" value="remember-me" required> <a href="Contenido/politicas_proveedor.php" target="_blank"> He leído los términos y condiciones </a>
+								</label>
+							</div> 
 							<button type="submit" class="btn btn-primary">Aceptar</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
 						</div>

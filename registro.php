@@ -42,7 +42,7 @@
 
 <div class="checkbox mb-3">
   <label>
-    <input type="checkbox" value="remember-me" required> He leído los términos y condiciones
+    <input type="checkbox" value="remember-me" required> <a href="Contenido/politicas_usuario.php" target="_blank"> He leído los términos y condiciones </a>
   </label>
 </div>
 
