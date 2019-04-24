@@ -21,7 +21,7 @@
 	$consulta = sprintf("INSERT INTO tbl_factura(IDUsuario, FechaFactura, SubTotal, ISV, Total) VALUES('%s','%s', '%s', '%s', '%s')", $conexion->antiInyeccion($_SESSION["ID"]), $conexion->antiInyeccion($fecha), $conexion->antiInyeccion($subTotal), $conexion->antiInyeccion($isv), $conexion->antiInyeccion($total));
 	$conexion->ejecutarconsulta($consulta);
 
-	$consulta = sprintf("SELECT IDFactura FROM tbl_factura WHERE IDUsuario = '%s' AND FechaFactura = '%s' ORDER BY IDFactura DESC", $conexion->antiInyeccion($_SESSION["ID"]), $conexion->antiInyeccion($fecha));
+	$consulta = sprintf("SELECT IDFactura FROM tbl_factura WHERE IDUsuario = '%s' AND FechaFactura = '%s' ORDER BY IDFactura DESC LIMIT 1", $conexion->antiInyeccion($_SESSION["ID"]), $conexion->antiInyeccion($fecha));
 
 	$id = $conexion->ejecutarconsulta($consulta);
 	$id = $conexion->obtenerFila($id);
