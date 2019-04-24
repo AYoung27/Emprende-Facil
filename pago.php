@@ -46,7 +46,7 @@
           </li>
           <li class="list-group-item d-flex justify-content-between" style="background: #bae8d5;">
             <span>Total (HNL)</span>
-            <strong>'.$total+($total*0.15).'</strong>
+            <strong>'.($total*1.15).'</strong>
             <input id="total" value="'.$total.'" type="hidden"></input>
           </li>
         </ul>
