@@ -71,7 +71,7 @@
 						</button>
 						<div id=\"divDesplegable_2\" class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenuButton\">
 							<a class=\"dropdown-item\" href=\"perfil.php\">Perfil</a> 
-							<a class=\"dropdown-item\" href=\"#\">Otro</a> 
+							
 							<a class=\"dropdown-item\" href=\"Acciones/cerrarSesion.php\">Salir</a>
 						</div>
 					</div>";
