@@ -56,12 +56,12 @@
 
 							<?php 
 							if ($conexion->cantidadregistros($resultado)>0) {
-								while ($arreglo = $resultado->fetch_assoc()) {
+								while ($arreglo2 = $resultado->fetch_assoc()) {
 									echo '<tr>
 									
-									<td>'.$arreglo['NombreProducto'].'</td>
-									<td>'.$arreglo['Cantidad'].'</td>
-									<td>'.$arreglo['PrecioActual'].'</td>
+									<td>'.$arreglo2['NombreProducto'].'</td>
+									<td>'.$arreglo2['Cantidad'].'</td>
+									<td>'.$arreglo2['PrecioActual'].'</td>
 									
 									</tr>';
 								}
@@ -79,9 +79,9 @@
 
 			<br> <br> <br> <br> <br>
 			
-			<h5 >Subtotal:<?php echo $arreglo2['Total']; ?></h5> <br> 
-			<h5 >isv: <?php echo $arreglo2['ISV']; ?></h5> <br>
-			<h5 >total:  <?php echo $arreglo2['Total']; ?></h5> <br>			
+			<h5 >Subtotal:<?php echo $arreglo['Total']; ?>  Lps.</h5> <br> 
+			<h5 >ISV: <?php echo $arreglo['ISV']; ?> Lps.</h5> <br>
+			<h5 >Total:  <?php echo $arreglo['Total']; ?> Lps.</h5> <br>			
 		</div>
 
 
