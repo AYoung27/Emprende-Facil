@@ -7,17 +7,21 @@
 	}
 
 
-	$sql="SELECT tbl_factura.IDFactura, tbl_producto.NombreProducto, tbl_detalle_factura.Cantidad, tbl_producto.PrecioActual, tbl_detalle_factura.Total  FROM tbl_factura  
+
+
+
+	/*CONSULTA PARA OBTENER VALORES EN LOS HISTORIALES DE COMPRA*/
+	$sql="SELECT  tbl_factura.IDFactura,CONCAT(tbl_usuario.Nombre,' ',tbl_usuario.Apellido) AS Nombre,tbl_factura.FechaFactura, tbl_producto.NombreProducto, tbl_detalle_factura.Cantidad, tbl_producto.PrecioActual , tbl_factura.SubTotal, tbl_factura.ISV, tbl_factura.Total FROM tbl_factura  
 	INNER JOIN tbl_detalle_factura on tbl_detalle_factura.IDFactura=tbl_factura.IDFactura
 	INNER JOIN tbl_producto on tbl_detalle_factura.IDProducto=tbl_producto.IDProducto
 	INNER JOIN tbl_usuario on tbl_factura.IDUsuario = tbl_usuario.IDUsuario
 	INNER JOIN tbl_proveedor on tbl_producto.IDProveedor=tbl_proveedor.IDProveedor
-	WHERE  tbl_proveedor.IDProveedor=".$_SESSION['Proveedor']." and tbl_factura.IDFactura=".$_POST['idFactura']."  ORDER BY IDFactura ASC" ;
+	WHERE  tbl_factura.IDUsuario=".$_SESSION['ID']." and tbl_factura.IDFactura=".$_POST['idFactura']."  ORDER BY IDFactura ASC" ;
 
 
 	$resultado=$conexion->ejecutarconsulta($sql);
 
-
+	$arreglo = $conexion->obtenerFila($resultado);
 	
 	?>	
 	<div class="col-md-12">
@@ -25,15 +29,16 @@
 			<br>
 			<br>
 			<center>
-			<img src="img/logo/PROTOTIPO5_LOGO.png" alt="EF | Emprende Facil" height="50px;" >
+				<img src="img/logo/PROTOTIPO5_LOGO.png" alt="EF | Emprende Facil" height="50px;" >
 			</center>
 			<br>
 			<h4 style="text-align: center; font-weight: bold; " >
 				Detalle Factura
 			</h4> <hr> <br>
-			<h6 style="color:#E52B2B; font-size: 12px;">(FALTA EDITAR 3 CAMPOS *NO TOCAR)</h6>
-			<div class="row" > <h5 class="col-md-6">N. factura: </h5> <h5 class="col-md-6">Fecha:</h5> </div>
-			<h5>Nombre Cliente:</h5>
+			
+			<div class="row" > <h5 class="col-md-6">N. factura: <?php echo $arreglo['IDFactura']; ?> </h5> <h5 class="col-md-6">Fecha: <?php echo $arreglo['FechaFactura']; ?></h5> </div>
+			<h5 >Nombre Cliente: <?php echo $arreglo['Nombre']; ?></h5>
+			
 			
 			<br> <br>
 			<div class="container">
@@ -41,19 +46,14 @@
 					<table class='table table-bordered'>
 						<thead>
 							<tr >
-								
-								
-								
 								<th>Producto</th>
 								<th>Cantidad</th>
 								<th>Precio Unidad</th>
-								<th>Total</th>
-								
 							</tr>
 
 						</thead>
 						<tbody>
-							
+
 							<?php 
 							if ($conexion->cantidadregistros($resultado)>0) {
 								while ($arreglo = $resultado->fetch_assoc()) {
@@ -62,18 +62,27 @@
 									<td>'.$arreglo['NombreProducto'].'</td>
 									<td>'.$arreglo['Cantidad'].'</td>
 									<td>'.$arreglo['PrecioActual'].'</td>
-									<td>'.$arreglo['Total'].'</td>
-																	</tr>';
+									
+									</tr>';
 								}
 								ECHO "</tbody></table>";
 							}else{
 								echo "<tr><td colspan='4' style='text-align:center'>No Tiene Facturas Disponibles</td></tr></div>";
 							}
 
-							?>
-						</tbody>
+							;?>
+						
 
-					</div>
-				</div>
+					</table>	
+				</div>			
 			</div>
-		</div>		
+
+			<br> <br> <br> <br> <br>
+			
+			<h5 >Subtotal:<?php echo $arreglo2['Total']; ?></h5> <br> 
+			<h5 >isv: <?php echo $arreglo2['ISV']; ?></h5> <br>
+			<h5 >total:  <?php echo $arreglo2['Total']; ?></h5> <br>			
+		</div>
+
+
+	</div>	
