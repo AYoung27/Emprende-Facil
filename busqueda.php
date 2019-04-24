@@ -178,7 +178,7 @@ function mostrarProductoCat($id, $conexion){
 	<!--aside , contendrá el espacio para publicidad lateral-->
 	<div class="banner">
 	<aside style="float: right; padding: 2em 1em;">
-    	<iframe src="img/Banners/banner_prot_1/banner_prototipo1.html" scrolling="no" height="600" width="160"  style=" border:none"></iframe>
+    	<iframe src="img/Banners/banner_prot_2/banner_prototipo2.html" scrolling="no" height="600" width="160"  style=" border:none"></iframe>
 	</aside>
 	</div>
 
